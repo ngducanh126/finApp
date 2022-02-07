@@ -2,4 +2,3 @@ Hello! I'm Anh Nguyen, an international student from Vietnam.
 
 I'm currently passionate about web development, I have some experience with the front end (html,css,js, react js, bootstrap), the backend (node/express js) and databases (SQL and NoSQL).
 
-Personal hobbies: Soccer (I watch the Premier League a lot, and I'm a huge Liverpool fan). I love some 90s bands, espcially BSB and Westlife. Oh and I don't play games, even though I'm a CS major lmao.
