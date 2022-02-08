@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>blog details</h2>
+    
+    
+        <p><%=blog.body %> </p>
+
+        <%if(!(blog.authorClient==undefined)){%>
+            <p>author: <%=blog.authorClient.fullname%> </p>
+        <%}%>
+
+        <%if(!(blog.authorExpert==undefined)){%>
+            <p>author: <%=blog.authorExpert.fullname%> </p>
+        <%}%>
+
+        <h2>comments:</h2>
+        <%for (c of commentList){%>
+            <h3><%=c.body%></h3>
+        
+        <%if(!(c.authorClient==undefined)){%>
+            <p>author: <%=c.authorClient.fullname%> </p>
+        <%}%>
+        
+        <%if(!(c.authorExpert==undefined)){%>
+            <p>author: <%=c.authorExpert.fullname%> </p>
+        <%}%>
+        <%}%>
+        
+        
+
+
+        <a href="/blog/<%=blog._id%>/edit">edit this blog</a>
+        
+        <form action='/blog/<%=blog._id%>/comment' method='post'>
+            <input type="text" name='body'>
+            <button>submit comment</button>
+        </form>
+
+        
+        <form action="/blog/<%=blog._id%>/?_method=delete" method="post">
+            <button>delete</button>
+        </form>
+
+    
+
+</body>
+</html>

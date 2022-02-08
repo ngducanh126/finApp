@@ -1,0 +1,11 @@
+<%for (c of commentList){%>
+    <h3><%=c.body%></h3>
+
+<%if(!(c.authorClient==undefined)){%>
+    <p>author: <%=c.authorClient.fullname%> </p>
+<%}%>
+
+<%if(!(c.authorExpert==undefined)){%>
+    <p>author: <%=c.authorExpert.fullname%> </p>
+<%}%>
+<%}%>

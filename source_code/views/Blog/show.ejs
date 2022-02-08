@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>blog details</h2>
+    <% if(clientBlog) {%>
+        <p><%=clientBlog.body  %> </p>
+        <p>author: <%= clientBlog.author.username %> </p>
+    <%}%> 
+    <% if(expertBlog) {%>
+        <p><%=expertBlog.body  %> </p>
+        <p>author: <%= expertBlog.author.username %> </p>
+    <%}%> 
+
+</body>
+</html>
