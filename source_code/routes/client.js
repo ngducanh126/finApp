@@ -2,6 +2,9 @@ const express=require('express')
 const router=express.Router();
 const passport = require('passport');
 const Client=require('../models/client')
+const Expert=require('../models/expert')
+const Appointment=require('../models/appointment')
+
 
 router.get('/',(req,res)=>{
     res.send('client page')
@@ -27,9 +30,8 @@ router.post('/register',async(req,res)=>{
     // })
     req.session._id=client._id;
     req.session.isClient=true;
-    res.render('Home/index.ejs')
-    
-    
+    req.flash('success','you created an account and logged in!')
+    res.redirect('/')
 })
 
 //LOGIN 
@@ -37,26 +39,73 @@ router.post('/register',async(req,res)=>{
 router.get('/login',(req,res)=>{
     res.render('Client/login.ejs')
 })
-router.post('/login',passport.authenticate('client',{failureRedirect:'/client/login'}),(req,res)=>{
-    // res.send(req.session)
-    // res.redirect('/')
-    // req.flash('info','login success')
+router.post('/login',passport.authenticate('client',{failureRedirect:'/client/login'}),async(req,res)=>{
+    
+    
     req.session._id=req.user._id;
     req.session.isClient=true;
-    res.render("Home/index.ejs")
+    const expert= await Expert.find({})
+    req.flash('success','logged in success')
+    res.redirect('/')
+    // res.render("Home/index.ejs",{expert:expert})
 })
 //LOG OUT
 router.get('/logout',(req,res)=>{
     req.session.destroy();
-    res.send('you just logged out')
-    // res.render('users/login')
-
+    res.redirect('/')
 })
 
 
+// 2. VIEW profile and appointments
 
-// CREATING BLOGS
-// router.
+// PROFILE
+router.get('/profile',async(req,res)=>{
+    const client= await Client.findById(req.session._id)
+    res.render('Client/profile.ejs',{client})
+})
+// router.post('/profile',async(req,res)=>{
+//     res.redirect('/client/profile')
+// })
+
+// form to edit profile
+router.get('/profile/edit',async(req,res)=>{
+    const client= await Client.findById(req.session._id)
+    res.render('Client/edit.ejs',{client})
+})
+// edit profile
+router.put('/profile',async(req,res)=>{
+    const {fullname,age,email}=req.body
+    const clientId=req.session._id
+    const client=await Client.findByIdAndUpdate(clientId,{fullname:fullname,age:age,email:email})
+    await client.save()
+    req.flash('success','you just updated your profile')
+    res.redirect("/client/profile")
+})
+
+//view appointment
+router.get('/profile/appointment',async(req,res)=>{
+    const id=req.session._id
+    const appointment=await Appointment.find({client:id}).populate('client').populate('expert')
+    const pending=[];
+    const confirmed=[]
+    for (let a of appointment){
+        if(a.state=='pending'){
+            pending.push(a)
+        }
+        if(a.state=='confirmed'){
+            confirmed.push(a)
+        }
+    }
+    res.render('Client/appointment/index.ejs',{pending,confirmed})
+    
+    // for (let a of appointment){
+    //     console.log(a.expert.fullname)
+    // }
+})
+
+
+// // CREATING BLOGS
+// // router.
 
 
 

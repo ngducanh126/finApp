@@ -1,0 +1,37 @@
+<nav class="navbar">
+    <div class="container d-flex justify-content-between">
+        <div>
+            <a href="#intro" class='navbar-brand'>
+                
+                <%if(!(currentUser.isExpert==true)){%>
+                <a class="btn btn-warning p-3 m-0" href="/"> home </a>
+                <a class="btn btn-warning p-3 m-0" href="/expert/list" method="post"> connect with experts </a>
+                <a class="btn btn-warning p-3 m-0 " href="/blog" method="post"> blogs </a>
+                <!-- <a class="btn btn-warning p-3 m-0" href="#"> financial news </a> -->
+                <%if (currentUser.isClient==true){ %>
+                <a class="btn btn-warning p-3 m-0" href="/client/profile" method="get"> my profile </a>
+                <%}%>
+
+                <%}%>
+                
+            </a>
+        </div>
+        <div>
+            <% if(currentUser._id==undefined){%>
+                <a class="btn btn-warning p-3 " href="/client/register" method="'post"> sign up for client </a>
+                <a class="btn btn-warning p-3 " href="/client/login"  method="post"> login for client </a>
+                <a class="btn btn-warning p-3 " href="/expert/register"  method="post"> sign up for expert </a>
+                <a class="btn btn-warning p-3 " href="/expert/login"  method="'post"> login for expert</a>
+            <%}%>
+            
+            <%if(currentUser.isClient==true){%>
+            <a class="btn btn-warning p-3 " href="/client/logout" method="post"> logout </a>
+            <%}%>
+            <%if(currentUser.isExpert==true){%>
+                <a class="btn btn-warning p-3 " href="/client/logout" method="post"> logout </a>
+            <%}%>
+        </div>
+        
+    </div>
+
+</nav>

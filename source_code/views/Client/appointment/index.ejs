@@ -1,0 +1,15 @@
+<% layout('/layout/boilerplate.ejs')%>
+    <h1 class="text-success">confirmed appointments</h1>
+    <% for (let c of confirmed){ %> 
+        <p>Appointment with <%=c.expert.fullname%> at <%=c.time%></p>
+        <p class="text-success">Status: <%=c.state %> </p>
+        <%if (c.message.length>0){%>
+        <p>Message:<%=c.message%></p>
+        <%}%>
+    <%}%>
+
+    <h1 class="text-warning">pending appointments</h1>
+    <% for (let p of pending){ %> 
+        <p>Appointment with <%=p.expert.fullname%> at <%=p.time%></p>
+        <p class="text-warning">Status: <%=p.state %> </p>
+    <%}%>

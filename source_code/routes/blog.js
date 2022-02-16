@@ -16,16 +16,17 @@ const isAuthor=async(req,res,next)=>{
     const blog=await Blog.findById(id);
     if(!(blog.authorClient==undefined)){
         if( !(blog.authorClient==(req.session._id))){
+            req.flash('error','you do not have permission')
             res.redirect('/blog/')
-            console.log('no access')
+            
         }else{
             next()
         }
     }
     if(!(blog.authorExpert==undefined)){
         if( !(blog.authorExpert==(req.session._id))){
+            req.flash('error','you do not have permission')
             res.redirect('/blog/')
-            console.log('no access')
         }else{
             next()
         }
@@ -44,8 +45,11 @@ const isAuthor=async(req,res,next)=>{
 
 //SHOW ALL BLOGS
 router.get('/',async(req,res)=>{
-    const blogs=await Blog.find({});
+    const blogs=await Blog.find({}).populate('authorExpert').populate('authorClient');
     res.render('Blog/index2.ejs',{blogs})
+})
+router.post('/',async(req,res)=>{
+    res.redirect('/')
 })
 
 // GET FORM TO CREATE NEW BLOG
@@ -68,6 +72,7 @@ router.post('/',async(req,res)=>{
         blog.save();
         await client.blogs.push((blog._id))
         client.save()
+        req.flash('success','you just created a blog')
         res.redirect('/blog/')
         // res.send(typeof(blog._id))
     }
@@ -77,6 +82,7 @@ router.post('/',async(req,res)=>{
         blog.save();
         await expert.blogs.push(blog._id)
         expert.save()
+        req.flash('success','you just created a blog')
         res.redirect('/blog/')
     }
     
@@ -114,6 +120,7 @@ router.get('/:id/edit',isAuthor,async(req,res)=>{
 router.put('/:id',isAuthor,async(req,res)=>{
     const {id}=req.params;
     const blog=await Blog.findByIdAndUpdate(id,{body:req.body.body})
+    req.flash('success','you just updated a blog')
     res.redirect('/blog/')
 })
 
@@ -121,6 +128,7 @@ router.put('/:id',isAuthor,async(req,res)=>{
 router.delete('/:id',isAuthor,async(req,res)=>{
     const {id}=req.params
     const blog=await Blog.findByIdAndDelete(id)
+    req.flash('success','you just deleted a blog')
     res.redirect('/blog/')
 })
 

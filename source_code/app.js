@@ -15,6 +15,7 @@ const LocalStrategy=require('passport-local')
 //MODELS
 const Client=require('./models/client')
 const Expert=require('./models/expert')
+const Blog=require('./models/blogs/blog')
 // // const companyAdmin=require('./models/companyAdmin')
 
 // //ROUTES
@@ -77,16 +78,18 @@ mongoose.connect('mongodb://localhost:27017/financeApp')
 
 
 
-// app.use((req,res,next)=>{
-//     res.locals.currentUser=req.user;
-//     res.locals.flashMessage=req.flash('info')
-//     console.log(req.user)
-//     next()
-// })
+app.use((req,res,next)=>{
+    res.locals.currentUser=req.session
+    res.locals.success=req.flash('success')
+    res.locals.error=req.flash('error')
+    next()
+})
 
 // ROUTING: 
-app.get('/',(req,res)=>{
-    res.render('./Home/index.ejs')
+app.get('/',async(req,res)=>{
+    const expert=await Expert.find({})
+    const blog=await Blog.find({}).populate('authorClient').populate('authorExpert')
+    res.render('./Home/index.ejs',{expert,blog})
 })
 app.use('/client',clientRoutes)
 app.use('/expert',expertRoutes)

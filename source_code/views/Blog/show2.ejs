@@ -1,54 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2>blog details</h2>
-    
-    
-        <p><%=blog.body %> </p>
-
+<% layout('/layout/boilerplate.ejs')%>
+<div class="card shadow-lg m-3" id='pop' >
+    <div class="card-body text-center">
+        <p class="display-5 lead text-warning "><%=blog.title%></p>
         <%if(!(blog.authorClient==undefined)){%>
             <p>author: <%=blog.authorClient.fullname%> </p>
         <%}%>
-
         <%if(!(blog.authorExpert==undefined)){%>
             <p>author: <%=blog.authorExpert.fullname%> </p>
         <%}%>
+        <p><%=blog.body %> </p>
+        
 
-        <h2>comments:</h2>
+        <a href="/blog/<%=blog._id%>/edit">edit this blog</a>
+        <form action="/blog/<%=blog._id%>/?_method=delete" method="post">
+            <button>delete</button>
+        </form>
+
+    </div>
+</div>
+<div class="card-body text-center">
+    <p class="display-5 text-muted">comments:</p>
         <%for (c of commentList){%>
-            <h3><%=c.body%></h3>
+            <p><%=c.body%></p>
         
         <%if(!(c.authorClient==undefined)){%>
-            <p>author: <%=c.authorClient.fullname%> </p>
+            <p>comment by: <%=c.authorClient.fullname%> </p>
         <%}%>
         
         <%if(!(c.authorExpert==undefined)){%>
-            <p>author: <%=c.authorExpert.fullname%> </p>
+            <p>comment by: <%=c.authorExpert.fullname%> </p>
         <%}%>
         <%}%>
-        
-        
 
-
-        <a href="/blog/<%=blog._id%>/edit">edit this blog</a>
+        
         
         <form action='/blog/<%=blog._id%>/comment' method='post'>
             <input type="text" name='body'>
             <button>submit comment</button>
         </form>
 
+</div>
+    
         
-        <form action="/blog/<%=blog._id%>/?_method=delete" method="post">
-            <button>delete</button>
-        </form>
-
     
 
-</body>
-</html>

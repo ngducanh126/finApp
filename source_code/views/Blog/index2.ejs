@@ -1,22 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-
-    <h2>All blogs</h2>
-    <% for(let blog of blogs){%> 
-        <p><%=blog.body%></p>
-        <a href="/blog/<%=blog._id%> ">click here to view details</a>
+<% layout('/layout/boilerplate.ejs')%>
+<section id="blogs" class="bg-light ml-0 mr-0 mt-2 pb-3 text-center  " style="height: 650px;">
+    <div class="container-lg ">
+        <div class="d-flex container justify-content-between">
+            <p class="display-5 lead mx-5 d d-none d-lg-block text-warning m-3"> Latest blogs</p>
+            <form action="/blog/new">
+                <button> Create your own blog</button>
+            </form>
+        </div>
         
 
-    <%}%>
-
-    <a href="/blog/new" method='get'><h2>add new blog</h2> </a>
-</body>
-</html>
+        <div class=" row my-5 align-items-center mt-1">
+            <%for (let blog of blogs){%>
+                <div class="col-sm-4 g-0 m-0">
+                    <div class="card  shadow-lg" id='pop' style="height:300px">
+                        <div class="card-body text-center">
+                            <p class="display-5 lead mx-5 d d-none d-lg-block"> <%=blog.title %></p>
+                            <p class="lead my-4 text-warning fw-bold"><%= %> </p>
+                            <%if(!(blog.authorClient==undefined)){%>
+                            <p class="card-text mx-5 text-muted d-none d-lg-block">Written by: <%=blog.authorClient.fullname %></p>
+                            <%}%>
+                            <%if(!(blog.authorExpert==undefined)){%>
+                                <p class="card-text mx-5 text-muted d-none d-lg-block">Written by: <%=blog.authorExpert.fullname %></p>
+                                <%}%>
+                            <a href="/blog/<%=blog._id%> " class="btn btn-outline-warning btn-lg mt-3">view more</a>
+                        </div>
+                    </div>
+                </div>
+            <%}%>
+            
+        </div>
+    

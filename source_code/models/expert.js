@@ -16,6 +16,14 @@ const ExpertSchema = new Schema({
         type:String,
         required:true
     },
+    experience:{
+        type:String,
+        required:true,
+    },
+    freetime:{
+        type:String,
+        
+    },
     isExpert:{
         type:String,
         default:true
@@ -23,6 +31,9 @@ const ExpertSchema = new Schema({
     blogs:[{
         type:Schema.Types.ObjectId,
         ref:'Blog'
+    }],
+    pendingAppointments:[{
+        type:String
     }]
 });
 

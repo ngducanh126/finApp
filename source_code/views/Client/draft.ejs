@@ -1,0 +1,14 @@
+<% layout('/layout/boilerplate.ejs') %>
+
+    <h2> client profile</h2>
+    <p>Name:<%=client.fullname%></p>
+    <p>email:<%=client.email%></p>
+    <p>Age:<%=client.age%></p>
+
+    <!-- <h2>blogs you created:</h2> -->
+    
+    <a href="/client/profile/edit">edit profile </a>
+
+    <div>
+        <a href="/client/profile/appointment"> view your appointments</a>
+    </div>

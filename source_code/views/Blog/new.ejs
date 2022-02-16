@@ -1,23 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<% layout('/layout/boilerplate.ejs')%>
+<div class="card shadow-lg m-3" id='pop' >
+    <div class="card-body text-center">
+        <h1>add blog</h1>
+        
+        <form action='/blog' method='post' class="container m-2 p-2">
+            <div class="m-2">
+                <input type='text' name='title' placeholder='title' style="width:300px" >
+            </div>
+            <div>
+                <input type='text' name='body' placeholder='body' style="width: 90%;height:200px" >
+            </div>
+
+            <button class="m-2">submit new blog</button>
+            
+
+        </form>
+
+    </div>
+</div>
     
-    <h1>add blog</h1>
-    <!-- later add flash message -->
-    
-    <form action='/blog' method='post'>
-    <input type='text' name='body' placeholder='title'>
-    <!-- <input type='image'name='image'> -->
-    
-    <button>submit new blog</button>
-    </form>
 
     
-</body>
-</html>

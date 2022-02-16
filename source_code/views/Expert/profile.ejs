@@ -1,0 +1,18 @@
+<% layout('/layout/boilerplate.ejs')%>
+<div class="card shadow-lg m-3" id='pop' >
+    <div class="card-body text-center">
+        <h2> expert profile</h2>
+        <p>Name:<%=expert.fullname%></p>
+        <p>Age:<%=expert.age%></p>
+        <p>Experience: <%=expert.experience%></p>
+        <p>Appointment Times: <%=expert.freetime%></p>
+
+        <a href="/expert/profile/edit">edit profile </a> 
+
+        <div>
+            <a href="/expert/profile/appointment"> your appointments</a>
+        </div>
+
+    </div>
+</div>
+    

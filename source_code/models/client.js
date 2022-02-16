@@ -23,6 +23,9 @@ const ClientSchema = new Schema({
     blogs:[{
         type:Schema.Types.ObjectId,
         ref:'Blog'
+    }],
+    pendingAppointments:[{
+        type:String
     }]
 
 });
