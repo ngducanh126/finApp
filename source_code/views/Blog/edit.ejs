@@ -1,4 +1,4 @@
-<% layout('/layout/boilerplate.ejs')%>
+<% layout('/layout/boilerplate2.ejs')%>
     <h1>edit blog</h1>
     <form action='/blog/<%=blog.id%>?_method=put' method='POST'>
         <input type='text' name='body' placeholder='title' value="<%=blog.body%>">

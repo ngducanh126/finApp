@@ -102,18 +102,9 @@ router.get('/profile/appointment',async(req,res)=>{
     res.render('Expert/appointment/index.ejs',{pending,confirmed,expert})
 })
 
-router.post('/profile/appointment/:id',async(req,res)=>{
-    const {id}=req.params
-    const appointment=await Appointment.findByIdAndUpdate(id,{state:"confirmed",message:req.body.message})
-    req.flash('success','you just confirmed an appointment')
-    res.redirect("/expert/profile/appointment")
-})
 
-// router.delete('/profile/appointment/:id',async(req,res)=>{
-//     const {id}=req.params
-//     const appointment=await Blog.findByIdAndDelete(id)
-//     res.redirect('/blog/')
-// })
+
+
 
 // 3. View experts and schedule appointments
 router.get('/list',async(req,res)=>{
@@ -123,11 +114,17 @@ router.get('/list',async(req,res)=>{
 router.post('/list',async(req,res)=>{
     res.redirect('/list')
 })
-router.get('/:id',async(req,res)=>{
+router.post('/profile/appointment/:id',async(req,res)=>{
     const {id}=req.params
-    const expert= await Expert.findById(id)
-    res.render('Expert/viewExpert/show.ejs',{expert})
+    const appointment=await Appointment.findByIdAndUpdate(id,{state:"confirmed",message:req.body.message})
+    req.flash('success','you just confirmed an appointment')
+    res.redirect("/expert/profile/appointment")
 })
+// router.get('/:id',async(req,res)=>{
+//     const {id}=req.params
+//     const expert= await Expert.findById(id)
+//     res.render('Expert/viewExpert/show.ejs',{expert})
+// })
 router.post('/:id/appointment',async(req,res)=>{
     const {id}=req.params
     const clientId=req.session._id

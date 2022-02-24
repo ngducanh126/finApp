@@ -44,7 +44,7 @@ app.use(methodOverride('_method'))
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(flash())
-app.use(express.static(path.join(__dirname, 'public')))
+// app.use(express.static(path.join(__dirname, 'public')))
 
 
 
@@ -89,7 +89,7 @@ app.use((req,res,next)=>{
 app.get('/',async(req,res)=>{
     const expert=await Expert.find({})
     const blog=await Blog.find({}).populate('authorClient').populate('authorExpert')
-    res.render('./Home/index.ejs',{expert,blog})
+    res.render('./Home/index2.ejs',{expert,blog})
 })
 app.use('/client',clientRoutes)
 app.use('/expert',expertRoutes)

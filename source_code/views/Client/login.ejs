@@ -1,13 +1,62 @@
-<% layout('/layout/boilerplate.ejs')%>
+<% layout('/layout/boilerplate2.ejs')%>
     
-    <h1>client login</h1>
-    <!-- later add flash message -->
+    <!-- <h1>client login</h1>
 
     <form action='/client/login' method='post'>
         <input type='text' name='username' placeholder='username'>
         <input type='password' name='password' placeholder='password'>
     
     <button>log in</button>
-    </form>
+    </form> -->
 
+
+<!--MAIN-->
+<section class="container ftco-section pt-5 pb-5">
+  <div class="row-lg-12"></div>
+      <div class=" justify-content-center">
+          <div class="row justify-content-center">
+              <div class="">
+                  <h2 class="heading text-center mb-5 ">Login</h2>
+              </div>
+          </div>
+          <div class="row justify-content-center">
+              <div class="col-md-6 col-lg-4">
+                  <div class="login-wrap mx-auto">
+                <h3 class="mb-5 heading text-center">Have an account?</h3>
+
+                <form action='/client/login' method='post' class="signin-form">
+                    <div class="form-group">
+                        <input type="text" class="form-control transparent-input" placeholder="Username" name='username' required>
+                    </div>
+                    <div class="form-group mb-2">
+                        <input id="password-field" type="password" class="form-control transparent-input" placeholder="Password" name="password" required>
+                        <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                    </div>
+                    
+                        <button class="form-control btn btn-primary submit px-3">Sign In</button>
+                    
+                </form>
+
+
+                    <div class="form-group d-md-flex">
+                        <div class="w-50">
+                            <label class="checkbox-wrap text-light checkbox-primary">Remember Me
+                                            <input type="checkbox" checked>
+                                            <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="w-50 text-md-right">
+                                        <a href="#" style="color: #fff">Forgot Password</a>
+                        </div>
+
+                    
+                    </div>
+            
     
+            
+            </div>
+              </div>
+          </div>
+      </div>
+</section>
+

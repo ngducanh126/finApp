@@ -1,0 +1,81 @@
+<section class="home" >
+    <div class=" header">
+        <nav class="navbar navbar-expand-lg ">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">FinApp</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <%if(!(currentUser.isExpert==true)){%>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/blog">Blog</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="">News</a>
+                      </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/expert/list" method="get">Expert</a>
+                    </li>
+
+                    <%if(currentUser.isClient==true){%>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/client/profile" method="get">My profile</a>
+                    </li>
+                    <%}%>
+                
+
+                
+                    
+                <%}%>
+          <!-- <ul class="navbar-nav me-auto mb-0 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="home.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">News</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="expert.html">Expert</a>
+            </li>
+            
+          </ul> -->
+
+
+
+          <!--signin-->
+            <% if(currentUser._id==undefined){%>
+                <a class="button rounded-2 btn-main btn btn-success mx-3 " href="/client/register" method="'post"> sign up for client </a>
+                <a class="button rounded-2 btn-main btn btn-success mx-3 " href="/client/login"  method="post"> login for client </a>
+                <a  class="button rounded-2 btn-main btn btn-success mx-3 "href="/expert/register"  method="post"> sign up for expert </a>
+                <a  class="button rounded-2 btn-main btn btn-success mx-3 " href="/expert/login"  method="'post"> login for expert</a>
+            <%}%>
+            
+            <%if(currentUser.isClient==true){%>
+            <a class="btn btn-warning p-3 " href="/client/logout" method="post"> logout </a>
+            <%}%>
+            <%if(currentUser.isExpert==true){%>
+                <a class="btn btn-warning p-3 " href="/client/logout" method="post"> logout </a>
+            <%}%>
+
+          <!-- <a href="login.html" class="button rounded-2 btn-main btn btn-success mx-1 ">Sign Up</a>
+           <a href="login.html" class="button rounded-2 btn-main btn btn-success mx-3 ">Log In</a> -->
+          <!--search-->
+
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="rounded-2 btn-main btn btn-success" type="submit">Search</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+</section> 

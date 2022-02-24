@@ -1,0 +1,209 @@
+<% layout('/layout/boilerplate2.ejs')%>
+
+        <!-- INTRO -->
+        <section class="home hero intro container mt-3 mb-5 " id="intro">
+            <div class="cond-flex justify-content-around ">
+                <div class="container d-flex justify-content-around">
+                    <div class="col-md-5 text-center text-md-start">
+                        <h1>
+                        <div class="display-2 py-3 mt-3">FinApp</div>
+                        </h1>
+                        <h1 class="">
+                        <div class="display-5  ">master the world of finance</div>
+                        </h1>
+                        <p class="lead my-4">FinApp is on a mission to empower students to become financially literate.
+    
+                            It’s simple, effective and fun.
+                            
+                            Users connect free with experts. Chat with experts, schedule online appointments with them, and even have them look at your future investment plan! 
+                            
+                            Join in and read numerous financial blogs and articles, from tax advice, investment strategies to economic trends. 
+                            
+                            Become the master of your personal finance and the finance world around you. 
+                            </p>
+                    </div>
+    
+                    <div class="col-md-5 text-center">
+                        <!-- this means that when very small: col=12; 
+                        when reach medium, col=5 -->
+                        <!-- image fluid means that image element=100% parent always -->
+                        <img style="height:450px" class='img-fluid d-none d-md-block my-4 pt-10 shadow-lg' src="https://wallpapercave.com/wp/wp2446263.jpg">
+                
+                
+                
+                    </div>
+            </div>
+        </section>
+    
+    
+        <!-- How we help you  -->
+        <section class='home how-help m-0 pb-3'>
+            <div class="container ">
+                <div class="text-center p-3">
+                    <h2 class="text-dark">How we help you</h2>
+                </div>
+                <div class=" row my-5 align-items-center mt-1">
+                    <div class=" col-sm-4 g-0">
+                        <div class="card card1 shadow-lg" id='pop' style="height:300px">
+                            <div class="card-body text-center">
+                                <p class="lead my-4 home-heading fw-bold">stay updated on financial news</p>
+                                <p class="card-text mx-5 text-muted d-none d-lg-block">get insights into economic trends and the stock market</p>
+                                <a href="#" class=" home-btn btn btn-outline-dark btn-lg mt-3">view more</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-sm-4 g-0 " >
+                        <div class="card card2  shadow-lg" id='pop' style="height:300px">
+                            <div class="card-body text-center">
+                                <p class="lead my-4 text-dark fw-bold">join forums on financial topics</p>
+                                <p class="card-text mx-5 text-muted d-none d-lg-block">Read and share blogs about finance</p>
+                                <a href="#" class=" btn btn-outline-dark btn-lg mt-3">view more</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-sm-4 g-0">
+                        <div class="card card3  shadow-lg" id='pop' style="height:300px">
+                            <div class="card-body text-center">
+                                <p class="lead my-4 home-heading fw-bold">get connected to experts</p>
+                                <p class="card-text mx-5 text-muted d-none d-lg-block">We help you connect free with financial experts. Schedule appointments or chat live with experts now!</p>
+                                <a href="#" class="home-btn btn btn-outline-dark btn-lg mt-3">view more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </section>
+        
+        <!-- EXPERTS  -->
+        <section id='experts' class=" home expert bg-dark my-5 container"  >
+            <div class="container-lg pt-5 pb-5 " >
+                <div class="row d-flex container justify-content-between " style="margin: 0; padding:0" >
+                    <div class="col text-center text-md-start mr-5" style="position: relative;"  >
+                        <h1>
+                            <div class="display-5 home-heading">Connect with experts now!</div>
+                        </h1>
+                        <p class="lead my-4 text-white"> We connect with with leading experts in the field. It's free!
+                        </p>
+                        <p class="lead text-white"> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis sed quaerat adipisci vero, magnam itaque. Minus vitae, quo sunt ducimus porro tempora in fuga recusandae sit nesciunt animi at vero!</p>
+                        
+                        <div class="d-flex justify-content-center">
+                        </div>
+
+                        <button class="btn btn-large bg-dark" style="position: absolute; bottom:30px;left: 70px; width: 300px; ">View all experts</button>
+                    </div>
+
+                   <div class="col text-center ml-5">
+                                 <!-- Carousel -->
+                                <div id="demo" class="carousel slide bg-light " data-bs-ride="carousel "  style="width: 600px; height:500px; position: relative;">
+
+                                    <!-- Indicators/dots -->
+                                    <div class="carousel-indicators" style="position:absolute; bottom: 180px;">
+                                        <button id ='this_btn' type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"  ></button>
+                                        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                                        <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+                                    </div>
+                                
+                                    <!-- The slideshow/carousel -->
+                                    <!-- <div class="container justify-content-center" > -->
+                                    <div class="carousel-inner container text-center" style="height: 100%;width:100%;color: white; padding: 0;" >
+                                    
+                                        <div class="carousel-item active bg-dark " style="height: 100%; position: relative;">
+                                            <img src="https://fifthperson.com/wp-content/uploads/2015/04/warren-buffett.jpg"  width="100%" height="300px">
+                                            <div class="p-3">
+                                            <h3 class="text-warning"><%=expert[0].fullname%> </h3>
+                                            <p>Fields of expertise:<%=expert[0].experience%></p>
+                                        </div>
+                                            <div>
+                                                <btn class="btn btn-dark" style="position: absolute;bottom: 30px; left: 32%;">connect with this expert now</btn>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="carousel-item  bg-dark container text-center" style="height: 100%; position: relative;">
+                                            <img  src="https://media.npr.org/assets/img/2021/04/25/ap21114783083708_custom-75a1c4f0411b4d20016eb8696f1a4ea2519f599d-s1100-c50.jpg" width="100%" height="300px">
+                                            <div class="p-3">
+                                                <h3 class="text-warning"><%=expert[1].fullname%> </h3>
+                                                <p>Fields of expertise:<%=expert[1].experience%></p>
+                                            </div>
+                                            <btn class="btn btn-dark" style="position: absolute;bottom: 30px; left: 32%;">connect with this expert now</btn>
+                                        </div>
+
+                                        <div class="carousel-item  bg-dark" style="height: 100%; position: relative;">
+                                            <img   src="https://image.cnbcfm.com/api/v1/image/104891709-Bill_Gates_the_co-Founder.jpg?v=1558120888" width="100%" height="300px">
+                                            <div  class="p-3">
+                                                <h3 class="text-warning"><%=expert[2].fullname%> </h3>
+                                                <p>Fields of expertise:<%=expert[2].experience%></p>
+                                            </div>
+                                            <btn class="btn btn-dark" style="position: absolute;bottom: 30px; left: 32%;">connect with this expert now</btn>
+                                        </div>
+                                    </div>
+                                
+                                    <!-- Left and right controls/icons -->
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev"  >
+                                    <span class="carousel-control-prev-icon"></span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                    </button>
+
+                                </div>
+                    </div> 
+                </div>
+                    
+                    
+    
+                    
+
+
+                </div>
+            </div>
+        </section>
+
+
+        
+        <!-- BLOGS  -->
+        <section id="blogs" class="bg-light ml-0 mr-0 mt-2 pb-3 text-center  " style="height: 650px;">
+            <div class="container-lg ">
+                <p class="display-5 lead mx-5 d d-none d-lg-block text-warning m-3"> best blogs this month</p>
+                <div class=" row my-5 align-items-center mt-1">
+                    <%for (let i=0;i<3;i++){%>
+                        <div class="col-sm-4 g-0 m-0">
+                            <div class="card  shadow-lg" id='pop' style="height:300px">
+                                <div class="card-body text-center">
+                                    <p class="display-5 lead mx-5 d d-none d-lg-block"> <%=blog[i].title %></p>
+                                    <%if(!(blog[i].authorClient==undefined)){%>
+                                    <p class="card-text mx-5 text-muted d-none d-lg-block">Written by: <%=blog[i].authorClient.fullname %></p>
+                                    <%}%>
+                                    <%if(!(blog[i].authorExpert==undefined)){%>
+                                        <p class="card-text mx-5 text-muted d-none d-lg-block">Written by: <%=blog[i].authorExpert.fullname %></p>
+                                        <%}%>
+                                        
+                                    <a href="/blog/<%=blog[i]._id%> " class="btn btn-outline-warning btn-lg mt-3">view more</a>
+                                </div>
+                            </div>
+                        </div>
+                    <%}%>
+                </div>
+            </div>
+            <div class="container m-3 p-3">
+                <div>
+                    <form action="/blog/">
+                     <button class="btn btn-warning lead text-white " style="width: 300px;" > VIEW ALL BLOGS</button>
+                    </form>
+                </div>
+                <div>
+                    <p class="display">Or...</p>
+                </div>
+                <div>
+                    <form action="/blog/new">
+                    <button class="btn btn-warning lead text-white " style="width: 300px;"> CREATE YOUR OWN BLOG NOW!</button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+
+</nav>
+ 

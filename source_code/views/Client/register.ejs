@@ -1,7 +1,6 @@
-<% layout('/layout/boilerplate.ejs')%>
+<% layout('/layout/boilerplate2.ejs')%>
     
-    <h1>client register</h1>
-    <!-- later add flash message -->
+    <!-- <h1>client register</h1>
 
     <form action='/client/register' method='post'>
     <input type='text' name='fullname' placeholder='fullname'>
@@ -13,6 +12,60 @@
 
     
     <button>register client</button>
-    </form>
+    </form> -->
+
+    <section class="container ftco-section pt-5 pb-5">
+        <div class="row-lg-12"></div>
+            <div class=" justify-content-center">
+                <div class="row justify-content-center">
+                    <div class="">
+              <h3 class="mb-5 heading text-center">Haven't got an account?</h3>
+                    
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="login-wrap mx-auto">
+                      
+                <h2 class="heading text-center mb-5 ">Sign up now</h2>
+                    <form action='/client/register' method='post' class="signin-form">
+                          <div class="form-group">
+                              <input type="text" class="form-control transparent-input" placeholder="fullname" name="fullname" required>
+                          </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control transparent-input" placeholder="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control transparent-input" placeholder="age" name="age" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control transparent-input" placeholder="new username" name="username" required>
+                            </div>
+
+                    <div class="form-group mb-2">
+                      <input id="password-field" type="password" class="form-control transparent-input" placeholder="New password" name="password" required>
+                      <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="form-control btn btn-primary submit px-3">Sign Up</button>
+                    </div>
+                    <div class="form-group d-md-flex">
+                        <div class="w-50">
+                            <label class="checkbox-wrap text-light checkbox-primary">Remember Me
+                                          <input type="checkbox" checked>
+                                          <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                    </div>
+                   </form>
+                <div class="w-150 py-3 text-center">
+                  <a href="login.html" style="color: #fff">Back to Log In</a>
+                </div>
+                  
+                  </div>
+                    </div>
+                </div>
+            </div>
+    </section>
 
     

@@ -1,10 +1,11 @@
 <% layout('/layout/boilerplate2.ejs')%>
+    <h1>hello</h1>
     <div class="card shadow-lg m-3" id='pop' >
         <div class="card-body text-center">
             <h2> client profile</h2>
-        <p>Name:<%=clientUser.fullname%></p>
-        <p>email:<%=clientUser.email%></p>
-        <p>Age:<%=clientUser.age%></p>
+        <p>Name:<%=client.fullname%></p>
+        <p>email:<%=client.email%></p>
+        <p>Age:<%=client.age%></p>
 
     
         <a href="/client/profile/edit">edit profile </a>
@@ -15,7 +16,4 @@
     
         </div>
     </div>
-
-    
-
 

@@ -40,8 +40,6 @@ router.get('/login',(req,res)=>{
     res.render('Client/login.ejs')
 })
 router.post('/login',passport.authenticate('client',{failureRedirect:'/client/login'}),async(req,res)=>{
-    
-    
     req.session._id=req.user._id;
     req.session.isClient=true;
     const expert= await Expert.find({})
@@ -59,18 +57,23 @@ router.get('/logout',(req,res)=>{
 // 2. VIEW profile and appointments
 
 // PROFILE
-router.get('/profile',async(req,res)=>{
-    const client= await Client.findById(req.session._id)
-    res.render('Client/profile.ejs',{client})
-})
+// router.get('/profile',async(req,res)=>{
+//     const client= await Client.findById(req.session._id)
+//     // res.render('Client/profile.ejs',{client})
+//     // res.render('Client/myprofile',{client})
+//     res.send('hey')
+// })
 // router.post('/profile',async(req,res)=>{
 //     res.redirect('/client/profile')
 // })
-
+router.get('/profile',async(req,res)=>{
+    const clientUser=await Client.findById(req.session._id)
+    res.render('Client/profile.ejs',{clientUser})
+})
 // form to edit profile
 router.get('/profile/edit',async(req,res)=>{
-    const client= await Client.findById(req.session._id)
-    res.render('Client/edit.ejs',{client})
+    const clientUser= await Client.findById(req.session._id)
+    res.render('Client/edit.ejs',{clientUser})
 })
 // edit profile
 router.put('/profile',async(req,res)=>{

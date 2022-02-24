@@ -1,20 +1,18 @@
-/*COLORS
-
-background
-0B0C10
-secondary background 
-1F2833
-gray
-C5C6C7
-primary
-66FCF1
-secondary
-45A 29*/
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
 body{
   font-family: 'Montserrat', sans-serif;}
-body.home{
+body{
   background-color: #0B0C10;
+  min-height: 700px;
+  position: relative;
 }
   
   
@@ -66,7 +64,7 @@ a:hover.navbar-brand, a:hover.footer-logo{
 li.nav-item:hover {
     background-color: #1F2833 !important;
 }
-}
+
 .navbar {
   background-color: #0B0C10;
   color: #66FCF1;
@@ -129,7 +127,7 @@ li.nav-item:hover {
 
 img{
   filter: grayscale(30%) brightness(0.9);
-  heigh: 100%;
+  height: 100%;
   width: 100%;
  
 }
@@ -167,9 +165,8 @@ img{
    color: #0B0C10;
    margin-top: 0.5rem;
 
-.
- /*ASIDE*/
 
+ /*ASIDE*/
 
  }
 .social-links{
@@ -206,7 +203,7 @@ img{
 
 /*CREAT BLOG SECTION*/
 .create-blog{
-  background-color:;
+  background-color:#1F2833;
 }
 
 /*Footer*/
@@ -291,9 +288,44 @@ button:focus {
       background-color: rgba(12, 38, 34, 0.57)  !important;
     }
 
-login .heading{
+.login .heading{
    text-shadow: 1px 1px black, 2px 2px black, 2px 2px black, 1px 1px black;
 }
  
 
 
+
+    </style>
+<!--font and icon-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+</head>
+<body>
+    <%-include("../partials/navbar2.ejs") %>
+    
+        <%if (success.length>0){%>
+            <div class="alert alert-success" role="alert">
+                <%=success%> 
+            </div>
+        <%}%>
+
+        <%if (error.length>0){%>
+            <div class="alert alert-warning" role="alert">
+                <%=error%> 
+            </div>
+        <%}%>
+
+
+    <main class="container">
+        <%- body%>
+    </main>
+        
+    <%-include('../partials/footer2.ejs') %>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+</html>
