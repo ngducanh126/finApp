@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Home - FINAPP</title>
+
+<!--CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css"> 
+<!--font and icon-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+<body class="home">
+    <!--HEADER SECTION-->
+<section class="home">
+      <div class=" header">
+          <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">FinApp</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-0 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="home.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Blog</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="">News</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="expert.html">Expert</a>
+              </li>
+              
+            </ul>
+            <!--log in-->
+            <div class="dropdown">
+                <button class="btn button dropdown-toggle rounded-2 btn-main mx-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Login
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="login-client.html">Client</a></li>
+                <li><a class="dropdown-item" href="login-expert.html">Expert</a></li>
+                </ul>
+              </div>
+              <!--sign up-->
+              <a href="signup.html" class="button rounded-2 btn-main btn btn-success mx-1 ">Sign Up</a>
+              
+              <!--<a href="login-client.html" class="button rounded-2 btn-main btn btn-success mx-3 ">Log In</a>
+              search
+              <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="rounded-2 btn-main btn btn-success" type="submit">Search</button> -->
+              </form>
+          </div>
+        </div>
+      </div>
+ </section> 
+        <!-- INTRO -->
+        <section class="home hero intro container mt-3 mb-5 " id="intro">
+            <div class="cond-flex justify-content-around ">
+                <div class="container d-flex justify-content-around">
+                    <div class="col-md-5 text-center text-md-start">
+                        <h1>
+                        <div class="display-2 py-3 mt-3">FinApp</div>
+                        </h1>
+                        <h1 class="">
+                        <div class="display-5  ">master the world of finance</div>
+                        </h1>
+                        <p class="lead my-4">FinApp is on a mission to empower students to become financially literate.
+    
+                            It’s simple, effective and fun.
+                            
+                            Users connect free with experts. Chat with experts, schedule online appointments with them, and even have them look at your future investment plan! 
+                            
+                            Join in and read numerous financial blogs and articles, from tax advice, investment strategies to economic trends. 
+                            
+                            Become the master of your personal finance and the finance world around you. 
+                            </p>
+                    </div>
+    
+                    <div class="col-md-5 text-center">
+                        <!-- this means that when very small: col=12; 
+                        when reach medium, col=5 -->
+                        <!-- image fluid means that image element=100% parent always -->
+                        <img style="height:450px" class='img-fluid w-100 d-none d-md-block my-4 pt-5 shadow-lg' src="https://sell.g2.com/hubfs/iStock-1129514615.jpg">
+                
+                
+                
+                    </div>
+            </div>
+        </section>
+    
+    
+        <!-- How we help you  -->
+        <section class='home how-help m-0 pb-3'>
+            <div class="container ">
+                <div class="text-center p-3">
+                    <h2 class="text-dark">How we help you</h2>
+                </div>
+                <div class=" row my-5 align-items-center mt-1">
+                    <div class=" col-sm-4 g-0">
+                        <div class="card card1 shadow-lg" id='pop' style="height:300px">
+                            <div class="card-body text-center">
+                                <p class="lead my-4 home-heading fw-bold">stay updated on financial news</p>
+                                <p class="card-text mx-5 text-muted d-none d-lg-block">get insights into economic trends and the stock market</p>
+                                <a href="#" class=" home-btn btn btn-outline-dark btn-lg mt-3">view more</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-sm-4 g-0 " >
+                        <div class="card card2  shadow-lg" id='pop' style="height:300px">
+                            <div class="card-body text-center">
+                                <p class="lead my-4 text-dark fw-bold">join forums on financial topics</p>
+                                <p class="card-text mx-5 text-muted d-none d-lg-block">Read and share blogs about finance</p>
+                                <a href="#" class=" btn btn-outline-dark btn-lg mt-3">view more</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-sm-4 g-0">
+                        <div class="card card3  shadow-lg" id='pop' style="height:300px">
+                            <div class="card-body text-center">
+                                <p class="lead my-4 home-heading fw-bold">get connected to experts</p>
+                                <p class="card-text mx-5 text-muted d-none d-lg-block">We help you connect free with financial experts. Schedule appointments or chat live with experts now!</p>
+                                <a href="#" class="home-btn btn btn-outline-dark btn-lg mt-3">view more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </section>
+        
+        <!-- EXPERTS  -->
+        <section id='experts' class=" home expert bg-dark my-5 container"  >
+            <div class="container-lg pt-5 pb-5 " >
+                <div class="row d-flex container justify-content-between " style="margin: 0; padding:0" >
+                    <div class="col text-center text-md-start mr-5" style="position: relative;"  >
+                        <h1>
+                            <div class="display-5 home-heading">Connect with experts now!</div>
+                        </h1>
+                        <p class="lead my-4 text-white"> We connect with with leading experts in the field. It's free!
+                        </p>
+                        <p class="lead text-white"> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis sed quaerat adipisci vero, magnam itaque. Minus vitae, quo sunt ducimus porro tempora in fuga recusandae sit nesciunt animi at vero!</p>
+                        
+                        <div class="d-flex justify-content-center">
+                        </div>
+
+                        <button class="btn btn-large bg-dark" style="position: absolute; bottom:30px;left: 70px; width: 300px; ">View all experts</button>
+                    </div>
+
+                   <div class="col text-center ml-5">
+                                 <!-- Carousel -->
+                                <div id="demo" class="carousel slide bg-light " data-bs-ride="carousel "  style="width: 600px; height:500px; position: relative;">
+
+                                    <!-- Indicators/dots -->
+                                    <div class="carousel-indicators" style="position:absolute; bottom: 180px;">
+                                        <button id ='this_btn' type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"  ></button>
+                                        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                                        <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+                                    </div>
+                                
+                                    <!-- The slideshow/carousel -->
+                                    <!-- <div class="container justify-content-center" > -->
+                                    <div class="carousel-inner container text-center" style="height: 100%;width:100%;color: white; padding: 0;" >
+                                    
+                                        <div class="carousel-item active bg-dark " style="height: 100%; position: relative;">
+                                            <img src="https://fifthperson.com/wp-content/uploads/2015/04/warren-buffett.jpg"  width="100%" height="300px">
+                                            <div class="p-3">
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est similique velit aspernatur in soluta deserunt laboriosam quos perferendis. Molestias perferendis magnam delectus, eaque a tempora eius repellendus quibusdam earum suscipit?</p>
+                                            </div>
+                                            <div>
+                                                <btn class="btn btn-dark" style="position: absolute;bottom: 30px; left: 32%;">connect with this expert now</btn>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="carousel-item  bg-dark container text-center" style="height: 100%; position: relative;">
+                                            <img  src="https://media.npr.org/assets/img/2021/04/25/ap21114783083708_custom-75a1c4f0411b4d20016eb8696f1a4ea2519f599d-s1100-c50.jpg" width="100%" height="300px">
+                                            <div class="p-3">
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est similique velit aspernatur in soluta deserunt laboriosam quos perferendis. Molestias perferendis magnam delectus, eaque a tempora eius repellendus quibusdam earum suscipit?</p>
+                                            
+                                            </div>
+                                            <btn class="btn btn-dark" style="position: absolute;bottom: 30px; left: 32%;">connect with this expert now</btn>
+                                        </div>
+
+                                        <div class="carousel-item  bg-dark" style="height: 100%; position: relative;">
+                                            <img   src="https://image.cnbcfm.com/api/v1/image/104891709-Bill_Gates_the_co-Founder.jpg?v=1558120888" width="100%" height="300px">
+                                            <div  class="p-3">
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est similique velit aspernatur in soluta deserunt laboriosam quos perferendis. Molestias perferendis magnam delectus, eaque a tempora eius repellendus quibusdam earum suscipit?</p>
+                                            </div>
+                                            <btn class="btn btn-dark" style="position: absolute;bottom: 30px; left: 32%;">connect with this expert now</btn>
+                                        </div>
+                                    </div>
+                                
+                                    <!-- Left and right controls/icons -->
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev"  >
+                                    <span class="carousel-control-prev-icon"></span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                    </button>
+
+                                </div>
+                    </div> 
+                </div>
+                    
+                    
+    
+                    
+
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- BLOGS  -->
+        <section id="blogs" class=" home homeblog  ml-0 mr-0 mt-0 mb-10 text-center  " >
+            <!-- Carousel -->
+            <div id="blogSlide" class="carousel slide" data-bs-ride="carousel" style="height: 500px; width: 100%;"> 
+
+                <!-- Indicators/dots -->
+                <div class="carousel-indicators">
+
+                <button  data-bs-target="#blogSlide" data-bs-slide-to="0" class="active" > 
+                </button>
+                <button  data-bs-target="#blogSlide" data-bs-slide-to="1"> </button>
+                <button data-bs-target="#blogSlide" data-bs-slide-to="2"></button>
+                
+
+                </div>
+            
+                <!-- The slideshow/carousel -->
+                <div class="carousel-inner" style="padding-left: 120px;padding-right: 120px;">
+                    <div class="text-center lead text-white pt-5">
+                        <h2  class="display-5 text-light">BLOGS</h2>
+                    </div>
+                <div class="carousel-item active">
+                    <div class="container-lg ">
+                        
+                        <div class=" row  align-items-center mt-1 p-3">
+                            <div class=" col-sm-4 g-0 p-2">
+                                <div class="card shadow-sm" id='pop' style="height:300px">
+                                    <div class="card-body text-center">
+                                        <p class="lead my-4 text-dark fw-bold">blog title</p>
+                                        <p class="lead my-4 text-dark fw-bold">written by author_name</p>
+                                        <a href="#" class="btn btn-outline-dark btn-lg mt-3">read more</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-sm-4 g-0 p-2" >
+                                <div class="card shadow-sm" id='pop' style="height:300px">
+                                    <div class="card-body text-center">
+                                        <p class="lead my-4 text-dark fw-bold">blog title</p>
+                                        <p class="lead my-4 text-dark fw-bold">written by author_name</p>
+                                        <a href="#" class="btn btn-outline-dark btn-lg mt-3">read more</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-sm-4 g-0 p-2">
+                                <div class="card shadow-sm" id='pop' style="height:300px">
+                                    <div class="card-body text-center" style="height: 100%;">
+                                        <p class="lead my-4 text-dark fw-bold">blog title</p>
+                                        <p class="lead my-4 text-dark fw-bold">written by author_name</p>
+                                        <a href="#" class="btn btn-outline-dark btn-lg mt-3">read more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="container-lg ">
+                        
+                        <div class=" row  align-items-center mt-1 p-3">
+                            <div class=" col-sm-4 g-0 p-2">
+                                <div class="card shadow-lg" id='pop' style="height:300px">
+                                    <div class="card-body text-center">
+                                        <p class="lead my-4 text-dark fw-bold">blog title</p>
+                                        <p class="lead my-4 text-dark fw-bold">written by author_name</p>
+                                        <a href="#" class="btn btn-outline-dark btn-lg mt-3">read more</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-sm-4 g-0 p-2" >
+                                <div class="card shadow-lg" id='pop' style="height:300px">
+                                    <div class="card-body text-center">
+                                        <p class="lead my-4 text-dark fw-bold">blog title</p>
+                                        <p class="lead my-4 text-dark fw-bold">written by author_name</p>
+                                        <a href="#" class="btn btn-outline-dark btn-lg mt-3">read more</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-sm-4 g-0 p-2">
+                                <div class="card shadow-lg" id='pop' style="height:300px">
+                                    <div class="card-body text-center" style="height: 100%;">
+                                        <p class="lead my-4 text-dark fw-bold">blog title</p>
+                                        <p class="lead my-4 text-dark fw-bold">written by author_name</p>
+                                        <a href="#" class="btn btn-outline-dark btn-lg mt-3">read more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="container-lg ">
+                        
+                        <div class=" row  align-items-center mt-1 p-3">
+                            <div class=" col-sm-4 g-0 p-2">
+                                <div class="card shadow-lg" id='pop' style="height:300px">
+                                    <div class="card-body text-center">
+                                        <p class="lead my-4 text-dark fw-bold">blog title</p>
+                                        <p class="lead my-4 text-dark fw-bold">written by author_name</p>
+                                        <a href="#" class="btn btn-outline-dark btn-lg mt-3">read more</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-sm-4 g-0 p-2" >
+                                <div class="card shadow-lg" id='pop' style="height:300px">
+                                    <div class="card-body text-center">
+                                        <p class="lead my-4 text-dark fw-bold">blog title</p>
+                                        <p class="lead my-4 text-dark fw-bold">written by author_name</p>
+                                        <a href="#" class="btn btn-outline-dark btn-lg mt-3">read more</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-sm-4 g-0 p-2">
+                                <div class="card shadow-lg" id='pop' style="height:300px">
+                                    <div class="card-body text-center" style="height: 100%;">
+                                        <p class="lead my-4 text-dark fw-bold">blog title</p>
+                                        <p class="lead my-4 text-dark fw-bold">written by author_name</p>
+                                        <a href="#" class="btn btn-outline-dark btn-lg mt-3">read more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            
+                <!-- Left and right controls/icons -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#blogSlide" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                </button>
+                
+                <button class="carousel-control-next" type="button" data-bs-target="#blogSlide" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+
+             <div class="row-lg-12  pb-10 mb-5" style="padding-left: 120px;padding-right: 120px;">
+                    <div class="text-center text-white  ">
+                              <div class="container m-3 p-3 align-items-center">
+                        <div class="pt-10 pb-10">
+                            <a href="index.html" class="button rounded-2 btn-main btn-lg btn-success mx-1 px-4 me-md-2 ">View All Blogs</a>
+          
+                        </div>
+                        <div>
+                            <p class="display my-3">Or</p>
+                        </div>
+                        <div class="pt-10 pb-10">
+                            <a href="blog-creating.html" class="button rounded-2 btn-main btn-lg btn-success mx-1 px-4 me-md-2 ">Start Your Blog Now</a>
+          
+                        </div>
+                      </div>
+              </div>
+             </div>
+                 
+        </section>
+
+<!--FOOTER SECTION-->
+<footer class="footer py-4">
+<!--left-->
+  <div class="container">
+     <div class="row">
+    <div class="col-md-4">
+        <a class="footer-logo" href="">FinApp</a>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+    </div>
+    <div class="col-md-4"> 
+<!--middle-->
+      <h4>Useful Links</h4>
+      <ul>
+        <li><a href="">Home</a></li>
+        <li><a href="">Terms of service</a></li>
+        <li><a href="">Privacy Policy</a></li>
+        <li><a href="">Newsletter</a></li>
+        <li><a href="">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="col-md-4">
+<!--right-->
+      <h4>Newsletter</h4>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="rounded-2 btn-main btn btn-success" type="submit">Search</button>
+      </form>
+    
+    </div>
+    </div>
+<!--copyright-->
+    <div class="w-100 text-center credits">
+      <p>FinApp &copy; 2022. All rights reserved.</p>
+    </div>
+  </div>
+ 
+</footer>
+</nav>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
+
+  </body>
+</html>
