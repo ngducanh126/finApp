@@ -1,0 +1,5 @@
+<% layout('/layout/boilerplate2.ejs')%>
+<a href="/blog/<%=blog._id%>/edit">edit this blog</a>
+        <form action="/blog/<%=blog._id%>/?_method=delete" method="post">
+            <button>delete</button>
+        </form>

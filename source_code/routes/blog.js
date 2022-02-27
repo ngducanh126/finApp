@@ -23,14 +23,14 @@ const isAuthor=async(req,res,next)=>{
             next()
         }
     }
-    if(!(blog.authorExpert==undefined)){
-        if( !(blog.authorExpert==(req.session._id))){
-            req.flash('error','you do not have permission')
-            res.redirect('/blog/')
-        }else{
-            next()
-        }
-    }
+    // if(!(blog.authorExpert==undefined)){
+    //     if( !(blog.authorExpert==(req.session._id))){
+    //         req.flash('error','you do not have permission')
+    //         res.redirect('/blog/')
+    //     }else{
+    //         next()
+    //     }
+    // }
 
 
 
@@ -48,9 +48,9 @@ router.get('/',async(req,res)=>{
     const blogs=await Blog.find({}).populate('authorExpert').populate('authorClient');
     res.render('Blog/index2.ejs',{blogs})
 })
-router.post('/',async(req,res)=>{
-    res.redirect('/')
-})
+// router.post('/',async(req,res)=>{
+//     res.redirect('/')
+// })
 
 // GET FORM TO CREATE NEW BLOG
 router.get('/new',async(req,res)=>{
@@ -65,26 +65,16 @@ router.get('/new',async(req,res)=>{
 // CREATE A BLOG
 router.post('/',async(req,res)=>{
     const blog=await new Blog(req.body);
-    await blog.save();
-    if(!(req.session.isClient==undefined)){
-        const client=await Client.findById(req.session._id)
-        blog.authorClient=await client._id
+        const clientUser=await Client.findById(req.session._id)
+        blog.authorClient=await clientUser._id
         blog.save();
-        await client.blogs.push((blog._id))
-        client.save()
+        await clientUser.blogs.push((blog._id))
+        clientUser.save()
         req.flash('success','you just created a blog')
         res.redirect('/blog/')
+        // res.render()
         // res.send(typeof(blog._id))
-    }
-    if(!(req.session.isExpert==undefined)){
-        const expert=await Expert.findById(req.session._id)
-        blog.authorExpert= await expert._id
-        blog.save();
-        await expert.blogs.push(blog._id)
-        expert.save()
-        req.flash('success','you just created a blog')
-        res.redirect('/blog/')
-    }
+    
     
 })
 
@@ -97,24 +87,28 @@ router.get('/:id',async(req,res)=>{
         var commentID=c._id
         commentList.push(await Comment.findById(commentID).populate('authorClient').populate('authorExpert'))
     }
-    if(blog.authorClient==true){
-        // res.render("Blog/show2.ejs",{blog,comment:blog.comments})
-        res.render("Blog/show2.ejs",{blog,commentList})
-    }else{
-        // res.render("Blog/show2.ejs",{blog,comment:blog.comments})
-        res.render("Blog/show2.ejs",{blog,commentList})
+    res.render("Blog/show3.ejs",{blog,commentList})
 
-    }
+    // if(blog.authorClient==true){
+    //     // res.render("Blog/show2.ejs",{blog,comment:blog.comments})
+    //     res.render("Blog/show2.ejs",{blog,commentList})
+    // }else{
+    //     // res.render("Blog/show2.ejs",{blog,comment:blog.comments})
+    //     res.render("Blog/show2.ejs",{blog,commentList})
+
+    // }
+    // res.send(id + commentList)
     
 })
 
-// FORM TO EDIT A BLOG
+// // FORM TO EDIT A BLOG
 router.get('/:id/edit',isAuthor,async(req,res)=>{
     const {id}=req.params;
     const blog=await Blog.findById(id)
     console.log('form runnig')
     res.render('Blog/edit.ejs',{blog:blog})
 })
+// router.get('/:id/edit',isAuthor)
 
 //EDIT A BLOG
 router.put('/:id',isAuthor,async(req,res)=>{

@@ -16,6 +16,10 @@
                         <div class="card-body text-center">
                             <p class="display-5 lead mx-5 d d-none d-lg-block"> <%=blog.title %></p>
                             <p class="lead my-4 text-warning fw-bold"><%= %> </p>
+                            
+                            <div>
+                                <img src="<%=blog.img%>" >
+                            </div>
                             <%if(!(blog.authorClient==undefined)){%>
                             <p class="card-text mx-5 text-muted d-none d-lg-block">Written by: <%=blog.authorClient.fullname %></p>
                             <%}%>
