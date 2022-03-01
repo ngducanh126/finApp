@@ -1,4 +1,4 @@
-<section class="home" >
+<section class="home">
     <div class=" header">
         <nav class="navbar navbar-expand-lg ">
       <div class="container-fluid">
@@ -7,74 +7,70 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <%if(!(currentUser.isExpert==true)){%>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/blog">Blog</a>
-                    </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="">News</a>
-                      </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/expert/list" method="get">Expert</a>
-                    </li>
-
-                    <%if(currentUser.isClient==true){%>
-                    <li class="nav-item">
-                      <a class="nav-link" href="/client/profile" method="get">My profile</a>
-                    </li>
-                    <%}%>
-                
-
-                
-                    
-                <%}%>
-          <!-- <ul class="navbar-nav me-auto mb-0 mb-lg-0">
+        <%if(!(currentUser.isExpert==true)){%>
+          <ul class="navbar-nav me-auto mb-0 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="home.html">Home</a>
+              <a class="nav-link" href="/" method="get">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html">Blog</a>
+              <a class="nav-link active" aria-current="page" href="/blog/" >Blog</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="">News</a>
-            </li>
+            </li> -->
             <li class="nav-item">
-              <a class="nav-link" href="expert.html">Expert</a>
+              <a class="nav-link" href="/expert/list">Expert</a>
             </li>
-            
-          </ul> -->
-
-
-
-          <!--signin-->
-            <% if(currentUser._id==undefined){%>
-                <a class="button rounded-2 btn-main btn btn-success mx-3 " href="/client/register" method="'post"> sign up for client </a>
-                <a class="button rounded-2 btn-main btn btn-success mx-3 " href="/client/login"  method="post"> login for client </a>
-                <a  class="button rounded-2 btn-main btn btn-success mx-3 "href="/expert/register"  method="post"> sign up for expert </a>
-                <a  class="button rounded-2 btn-main btn btn-success mx-3 " href="/expert/login"  method="'post"> login for expert</a>
+            <%if(currentUser.isClient==true){%>
+                <li class="nav-item">
+                    <a class="nav-link" href="/client/profile">My Profile</a>
+                </li>
             <%}%>
+          </ul>
+        <%}%>
+
+          <!--log in-->
+          <% if(currentUser._id==undefined){%>
+            <div class="dropdown">
+              <button class="btn button dropdown-toggle rounded-2 btn-main mx-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              Login
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="/client/login">Client</a></li>
+              <li><a class="dropdown-item" href="/expert/login">Expert</a></li>
+              </ul>
+            </div>
+            
+            <!--sign up-->
+            <div class="dropdown">
+                <button class="btn button dropdown-toggle rounded-2 btn-main mx-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                Sign up
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="/client/register">Client</a></li>
+                <li><a class="dropdown-item" href="/expert/register">Expert</a></li>
+                </ul>
+            </div>
+        <%}%>
+
+
+            
+
             
             <%if(currentUser.isClient==true){%>
-            <a class="btn btn-warning p-3 " href="/client/logout" method="post"> logout </a>
+            <a class="button rounded-2 btn-main btn btn-success mx-1 "  href="/client/logout" method="post">Log out</a>
             <%}%>
+            
             <%if(currentUser.isExpert==true){%>
-                <a class="btn btn-warning p-3 " href="/client/logout" method="post"> logout </a>
+                <a class="btn btn-warning p-3 " href="/expert/logout" method="post"> logout </a>
             <%}%>
-
-          <!-- <a href="login.html" class="button rounded-2 btn-main btn btn-success mx-1 ">Sign Up</a>
-           <a href="login.html" class="button rounded-2 btn-main btn btn-success mx-3 ">Log In</a> -->
-          <!--search-->
-
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="rounded-2 btn-main btn btn-success" type="submit">Search</button>
-          </form>
-
+            <!--<a href="login-client.html" class="button rounded-2 btn-main btn btn-success mx-3 ">Log In</a>
+            search
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="rounded-2 btn-main btn btn-success" type="submit">Search</button> -->
+            </form>
         </div>
       </div>
     </div>

@@ -1,3 +1,6 @@
+if(process.env.NODE_ENV !=='production'){
+    require('dotenv').config();
+}
 const express=require('express')
 const router=express.Router();
 const passport = require('passport');
@@ -5,6 +8,10 @@ const Client=require('../models/client')
 const Expert=require('../models/expert')
 const Appointment=require('../models/appointment')
 
+//multer cloudinary
+const multer=require('multer')
+const {storage}=require('../cloudinary/index')
+var upload=multer({storage:storage})
 
 router.get('/',(req,res)=>{
     res.send('client page')
@@ -16,9 +23,10 @@ router.get('/',(req,res)=>{
 router.get('/register',(req,res)=>{
     res.render('Client/register.ejs')
 })
-router.post('/register',async(req,res)=>{
-    const {fullname,email,age,username,password}=req.body
+router.post('/register',upload.single('img'), async(req,res)=>{
+    const {fullname,email,age,username,password,img}=req.body
     const client= await new Client({fullname,email,age,username});
+    client.img.url= await req.file.path
     const registeredClient=await Client.register(client,password);
     // res.send('register success')
     // req.login(registeredClient,err=>{

@@ -1,12 +1,42 @@
 <% layout('/layout/boilerplate2.ejs')%>
-    <h1>edit expert info</h1>
-    <form action='/expert/profile?_method=put' method='post'>
+<section class="container ftco-section pt-5 pb-5">
+    <div class="row-lg-12"></div>
+        <div class=" justify-content-center">
+            
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="login-wrap mx-auto">
+                  
+            <h2 class="lead text-center mb-5 ">Edit your profile</h2>
+                <form action='/expert/profile?_method=put' method='post' class="signin-form"  enctype="multipart/form-data"> 
+                      <div class="form-group">
+                          <input type="text" value='<%=expert.fullname%>' class="form-control transparent-input" placeholder="fullname" name="fullname" required>
+                      </div>
+                        
+                        <div class="form-group">
+                            <input type="email" value='<%=expert.email%>' class="form-control transparent-input" placeholder="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" value='<%=expert.age%>' class="form-control transparent-input" placeholder="age" name="age" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" value='<%=expert.expertise%>' class="form-control transparent-input" placeholder="what are your fields of expertise?" name="experience" required style="height: 250px;">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" value='<%=expert.freetime%>' class="form-control transparent-input" placeholder="freetime" name="freetime" required>
+                        </div>
+                        
 
-        <input type='text' name='fullname' placeholder='fullname' value="<%=expert.fullname%>">
-        <input type='email' name='email' placeholder='email' value="<%=expert.email%>"> 
-        <input type='text' name='age' placeholder='age' value="<%=expert.age%>">
-        <input type='text' name='experience' placeholder='experience' value="<%=expert.experience%>">
-        <input type='text' name='freetime' placeholder='freetime' value="<%=expert.freetime%>">
-
-        <button>edit info</button>
-    </form>
+                
+                <div class="form-group">
+                    <button type="submit" class="form-control btn btn-primary submit px-3">edit </button>
+                </div>
+                
+               </form>
+        
+              
+              </div>
+                </div>
+            </div>
+        </div>
+</section>

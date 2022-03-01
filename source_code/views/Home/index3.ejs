@@ -1,0 +1,184 @@
+<% layout('/layout/boilerplate2.ejs')%>
+
+        <!-- INTRO -->
+        <section class="home hero intro container mt-3 mb-5 " id="intro">
+            <div class="cond-flex justify-content-around ">
+                <div class="container d-flex justify-content-around">
+                    <div class="col-md-5 text-center text-md-start">
+                        <h1>
+                        <div class="display-2 py-3 mt-3">FinApp</div>
+                        </h1>
+                        <h1 class="">
+                        <div class="display-5  ">master the world of finance</div>
+                        </h1>
+                        <p class="lead my-4">FinApp is on a mission to empower students to become financially literate.
+    
+                            It’s simple, effective and fun.
+                            
+                            Users connect free with experts. Chat with experts, schedule online appointments with them, and even have them look at your future investment plan! 
+                            
+                            Join in and read numerous financial blogs and articles, from tax advice, investment strategies to economic trends. 
+                            
+                            Become the master of your personal finance and the finance world around you. 
+                            </p>
+                    </div>
+    
+                    <div class="col-md-5 text-center">
+                        <!-- this means that when very small: col=12; 
+                        when reach medium, col=5 -->
+                        <!-- image fluid means that image element=100% parent always -->
+                        <img style="height:450px" class='img-fluid d-none d-md-block my-4 pt-10 shadow-lg' src="https://sell.g2.com/hubfs/iStock-1129514615.jpg">
+                
+                
+                
+                    </div>
+            </div>
+        </section>
+    
+    
+        <!-- How we help you  -->
+        <section class='home how-help m-0 pb-3'>
+            <div class="container ">
+                <div class="text-center p-3">
+                    <h2 class="text-dark">How we help you</h2>
+                </div>
+                <div class=" row my-5 align-items-center mt-1">
+                    <div class=" col-sm-4 g-0">
+                        <div class="card card1 shadow-lg" id='pop' style="height:300px">
+                            <div class="card-body text-center">
+                                <p class="lead my-4 home-heading fw-bold">stay updated on financial news</p>
+                                <p class="card-text mx-5 text-muted d-none d-lg-block">get insights into economic trends and the stock market</p>
+                                <a href="#" class=" home-btn btn btn-outline-dark btn-lg mt-3">view more</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-sm-4 g-0 " >
+                        <div class="card card2  shadow-lg" id='pop' style="height:300px">
+                            <div class="card-body text-center">
+                                <p class="lead my-4 text-dark fw-bold">join forums on financial topics</p>
+                                <p class="card-text mx-5 text-muted d-none d-lg-block">Read and share blogs about finance</p>
+                                <a href="#" class=" btn btn-outline-dark btn-lg mt-3">view more</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-sm-4 g-0">
+                        <div class="card card3  shadow-lg" id='pop' style="height:300px">
+                            <div class="card-body text-center">
+                                <p class="lead my-4 home-heading fw-bold">get connected to experts</p>
+                                <p class="card-text mx-5 text-muted d-none d-lg-block">We help you connect free with financial experts. Schedule appointments or chat live with experts now!</p>
+                                <a href="#" class="home-btn btn btn-outline-dark btn-lg mt-3">view more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </section>
+        
+        <!-- EXPERTS  -->
+        <section id='experts' class=" home expert bg-dark my-5 container"  >
+            <div class="container-lg pt-5 pb-5 " >
+                <div class="row d-flex container justify-content-between " style="margin: 0; padding:0" >
+                    <div class="col text-center text-md-start mr-5" style="position: relative;"  >
+                        <h1>
+                            <div class="display-5 home-heading">Connect with experts now!</div>
+                        </h1>
+                        <p class="lead my-4 text-white"> We connect with with leading experts in the field. It's free!
+                        </p>
+                        <p class="lead text-white"> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis sed quaerat adipisci vero, magnam itaque. Minus vitae, quo sunt ducimus porro tempora in fuga recusandae sit nesciunt animi at vero!</p>
+                        
+                        <div class="d-flex justify-content-center">
+                        </div>
+
+                        <button class="btn btn-large bg-dark" style="position: absolute; bottom:30px;left: 70px; width: 300px; ">View all experts</button>
+                    </div>
+
+                   <div class="col text-center ml-5">
+                                 <!-- Carousel -->
+                                <div id="demo" class="carousel slide bg-light " data-bs-ride="carousel "  style="width: 600px; height:500px; position: relative;">
+
+                                    <!-- Indicators/dots -->
+                                    <div class="carousel-indicators" style="position:absolute; bottom: 180px;">
+                                        <button id ='this_btn' type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"  ></button>
+                                        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                                        <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+                                    </div>
+                                
+                                    <!-- The slideshow/carousel -->
+                                    <!-- <div class="container justify-content-center" > -->
+                                    <div class="carousel-inner container text-center" style="height: 100%;width:100%;color: white; padding: 0;" >
+                                        <div class="carousel-item active bg-dark " style="height: 100%; position: relative;">
+                                            <img src="<%=expert[0].img.url%>" width="100%" height="300px">
+                                            <div class="p-3">
+                                            <h3 class=><%=expert[0].fullname%> </h3>
+                                            <p>Fields of expertise: <%=expert[0].experience%></p>
+                                        </div>
+                                            <div>
+                                               <a href="expert/<%=expert[0]._id%>"> <btn class="btn btn-dark" style="position: absolute;bottom: 30px; left: 32%;">connect with this expert now</btn> </a>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="carousel-item  bg-dark container text-center" style="height: 100%; position: relative;">
+                                            <img src="<%=expert[1].img.url%>"  width="100%" height="300px">
+                                            <div class="p-3">
+                                                <h3 class=""><%=expert[1].fullname%> </h3>
+                                                <p>Fields of expertise: <%=expert[1].experience%></p>
+                                            </div>
+                                            <a href="expert/<%=expert[1]._id%>"><btn class="btn btn-dark" style="position: absolute;bottom: 30px; left: 32%;">connect with this expert now</btn></a>
+                                        </div>
+
+                                        <div class="carousel-item  bg-dark" style="height: 100%; position: relative;">
+                                            <img src="<%=expert[2].img.url%>"  width="100%" height="300px">
+                                            <div  class="p-3">
+                                                <h3 class=""><%=expert[2].fullname%> </h3>
+                                                <p>Fields of expertise: <%=expert[2].experience%></p>
+                                            </div>
+                                            <a href="expert/<%=expert[2]._id%>"><btn class="btn btn-dark" style="position: absolute;bottom: 30px; left: 32%;">connect with this expert now</btn></a>
+                                        </div>
+                                    </div>
+                                
+                                    <!-- Left and right controls/icons -->
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev"  >
+                                    <span class="carousel-control-prev-icon"></span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                    </button>
+
+                                </div>
+                    </div> 
+                </div>
+                    
+                    
+    
+                    
+
+
+                </div>
+            </div>
+        </section>
+
+
+        
+        <!-- BLOGS  -->
+        <section id="blogs" class=" text-center  " style="height: 650px;">
+            <div class="row expert d-flex justify-content-between ">
+                <% for (let i=0;i<3;i++){%>
+                  <div class="col-sm-3 p-3 m-3 ">
+                    <div class="card m-3 " style="width: 18rem; background-color:black; height: 350px;">
+                      <img src="<%=blog[i].image.url%>" class="card-img-top" alt="Advisor 2 picture">
+                      <div class="card-body">
+                        <h5 class="card-title text-light"><%=blog[i].title %> </h5>
+                        <p class="card-text text-light">Author:<%=blog[i].authorClient.fullname%>  </p>
+                        <a href="/blog/<%=blog[i]._id%> " class="btn btn-primary">Read more</a>
+                    </div>
+                    </div>
+                  </div>
+                  <%}%>
+                </div>
+        </section>
+
+
+</nav>
+ 

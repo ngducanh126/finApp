@@ -1,18 +1,46 @@
 <% layout('/layout/boilerplate2.ejs')%>
-<div class="card shadow-lg m-3" id='pop' >
-    <div class="card-body text-center">
-        <h2> expert profile</h2>
-        <p>Name:<%=expert.fullname%></p>
-        <p>Age:<%=expert.age%></p>
-        <p>Experience: <%=expert.experience%></p>
-        <p>Appointment Times: <%=expert.freetime%></p>
 
-        <a href="/expert/profile/edit">edit profile </a> 
+<section class="home hero intro container mt-3 mb-5 " id="intro">
+    <div class="cond-flex justify-content-around ">
+        <div class="container d-flex justify-content-around">
+            <div class="col-md-5 text-md-start">
 
-        <div>
-            <a href="/expert/profile/appointment"> your appointments</a>
-        </div>
+                <h1>
+                <div class="display-5 py-3 mt-3">Financial expert profile</div>
+                </h1>
 
+                <div style="display:inline">
+                <h5 class="lead my-4"  style="display:inline" >Name:</h5>
+                <p ><%=expert.fullname%></p>
+                </div>
+
+                <h5 class="lead my-4">Age:</h5>
+                <p><%=expert.age%></p>
+
+                <h5 class="lead my-4">Email:</h5>
+                <p><%=expert.email%></p>
+
+                <h5 class="lead my-4">Fields of expertise:</h5>
+                <p><%=expert.experience%></p>
+
+                <h5 class="lead my-4">Freetime:</h5>
+                <p><%=expert.freetime%></p>
+
+                <div class="text-center">
+                <h5 class="lead my-4"><a href="/expert/profile/appointment"><button class="bg-dark">manage appointments</button></a></h5>
+                </div>
+                <div class="text-center">
+                    <h5 class="lead my-4"><a href="/expert/profile/edit" ><button class="bg-dark">edit profile</button></a></h5>
+                </div>
+            </div>
+
+            <div class="col-md-5 text-center">
+                <!-- this means that when very small: col=12; 
+                when reach medium, col=5 -->
+                <!-- image fluid means that image element=100% parent always -->
+                <img style="height:450px" class='img-fluid w-100 d-none d-md-block my-4 pt-5 shadow-lg' src="<%=expert.img.url%>">
+        
+        
+            </div>
     </div>
-</div>
-    
+</section>

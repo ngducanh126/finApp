@@ -1,0 +1,21 @@
+<% layout('/layout/boilerplate2.ejs')%>
+    <h1>Hi <%=expert.fullname%> Please manage appointments with your clients!</h1>
+
+    <h2 class="text-success">confirmed appointments</h2>
+    
+    <% for (let c of confirmed){ %> 
+        <p>Appointment with <%=c.client.fullname%> at <%=c.time%></p>
+        <p>Status: <%=c.state %> </p>
+    <%}%>
+
+    <h2 class="text-warning">pending appointments</h2>
+    <% for (let p of pending){ %> 
+        <p>Appointment with <%=p.client.fullname%> at <%=p.time%></p>
+        <p>Status: <%=p.state %> </p>
+        
+            
+            <form action="/expert/profile/appointment/<%=p._id%>" method="post">
+                <input type="text" name="message" placeholder="instructions for the appointment">
+                <button>confirm appointment</button>
+            </form>
+    <%}%>

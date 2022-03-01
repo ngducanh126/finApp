@@ -1,3 +1,6 @@
+if(process.env.NODE_ENV !=='production'){
+    require('dotenv').config();
+}
 const express=require('express')
 const router=express.Router();
 const passport = require('passport');
@@ -5,6 +8,11 @@ const Expert=require('../models/expert')
 const Client=require('../models/client')
 // const Blog=require('../models/blog')
 const Appointment=require('../models/appointment')
+
+//multer cloudinary
+const multer=require('multer')
+const {storage}=require('../cloudinary/index')
+var upload=multer({storage:storage})
 
 
 // router.get('/',(req,res)=>{
@@ -18,15 +26,16 @@ const Appointment=require('../models/appointment')
 router.get('/register',(req,res)=>{
     res.render('Expert/register.ejs')
 })
-router.post('/register',async(req,res)=>{
-    const {fullname,email,age,username,password,experience,freetime}=req.body
+router.post('/register',upload.single('img'),async(req,res)=>{
+    const {fullname,img,email,age,username,password,experience,freetime}=req.body
     const expert= await new Expert({fullname,email,age,username,experience,freetime});
+    expert.img.url=req.file.path
     const registeredExpert=await Expert.register(expert,password);
-    
     req.session._id=expert._id;
     req.session.isExpert=true;
     req.flash('success','you have created an account and logged in')
     res.redirect('/expert/profile')
+    // res.send(req.file)
 })
 
 //LOGIN 
@@ -46,8 +55,7 @@ router.post('/login',passport.authenticate('expert',{}),(req,res)=>{
 //LOG OUT
 router.get('/logout',(req,res)=>{
     req.session.destroy();
-    res.redirect('/expert/profile')
-
+    res.redirect('/')
 })
 router.get('/session',(req,res)=>{
     if(req.user){
@@ -120,11 +128,11 @@ router.post('/profile/appointment/:id',async(req,res)=>{
     req.flash('success','you just confirmed an appointment')
     res.redirect("/expert/profile/appointment")
 })
-// router.get('/:id',async(req,res)=>{
-//     const {id}=req.params
-//     const expert= await Expert.findById(id)
-//     res.render('Expert/viewExpert/show.ejs',{expert})
-// })
+router.get('/:id',async(req,res)=>{
+    const {id}=req.params
+    const expert= await Expert.findById(id)
+    res.render('Expert/viewExpert/show.ejs',{expert})
+})
 router.post('/:id/appointment',async(req,res)=>{
     const {id}=req.params
     const clientId=req.session._id

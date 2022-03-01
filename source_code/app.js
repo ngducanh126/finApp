@@ -1,4 +1,6 @@
-
+if(process.env.NODE_ENV !=='production'){
+    require('dotenv').config();
+}
 const express=require('express')
 const app=express();
 const path=require('path')
@@ -6,6 +8,7 @@ const mongoose=require('mongoose')
 const flash=require('connect-flash')
 const methodOverride=require('method-override')
 const ejsMate=require('ejs-mate')
+
 
 //PASSPORT
 const session=require('express-session')
@@ -44,6 +47,7 @@ app.use(methodOverride('_method'))
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(flash())
+
 // app.use(express.static(path.join(__dirname, 'public')))
 
 
@@ -89,7 +93,7 @@ app.use((req,res,next)=>{
 app.get('/',async(req,res)=>{
     const expert=await Expert.find({})
     const blog=await Blog.find({}).populate('authorClient').populate('authorExpert')
-    res.render('./Home/index2.ejs',{expert,blog})
+    res.render('./Home/index3.ejs',{expert,blog})
 })
 app.use('/client',clientRoutes)
 app.use('/expert',expertRoutes)
@@ -98,6 +102,9 @@ app.use('/blog/:id/comment',commentRoutes)
 app.use('/draft',async(req,res)=>{
     res.redirect('/blog/')
     res.render('draft.ejs')
+})
+app.get('/signup',(req,res)=>{
+    res.render('signup.ejs')
 })
 
 

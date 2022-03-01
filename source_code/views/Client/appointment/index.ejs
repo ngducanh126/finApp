@@ -1,15 +1,46 @@
 <% layout('/layout/boilerplate2.ejs')%>
-    <h1 class="text-success">confirmed appointments</h1>
-    <% for (let c of confirmed){ %> 
-        <p>Appointment with <%=c.expert.fullname%> at <%=c.time%></p>
-        <p class="text-success">Status: <%=c.state %> </p>
-        <%if (c.message.length>0){%>
-        <p>Message:<%=c.message%></p>
-        <%}%>
-    <%}%>
 
-    <h1 class="text-warning">pending appointments</h1>
-    <% for (let p of pending){ %> 
-        <p>Appointment with <%=p.expert.fullname%> at <%=p.time%></p>
-        <p class="text-warning">Status: <%=p.state %> </p>
-    <%}%>
+<section class="home hero intro container mt-3 mb-5 " id="intro">
+    <div class="cond-flex ">
+        <div class="container ">
+                <h1>
+                <div class="display-5 py-3 mt-3">Confirmed appointmens</div>
+                </h1>
+                <% for (let c of confirmed){ %> 
+                    <article class="blog-post mb-3">
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <img class="img-fluid" src="<%=c.expert.img.url%> " alt="">
+                          </div>
+                          <div class="col-sm-8">
+                            <h5 class=" m-2">Appointment with <%=c.expert.fullname%></h5>
+                            <h5 class=" m-2">Time: <%=c.time%></h5>
+                            <h5 class="m-2">Message from expert:<h5>
+                            <p class="m-2 text-light"> <%=c.message%></p>
+                          </div>
+                        </div>
+                      </article>
+                <%}%>
+                
+
+                <h1>
+                    <div class="display-5 py-3 mt-3">Pending appointmens</div>
+                </h1>
+                <% for (let p of pending){ %> 
+                  <article class="blog-post mb-3">
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <img class="img-fluid" src="<%=p.expert.img.url%> " alt="">
+                        </div>
+                        <div class="col-sm-8">
+                          <h5 class=" m-2">Appointment with <%=p.expert.fullname%></h5>
+                          <h5 class=" m-2">Time: <%=p.time%></h5>
+                          <h5 class="m-2">Waiting to be confirmed</h5>
+                        </div>
+                      </div>
+                    </article>
+              <%}%>
+                
+         </div>
+    </div>
+</section>

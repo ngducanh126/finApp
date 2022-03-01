@@ -1,2 +1,348 @@
 <% layout('/layout/boilerplate2.ejs')%>
-<h1>hi</h1>
+<style>
+    
+    body{
+      font-family: 'Montserrat', sans-serif;}
+    body.home{
+      background-color: #0B0C10;
+    }
+      
+      
+    
+    h1,h2,h3,h4,h5{
+      font-weight: 700 !important;
+      color: #66FCF1;
+    }
+    .navbar a{
+      color:#66FCF1;
+    }
+    a:link {
+      text-decoration: none;
+    }
+    
+    a:visited {
+      text-decoration: none;
+    }
+    
+    a:hover {
+      text-decoration: none;
+      color:#FFF700 !important;
+    }
+    
+    a:active {
+      text-decoration: none;
+    }
+    
+    
+    input{
+      background-color: #1F2833 !important; 
+      color: #66FCF1 !important;
+    }
+    /*HEADER*/
+    .header{
+      background-color: #0B0C10;
+      }/* Set the navbar to fixed position */
+      
+    
+    a:hover.navbar-brand, a:hover.footer-logo{
+      color:#66FCF1 !important;
+      
+    }
+    
+    .nav-item{
+      padding-right: 3rem;
+      padding-left: 3rem;
+    }
+    li.nav-item:hover {
+        background-color: #1F2833 !important;
+    }
+    }
+    .navbar {
+      background-color: #0B0C10;
+      color: #66FCF1;
+      height: 20%;
+      
+    }
+    
+    
+    .navbar-brand, a.footer-logo{
+      padding-inline-start: 3rem;
+      padding-right: 3rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #66FCF1;
+    }
+    
+    .btn-main{
+      background-color: #66FCF1 !important;
+      color: black !important;
+    }
+    
+    .dropdown-menu, .dropdown-item{
+      background-color: #66FCF1 !important;
+      color: black !important;
+    
+    }
+    /*HERO*/
+    .hero{
+      background-color: #1F2833; 
+    }
+    
+    .hero-post{
+      position: relative;
+    }
+    .hero-post-badges {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px;
+      display: inline-block;
+    }
+    
+    .hero-post-badges>a {
+      
+      top: 20px;
+      right: 20px;
+      background-color: #0B0C10;
+      color:#66FCF1;
+      display: blog;
+      font-size: 0.8 rem;
+      padding: 3px;
+    }
+    /**.wrap {
+      position: relative;
+    } **/
+    .hero-post-content{
+      position: absolute;
+      bottom: 20px;
+      color: #66FCF1;
+      text-shadow: 1px 1px black, 2px 2px black, 2px 2px black, 1px 1px black;
+    }
+    
+    .hero-post-content img {
+      border: 2px solid #66FCF1;
+    }
+    
+    blog img{
+      filter: grayscale(30%) brightness(0.9);
+      height: 100%;
+      width: 100%;
+    }
+    .img-login {
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    }
+     img.rounded-circle{
+       filter: none;
+       border: 2px solid #66FCF1;
+       margin-left: 10px;
+     }
+    
+     /*Mainblog*/
+     .blog-posts {
+       background-color: black;
+       color: #C5C6C7;
+     }
+     
+     .blog-post {
+       background-color: #1F2833;
+     }
+    
+    .blog-post p {
+      font-size:  0.8rem;
+    }
+     .blog-post .col-sm-8{
+       border-left: 3px solid #66FCF1
+     }
+    .badges{
+      margin-top: 1rem;
+    }
+    
+     .badge1 a {
+      
+       padding: 0.3rem;
+       margin-bottom: 0.5rem;
+       background-color: #66FCF1;
+       color: #0B0C10;
+       margin-top: 0.5rem;
+    
+    .
+     /*ASIDE*/
+    
+    
+     }
+    .social-links{
+      background-color: #66FCF1;
+      font-size: 1.5rem;
+    }
+    .social-link1  {
+      color:black !important;
+      background-color: #66FCF1;
+      font-size: 1.5rem;
+    
+    }
+    .social-link,.social-link a{
+      color:#66FCF1;
+    }
+    .secondary-color {
+      background-color: #1F2833;
+      color:#66FCF1;
+    }
+    
+    .aside-heading {
+      border-left: 3px solid #66FCF1;
+    }
+    
+    .badge-link a{
+      padding: 0.3rem;
+      margin-bottom: 0.3rem;
+      background-color: #66FCF1;
+      margin-top: 0.3rem;
+      color: black;
+      display: inline-block;
+     
+    }
+    
+    /*CREAT BLOG SECTION*/
+    .create-blog{
+      background-color:;
+    }
+    
+    /*Footer*/
+    .footer{
+      background-color: #1F2833;
+      color:#C5C6C7;
+      width: 100%;
+      position: absolute;
+      
+    
+    }
+    .footer li a{
+      color: #66FCF1;
+    }
+    
+    /*****HOME.html*/
+    .how-help{
+      background-color: #66FCF1;
+      margin: #1F2833;
+    }
+    
+    .intro{
+      background-color: #1F2833;
+      border: 0;
+      color:#C5C6C7;
+    }
+    .home-heading{
+      color:#66FCF1 !important;
+    }
+    
+    .home-btn{
+      background-color: #66FCF1;
+    }
+    
+    .card2 .btn{
+      background-color: #1F2833;
+      color: whitesmoke;
+    }
+    .card3,.card1{
+      background-color: #1F2833;
+      color: whites;
+    }
+    
+    .expert .carousel .btn {
+      color: #1F2833;
+      background-color: #66FCF1;
+    }
+    .expert .carousel .btn:hover{
+      color:#66FCF1;
+    }
+    .homeblog .card{
+      background-color: #66FCF1;
+    }
+    
+    .homeblog {
+      background-color: #0B0C10;
+    }
+    
+    .home .btn:hover{
+      background-color: black;
+      color:#66FCF1 !important;
+      
+    }
+    /*Login/SIgnup**/
+    
+    .container-fluid {
+      width: 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+      margin-right: auto;
+      margin-left: auto; }
+    
+    button {
+      border-radius: 0; }
+    
+    button:focus {
+      outline: 1px dotted;
+      outline: 5px auto -webkit-focus-ring-color; }
+    
+    
+    .transparent-input{
+          background-color: rgba(12, 38, 34, 0.57)  !important;
+        }
+    
+    login-heading{
+       text-shadow: 1px 1px black, 2px 2px black, 2px 2px black, 1px 1px black !important;
+    }
+     
+    /**EXPERT PAGE**/
+    body.expert{
+      background-color: black;
+    }
+    
+    .expertpage.hero {
+      background-color: #66FCF1;
+    }
+    
+    .expert .btn:hover{
+      background-color: black;
+      color:#66FCF1 !important;}
+    
+    .expert .btn, btn-primary {
+      background-color: #66FCF1;
+      color: #1F2833;
+    }
+    .advisor .container.expert {
+      background-color: #C5C6C7;
+    }
+    
+</style>
+    
+<div class=" expertpage hero mb-5 p-0" >
+    <span class=" ">
+    <img class="img-fluid" style="width: 100%;" src="https://www.ceres.org/sites/default/files/2017-04/financial-stock-ticker-banner.jpg" alt="">
+    <h1 class="text-dark" style="font-weight: bolder; position; margin-top: 20;">
+      Latest blogs </span>
+  </h1>
+</div>
+  
+  
+             
+    <div class="container  bg-dark pb-5 mb-5">
+      <div class="row d-flex justify-content-center">
+      <% for (b of blogs){%>
+        <div class="col-sm-3 ">
+          <div class="card my-2 mx-2 " style="width: 18rem; background-color:black; height: 350px;">
+            <img src="https://cdn.shopify.com/s/files/1/1976/0763/products/iStock-628094548_700x700.jpg?v=1515515600" class="card-img-top" alt="Advisor 2 picture">
+                <div class="card-body">
+                    <h5 class="card-title text-light"></h5>
+                    <p class="card-text text-light">Expertise: </p>
+                    
+                    <a href="/expert/<%=b._id%>" class="btn btn-primary">Schedule appointment</a>
+                </div>
+          </div>
+          </div>
+        </div>
+        <%}%>
+      </div>
+    </div>

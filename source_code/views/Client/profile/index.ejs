@@ -1,19 +1,34 @@
 <% layout('/layout/boilerplate2.ejs')%>
-    <h1>hello</h1>
-    <div class="card shadow-lg m-3" id='pop' >
-        <div class="card-body text-center">
-            <h2> client profile</h2>
-        <p>Name:<%=client.fullname%></p>
-        <p>email:<%=client.email%></p>
-        <p>Age:<%=client.age%></p>
 
-    
-        <a href="/client/profile/edit">edit profile </a>
+<section class="home hero intro container mt-3 mb-5 " id="intro">
+    <div class="cond-flex justify-content-around ">
+        <div class="container d-flex justify-content-around">
+            <div class="col-md-5 text-md-start">
 
-        <div>
-        <a href="/client/profile/appointment"> view your appointments</a>
-        </div>
-    
-        </div>
+                <h1>
+                <div class="display-5 py-3 mt-3">Client profile</div>
+                </h1>
+
+                <div style="display:inline">
+                <h5 class="lead my-4"  style="display:inline" >Name:</h5>
+                <p ><%=client.fullname%></p>
+                </div>
+
+                <h5 class="lead my-4">Age:</h5>
+                <p><%=client.age%></p>
+
+                <h5 class="lead my-4">Email:</h5>
+                <p><%=client.email%></p>
+                <a href="/client/profile/edit">edit profile </a>
+
+                <div>
+                <a href="/client/profile/appointment"> view your appointments</a>
+                </div>
+                
+            </div>
+
+            <div class="col-md-5 text-center">
+                <img style="height:450px" class='img-fluid w-100 d-none d-md-block my-4 pt-5 shadow-lg' src="<%=expert.img.url%>">
+            </div>
     </div>
-
+</section>

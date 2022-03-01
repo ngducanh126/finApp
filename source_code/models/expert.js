@@ -7,6 +7,9 @@ const ExpertSchema = new Schema({
         type:String,
         required:true
     },
+    img:{
+        url:String,
+    },
     email: {
         type: String,
         required: true,

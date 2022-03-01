@@ -1,19 +1,42 @@
 <% layout('/layout/boilerplate2.ejs')%>
-    <% for (e of expert){%>
 
-                <div class="card shadow-lg m-3" id='pop'  >
-                    <div class="card-body text-center">
-                        <p class="lead my-4 text-warning fw-bold">Name:<%=e.fullname%></p>
-                        <p class="card-text mx-5 text-muted d-none d-lg-block">Experience: <%=e.experience%></p>
-                        <p class="card-text mx-5 text-muted d-none d-lg-block">Appointment times: <%=e.freetime%></p>
-                        <!-- <a href="/expert/<%=e._id%>" class="btn btn-outline-warning btn-lg mt-3">view expert and connect now </a> -->
-                        <div>
-                            <form action="/expert/<%=e._id%>/appointment" method="post">
-                                <input type="text" placeholder="enter the time you want to meet this expert" name="time" style="width: 450px;">
-                                <button>submit appointment request</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-        
-    <%}%>
+<div class="expertpage hero mb-5 p-0 text-center" >
+  <span class=" ">
+  <h1 class="text-dark p-3" style="font-weight: bolder">
+    ALL ADVISORS PAGE</span>
+</h1>
+
+</div>
+
+
+           
+<!-- ADVISOR CARD -->
+</section class="advisor" >
+  <div class="container expert  bg-dark" style="width: 1600px">
+    <!-- <div class="clearfix mb-2 pt-3">
+      <a href="#" class="btn float-end" style="margin: 10px;">sort by Name</a>
+      <a href="#" class="btn float-end" style="margin: 10px;">sort by Age</a>
+      <a href="#" class="btn float-end" style="margin: 10px;">sort by Experience</a>
+    </div> -->
+
+    <div class="row d-flex justify-content-between">
+
+    <% for (e of expert){%>
+      <div class="col-sm-3 ">
+        <div class="card my-2 mx-2 " style="width: 18rem; background-color:black; height: 350px;">
+          <img src="<%=e.img.url%>" >
+          <div class="card-body">
+            <h5 class="card-title text-light"><%=e.fullname%></h5>
+            <p class="card-text text-light">Expertise: <%=e.experience%></p>
+            
+            <a href="/expert/<%=e._id%>" class="btn btn-primary">Schedule appointment</a>
+        </div>
+        </div>
+      </div>
+      <%}%>
+      
+      
+    
+    </div>
+  </div>
+    

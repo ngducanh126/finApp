@@ -1,22 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    <h2>blog details</h2>
-    <% if(clientBlog) {%>
-        <p><%=clientBlog.body  %> </p>
-        <p>author: <%= clientBlog.author.username %> </p>
-    <%}%> 
-    <% if(expertBlog) {%>
-        <p><%=expertBlog.body  %> </p>
-        <p>author: <%= expertBlog.author.username %> </p>
-    <%}%> 
+<% layout('/layout/boilerplate2.ejs')%>
+<div class="card shadow-lg m-3" id='pop' >
+    <div class="card-body text-center">
+        <p class="display-5 lead text-warning "><%=blog.title%></p>
+        
+        <%if(!(blog.authorClient==undefined)){%>
+            <p>author: <%=blog.authorClient.fullname%> </p>
+        <%}%>
+        <%if(!(blog.authorExpert==undefined)){%>
+            <p>author: <%=blog.authorExpert.fullname%> </p>
+        <%}%>
+        <p><%=blog.body %> </p>
+        
 
-</body>
-</html>
+        <a href="/blog/<%=blog._id%>/edit">edit this blog</a>
+        <form action="/blog/<%=blog._id%>/?_method=delete" method="post">
+            <button>delete</button>
+        </form>
+
+    </div>
+</div>
+<div class="card-body text-center">
+    <p class="display-5 text-muted">comments:</p>
+        <%for (c of commentList){%>
+            <p><%=c.body%></p>
+        
+        <%if(!(c.authorClient==undefined)){%>
+            <p>comment by: <%=c.authorClient.fullname%> </p>
+        <%}%>
+        
+        <%if(!(c.authorExpert==undefined)){%>
+            <p>comment by: <%=c.authorExpert.fullname%> </p>
+        <%}%>
+        <%}%>
+
+        
+        
+        <form action='/blog/<%=blog._id%>/comment' method='post'>
+            <input type="text" name='body'>
+            <button>submit comment</button>
+        </form>
+
+</div>
+    
+        
+    
+

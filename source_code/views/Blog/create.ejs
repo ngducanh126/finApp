@@ -1,0 +1,9 @@
+<% layout('/layout/boilerplate2.ejs')%>
+
+<form action="/blog" method='post' enctype="multipart/form-data">
+        <input type="text" class="form-control transparent-input" placeholder="title" name="title" required>
+        <input type="text" class="form-control transparent-input" placeholder="body" name="body" required>
+        <input type="number" class="form-control transparent-input" placeholder="views" name="views" required>
+        <input type="file" class="form-control transparent-input" placeholder="image" name="img" >
+        <button type="submit">create blog  </button>
+</form>

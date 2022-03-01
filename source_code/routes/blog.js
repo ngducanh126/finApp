@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV !=='production'){
+    require('dotenv').config();
+}
+
 const express=require('express')
 const router=express.Router();
 const passport = require('passport');
@@ -8,6 +12,11 @@ const Expert=require('../models/expert')
 const Blog=require('../models/blogs/blog')
 const Comment=require('../models/blogs/comment');
 const comment = require('../models/blogs/comment');
+
+//multer cloudinary
+const multer=require('multer')
+const {storage}=require('../cloudinary/index')
+var upload=multer({storage:storage})
 
 
 // MIDDLEWARES
@@ -23,36 +32,23 @@ const isAuthor=async(req,res,next)=>{
             next()
         }
     }
-    // if(!(blog.authorExpert==undefined)){
-    //     if( !(blog.authorExpert==(req.session._id))){
-    //         req.flash('error','you do not have permission')
-    //         res.redirect('/blog/')
-    //     }else{
-    //         next()
-    //     }
-    // }
-
-
-
-
-    // if( (!(blog.authorClient.equals(req.session._id)))  || (!(blog.authorExpert.equals(req.session._id)))){
-    //     // req.flash('error','you do not have permission');
-    //     // return res.redirect(`/blog/${id}`)
-    //     res.send('you do not have permission')
-    // }
-    // next()
 }
 
+//SHOW BLOGS BY CATEGORY
+router.get('/category/:category',async(req,res)=>{
+    const {category}=req.params;
+    const blogs=await Blog.find({category:category})
+    res.render('Blog/category.ejs',{blogs:blogs})
+})
 //SHOW ALL BLOGS
 router.get('/',async(req,res)=>{
-    const blogs=await Blog.find({}).populate('authorExpert').populate('authorClient');
-    res.render('Blog/index2.ejs',{blogs})
+    const blogs=await Blog.find({}).sort({views:-1}).populate('authorExpert').populate('authorClient');
+    // const i=await blogs.length-1
+    res.render('Blog/index.ejs',{blogs})
+    // res.send(blogs)
 })
-// router.post('/',async(req,res)=>{
-//     res.redirect('/')
-// })
 
-// GET FORM TO CREATE NEW BLOG
+// GET PAGE TO CREATE NEW BLOG
 router.get('/new',async(req,res)=>{
     if((req.session.isClient) || (req.session.isExpert)){
         res.render('Blog/new.ejs')
@@ -61,11 +57,25 @@ router.get('/new',async(req,res)=>{
         res.send('not log in')
     }
 })
+// GET form TO CREATE NEW BLOG
+router.get('/create',async(req,res)=>{
+    if((req.session.isClient) || (req.session.isExpert)){
+        res.render('Blog/create.ejs')
+    }
+    else{
+        res.send('not log in')
+    }
+})
 
 // CREATE A BLOG
-router.post('/',async(req,res)=>{
-    const blog=await new Blog(req.body);
+router.post('/',upload.single('img'),async(req,res)=>{
+        // const {views}=req.body
+        // const view=
+        // const {body,image,title,category}=req.body
+        const blog=await new Blog(req.body);
         const clientUser=await Client.findById(req.session._id)
+        blog.image.url=req.file.path
+        blog.image.filename=req.file.filename
         blog.authorClient=await clientUser._id
         blog.save();
         await clientUser.blogs.push((blog._id))
@@ -87,18 +97,7 @@ router.get('/:id',async(req,res)=>{
         var commentID=c._id
         commentList.push(await Comment.findById(commentID).populate('authorClient').populate('authorExpert'))
     }
-    res.render("Blog/show3.ejs",{blog,commentList})
-
-    // if(blog.authorClient==true){
-    //     // res.render("Blog/show2.ejs",{blog,comment:blog.comments})
-    //     res.render("Blog/show2.ejs",{blog,commentList})
-    // }else{
-    //     // res.render("Blog/show2.ejs",{blog,comment:blog.comments})
-    //     res.render("Blog/show2.ejs",{blog,commentList})
-
-    // }
-    // res.send(id + commentList)
-    
+    res.render("Blog/show.ejs",{blog,commentList})
 })
 
 // // FORM TO EDIT A BLOG
@@ -108,7 +107,6 @@ router.get('/:id/edit',isAuthor,async(req,res)=>{
     console.log('form runnig')
     res.render('Blog/edit.ejs',{blog:blog})
 })
-// router.get('/:id/edit',isAuthor)
 
 //EDIT A BLOG
 router.put('/:id',isAuthor,async(req,res)=>{
@@ -125,9 +123,4 @@ router.delete('/:id',isAuthor,async(req,res)=>{
     req.flash('success','you just deleted a blog')
     res.redirect('/blog/')
 })
-
-
-
-
-console.log('blog route is runningggggggggggggggg')
 module.exports=router;

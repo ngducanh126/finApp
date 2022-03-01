@@ -1,0 +1,12 @@
+<% layout('/layout/boilerplate2.ejs')%>
+    <h1>edit expert info</h1>
+    <form action='/expert/profile?_method=put' method='post'>
+
+        <input type='text' name='fullname' placeholder='fullname' value="<%=expert.fullname%>">
+        <input type='email' name='email' placeholder='email' value="<%=expert.email%>"> 
+        <input type='text' name='age' placeholder='age' value="<%=expert.age%>">
+        <input type='text' name='experience' placeholder='experience' value="<%=expert.experience%>">
+        <input type='text' name='freetime' placeholder='freetime' value="<%=expert.freetime%>">
+
+        <button>edit info</button>
+    </form>

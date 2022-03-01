@@ -1,15 +1,192 @@
+<% layout('/layout/boilerplate2.ejs')%>
 
-    <h2>Client blogs</h2>
-    <% for(let blog of clientBlogs){%> 
-        <p><%=blog.body%></p>
-        <a href="/blog/<%=blog._id%> ">click here to view details</a>
-    <%}%>
+<body class="blog">
+    <h4 class="aside-heading mt-4 px-2">Filter Blogs by categories </h4>
+          <div class="badge-link align-middle w-100 mb-4" style="in-line">
+              <a href="/blog/category/loan">Loan</a>
+              <a href="/blog/category/banking">Banking</a>
+              <a href="/blog/category/saving">Saving</a>
+              <a href="/blog/category/budgetplanning">Budget Planning</a>
+              <a  href="/blog/category/fintech">Fintech</a>
+            </p>
+          </div>
 
-    <h2>Expert blogs</h2>
-    <% for(let blog of expertBlogs){%> 
-        <p><%=blog.body%></p>
-        <a href="/blog/<%=blog._id%> ">click here to view details</a>
+<div class="text-center">
+    <h3>POPULAR BLOGS</h3>
+</div>
+<!-- HERO SECTION -->
+<section class="hero py-4">
+    <div class="container">
+      <div class="row">
+        <!--left-->
+        <div class="col-sm-8 wrap ">
+          <div class="hero-post shadow">
+            <img class="img-fluid" src="<%=blogs[0].image.url%>" alt="hero">
+              <div class="hero-post-badges text-center">
+                  <!-- <a class="p-2 m-2" href="#"><i class="fa fa-calendar-o mr-1" aria-hidden="true"></i> February 7th 2022</a> -->
+                  <a href="#"><%=blogs[0].category%></a>
+                  </div>
+              <div class="hero-post-content mx-3">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <img class="img-fluid rounded-circle" style="object-fit: contain;" src="<%=blogs[0].authorClient.img.url%>" alt="Author">
+                    
+                  </div>
+                  <div class="col-md-10">
+                    <h2><%=blogs[0].title%></h2>
+                    <h5>views: <%=blogs[0].views%></h5>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+         <!--right-->
+      <div class="col-sm-4">
+        <div class="row wrap">
+            <div class="hero-post shadow mg-3">
+            <img class="img-fluid" src="<%=blogs[1].image.url%>"   alt="hero">
+            <div class="hero-post-badges">
+                    <!-- <a href="#"><i class="fa fa-calendar-o" aria-hidden="true"></i> February 7th 2022</a> -->
+                    <a href="#"><%=blogs[1].category%></a>
+                  </div>
+            <div class="hero-post-content">
+              <div class="row">
+                <div class="col-sm-3">
+                  <img class="img-fluid rounded-circle" style="object-fit: contain;" src="<%=blogs[1].authorClient.img.url%>" alt="Author">
+                </div>
+                 <div class="col-sm-9">
+                   <h3><%=blogs[1].title%></h3>
+                   <h5>views: <%=blogs[1].views%></h5>
+                 </div>
+              </div>
+            </div>
+          </div>
+      </div>
+  
+      <div class="row wrap">
+            <div class="hero-post shadow mg-3">
+            <img class="img-fluid" src="<%=blogs[2].image.url%>"   alt="hero">
+            <div class="hero-post-badges">
+                    <!-- <a href="#"><i class="fa fa-calendar-o" aria-hidden="true"></i> February 7th 2022</a> -->
+                    <a href="#"><%=blogs[2].category%></a>
+                  </div>
+            <div class="hero-post-content">
+              <div class="row">
+                <div class="col-sm-3">
+                  <img class="img-fluid rounded-circle" style="object-fit: contain;" src="<%=blogs[2].authorClient.img.url%>" alt="Author">
+                </div>
+                 <div class="col-sm-9">
+                  <h3><%=blogs[2].title%></h3>
+                  <h5>views: <%=blogs[2].views%></h5>
+                 </div>
+              </div>
+            </div>
+          </div>
+      </div>
+            </div>
+          </div>
+           
+  
+        </div>
+      </div>
+    </div>
+    </section>
 
-    <%}%>
+<!---BLOG SECTION-->
+<section class="blog-posts py-4">
 
-    <a href="/blog/new" method='get'><h2>add new blog</h2> </a>
+  <div class="container">
+    <div class="row">
+  <!--left-->
+    <div class="col-lg-8">
+    <!--blog1-->
+
+    <% for (let i=3;i<blogs.length;i++){%>
+       <article class="blog-post mb-3">
+         <div class="row">
+           <div class="col-sm-4">
+             <img class="img-fluid" src="<%=blogs[i].image.url %> " alt="">
+           </div>
+           <div class="col-sm-8">
+             <h3 class="m-0 mt-3"><%=blogs[i].title%></h3>
+             <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+             <div class="badge1 mt-3">
+               <a href="#">category:<%=blogs[i].category%> </a>
+             </div>
+           </div>
+         </div>
+       </article>
+    <% } %> 
+  
+       <!--CREAT BLOG SECTION-->
+<section class="create-blog wrap ">
+
+  <div class="container px-4 py-5 justify-content-center">
+    <div class="row flex-lg-row-reverse align-items-center justify-content-center  py-5">
+      <h1 class=" fw-bold ">Begin your story here</h1>
+      <div class=" col-sm-6">
+        <img src="https://magazine.wharton.upenn.edu/wp-content/uploads/2021/09/your-guide-to-the-fintech-revolution-3_2078x1302_acf_cropped.jpg" class=" img-fluid" alt=" " width="1000" height="1000" loading="lazy">
+      </div>
+      <div class="col-lg-6">
+        
+        <p class="blog-ad">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. .</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <a href="/blog/create" class="button rounded-2 btn-main btn-lg btn-success mx-1 px-4 me-md-2 ">Start Your Blog Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+</section>
+    </div>
+    
+    
+  <!--right ASIDE-->
+    <aside class="col-md-4 px-3">
+      
+        <!--author-->
+        <h4 class="aside-heading mt-4 px-2">Popular Authors</h4>
+            <article class="row author mb-3">
+            <div class="col-sm-3 d-flex align-items-center">
+              <img class="img-fluid " src="<%=blogs[0].authorClient.img.url%> "  style="object-fit: cover; width: 100%; height: 80px;" alt="Author 2">
+            </div>
+            <div class="col-sm-9">
+              <h5 class="m-0"><%=blogs[0].authorClient.fullname%></h5>
+              <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+              
+            </div>
+            </article>
+
+            <article class="row author mb-3">
+                <div class="col-sm-3  d-flex align-items-center ">
+                  <img class="img-fluid " src="<%=blogs[1].authorClient.img.url%> "  style="object-fit: cover; width: 100%; height: 80px;" alt="Author 2">
+                </div>
+                <div class="col-sm-9">
+                  <h5 class="m-0"><%=blogs[1].authorClient.fullname%></h5>
+                  <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                  
+                </div>
+                </article>
+
+                <article class="row author mb-3" >
+                    <div class="col-sm-3  d-flex align-items-center ">
+                      <img class="img-fluid " style="object-fit: cover; width: 100%; height: 80px;" src="<%=blogs[2].authorClient.img.url%> " alt="Author 2">
+                    </div>
+                    <div class="col-sm-9">
+                      <h5 class="m-0"><%=blogs[2].authorClient.fullname%></h5>
+                      <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                      
+                    </div>
+                </article>
+          
+        <!--popular categories-->
+          
+    </aside>
+  </div>
+  </div>
+</section>
+
+
+
+</body>

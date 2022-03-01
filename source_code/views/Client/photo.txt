@@ -1,0 +1,3 @@
+1. models have img field
+2. form has enctype
+3. route.js is correct

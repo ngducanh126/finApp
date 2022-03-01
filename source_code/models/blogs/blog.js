@@ -3,7 +3,10 @@ const Schema = mongoose.Schema;
 
 const BlogSchema = new Schema({
     body:String,
-    img:String,
+    image:{
+        url:String,
+        filename:String
+    },
     title:String,
     comments: [{
         type:Schema.Types.ObjectId,
@@ -16,6 +19,15 @@ const BlogSchema = new Schema({
     authorExpert:{
         type:Schema.Types.ObjectId,
         ref:'Expert',
+    },
+    category:{
+        type:String,
+        enum:[ "loan","banking", "saving", "budget planning", "fintech"],
+        default:"saving"
+    },
+    views:{
+        type:Number,
+        
     }
     
 });

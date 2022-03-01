@@ -1,25 +1,13 @@
 <% layout('/layout/boilerplate2.ejs')%>
     
-    <!-- <h1>client register</h1>
-
-    <form action='/client/register' method='post'>
-    <input type='text' name='fullname' placeholder='fullname'>
-    <input type='email' name='email' placeholder='email'>
-    <input type='text' name='age' placeholder='age'>
-    <input type='text' name='username' placeholder='username'>
-    <input type='password' name='password' placeholder='password'>
-
-
     
-    <button>register client</button>
-    </form> -->
 
     <section class="container ftco-section pt-5 pb-5">
         <div class="row-lg-12"></div>
             <div class=" justify-content-center">
                 <div class="row justify-content-center">
                     <div class="">
-              <h3 class="mb-5 heading text-center">Haven't got an account?</h3>
+                        <h3 class="mb-5 heading text-center">Haven't got an account?</h3>
                     
                     </div>
                 </div>
@@ -27,13 +15,17 @@
                     <div class="col-md-6 col-lg-4">
                         <div class="login-wrap mx-auto">
                       
-                <h2 class="heading text-center mb-5 ">Sign up now</h2>
-                    <form action='/client/register' method='post' class="signin-form">
+                <h2 class="lead text-center mb-5 ">Sign up now to connect with financial experts and more!</h2>
+                    <form action='/client/register' method='post' class="signin-form" enctype="multipart/form-data">
                           <div class="form-group">
                               <input type="text" class="form-control transparent-input" placeholder="fullname" name="fullname" required>
                           </div>
                             <div class="form-group">
                                 <input type="email" class="form-control transparent-input" placeholder="email" name="email" required>
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="file" ><h5>Upload an image</h5>  </label>
+                                <input type="file" class="form-control transparent-input" placeholder="upload an image" name="img" >
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control transparent-input" placeholder="age" name="age" required>
@@ -43,7 +35,7 @@
                             </div>
 
                     <div class="form-group mb-2">
-                      <input id="password-field" type="password" class="form-control transparent-input" placeholder="New password" name="password" required>
+                      <input id="password-field" type="password" class="form-control transparent-input" placeholder="new password" name="password" required>
                       <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                     </div>
                     <div class="form-group">
@@ -59,7 +51,7 @@
                     </div>
                    </form>
                 <div class="w-150 py-3 text-center">
-                  <a href="login.html" style="color: #fff">Back to Log In</a>
+                  <a href="/" style="color: #fff">Back to Homepage</a>
                 </div>
                   
                   </div>

@@ -1,0 +1,13 @@
+<% layout('/layout/boilerplate2.ejs')%>
+
+    <h1>edit info</h1>
+    <form action='/client/profile?_method=put' method='post'>
+
+        <input type='text' name='fullname' placeholder='fullname' value="<%=clientUser.fullname%>">
+        <input type='email' name='email' placeholder='email' value="<%=clientUser.email%>"> 
+        <input type='text' name='age' placeholder='age' value="<%=clientUser.age%>">
+        
+
+        <button>edit info</button>
+    </form>
+    
