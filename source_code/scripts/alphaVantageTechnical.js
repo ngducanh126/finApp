@@ -20,3 +20,14 @@ async function getMovingAverage(symbol, apiKey, period = 20) {
     return sum / period;
 }
 
+async function detectGoldenCross(symbol, apiKey, shortPeriod = 50, longPeriod = 200) {
+    const series = await fetchDailyTimeSeries(symbol, apiKey);
+    const closes = Object.values(series).map(day => parseFloat(day["4. close"]));
+    if (closes.length < longPeriod + 1) return false;
+    const shortMA = closes.slice(0, shortPeriod).reduce((a, b) => a + b, 0) / shortPeriod;
+    const longMA = closes.slice(0, longPeriod).reduce((a, b) => a + b, 0) / longPeriod;
+    const prevShortMA = closes.slice(1, shortPeriod + 1).reduce((a, b) => a + b, 0) / shortPeriod;
+    const prevLongMA = closes.slice(1, longPeriod + 1).reduce((a, b) => a + b, 0) / longPeriod;
+    return prevShortMA < prevLongMA && shortMA > longMA;
+}
+
