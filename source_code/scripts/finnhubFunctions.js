@@ -16,3 +16,9 @@ async function getCandles(symbol, resolution, from, to, apiKey) {
     return await res.json();
 }
 
+async function getForexSymbols(apiKey) {
+    const url = `https://finnhub.io/api/v1/forex/symbol?exchange=OANDA&token=${apiKey}`;
+    const res = await fetch(url);
+    return await res.json();
+}
+
