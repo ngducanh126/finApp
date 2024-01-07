@@ -31,3 +31,16 @@ async function detectGoldenCross(symbol, apiKey, shortPeriod = 50, longPeriod = 
     return prevShortMA < prevLongMA && shortMA > longMA;
 }
 
+async function fetchRSI(symbol, apiKey, period = 14) {
+    const series = await fetchDailyTimeSeries(symbol, apiKey);
+    const closes = Object.values(series).map(day => parseFloat(day["4. close"]));
+    let gains = 0, losses = 0;
+    for (let i = 1; i <= period; i++) {
+        let diff = closes[i] - closes[i-1];
+        if (diff >= 0) gains += diff;
+        else losses -= diff;
+    }
+    let rs = gains / (losses || 1);
+    return 100 - (100 / (1 + rs));
+}
+
