@@ -22,3 +22,9 @@ async function getForexSymbols(apiKey) {
     return await res.json();
 }
 
+async function getCryptoSymbols(apiKey) {
+    const url = `https://finnhub.io/api/v1/crypto/symbol?exchange=BINANCE&token=${apiKey}`;
+    const res = await fetch(url);
+    return await res.json();
+}
+
