@@ -44,3 +44,16 @@ async function fetchRSI(symbol, apiKey, period = 14) {
     return 100 - (100 / (1 + rs));
 }
 
+async function getTopVolumeDay(symbol, apiKey) {
+    const series = await fetchDailyTimeSeries(symbol, apiKey);
+    let maxVol = 0, maxDate = null;
+    for (const [date, day] of Object.entries(series)) {
+        const vol = parseInt(day["5. volume"]);
+        if (vol > maxVol) {
+            maxVol = vol;
+            maxDate = date;
+        }
+    }
+    return { date: maxDate, volume: maxVol };
+}
+
