@@ -28,3 +28,9 @@ async function getCryptoSymbols(apiKey) {
     return await res.json();
 }
 
+async function getEarningsCalendar(apiKey) {
+    const url = `https://finnhub.io/api/v1/calendar/earnings?token=${apiKey}`;
+    const res = await fetch(url);
+    return await res.json();
+}
+
