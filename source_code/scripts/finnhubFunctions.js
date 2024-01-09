@@ -34,3 +34,10 @@ async function getEarningsCalendar(apiKey) {
     return await res.json();
 }
 
+async function getNewsSentiment(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/news-sentiment?symbol=${symbol}&token=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    return { buzz: data.buzz, sentiment: data.sentiment, articles: data.articles.slice(0, 5) };
+}
+
