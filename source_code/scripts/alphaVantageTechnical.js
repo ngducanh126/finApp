@@ -57,3 +57,14 @@ async function getTopVolumeDay(symbol, apiKey) {
     return { date: maxDate, volume: maxVol };
 }
 
+async function fetchIntradayVolatility(symbol, apiKey, interval = "5min") {
+    const url = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=${interval}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    const series = data[`Time Series (${interval})`];
+    const prices = Object.values(series).map(d => parseFloat(d["4. close"]));
+    const mean = prices.reduce((a, b) => a + b, 0) / prices.length;
+    const variance = prices.reduce((a, b) => a + (b - mean) ** 2, 0) / prices.length;
+    return Math.sqrt(variance);
+}
+
