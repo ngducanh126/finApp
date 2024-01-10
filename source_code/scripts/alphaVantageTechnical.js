@@ -68,3 +68,12 @@ async function fetchIntradayVolatility(symbol, apiKey, interval = "5min") {
     return Math.sqrt(variance);
 }
 
+async function compareTwoStocks(symbol1, symbol2, apiKey) {
+    const s1 = await fetchDailyTimeSeries(symbol1, apiKey);
+    const s2 = await fetchDailyTimeSeries(symbol2, apiKey);
+    const dates = Object.keys(s1).filter(date => s2[date]);
+    const perf1 = (parseFloat(s1[dates[0]]["4. close"]) - parseFloat(s1[dates[dates.length-1]]["4. close"])) / parseFloat(s1[dates[dates.length-1]]["4. close"]);
+    const perf2 = (parseFloat(s2[dates[0]]["4. close"]) - parseFloat(s2[dates[dates.length-1]]["4. close"])) / parseFloat(s2[dates[dates.length-1]]["4. close"]);
+    return { [symbol1]: perf1, [symbol2]: perf2 };
+}
+
