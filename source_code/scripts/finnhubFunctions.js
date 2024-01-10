@@ -41,3 +41,10 @@ async function getNewsSentiment(symbol, apiKey) {
     return { buzz: data.buzz, sentiment: data.sentiment, articles: data.articles.slice(0, 5) };
 }
 
+async function getPeers(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/stock/peers?symbol=${symbol}&token=${apiKey}`;
+    const res = await fetch(url);
+    const peers = await res.json();
+    return peers.filter(p => p !== symbol);
+}
+
