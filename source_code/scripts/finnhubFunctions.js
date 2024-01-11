@@ -48,3 +48,10 @@ async function getPeers(symbol, apiKey) {
     return peers.filter(p => p !== symbol);
 }
 
+async function getRecommendationTrends(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/stock/recommendation?symbol=${symbol}&token=${apiKey}`;
+    const res = await fetch(url);
+    const trends = await res.json();
+    return trends.map(t => ({ period: t.period, buy: t.buy, hold: t.hold, sell: t.sell }));
+}
+
