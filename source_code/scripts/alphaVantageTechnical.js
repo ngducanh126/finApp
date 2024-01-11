@@ -77,3 +77,21 @@ async function compareTwoStocks(symbol1, symbol2, apiKey) {
     return { [symbol1]: perf1, [symbol2]: perf2 };
 }
 
+async function fetchAndPlotMACD(symbol, apiKey) {
+    const series = await fetchDailyTimeSeries(symbol, apiKey);
+    const closes = Object.values(series).map(day => parseFloat(day["4. close"]));
+    function getEMA(data, period) {
+        let k = 2 / (period + 1);
+        let ema = data[0];
+        for (let i = 1; i < data.length; i++) {
+            ema = data[i] * k + ema * (1 - k);
+        }
+        return ema;
+    }
+    let ema12 = getEMA(closes, 12);
+    let ema26 = getEMA(closes, 26);
+    let macd = ema12 - ema26;
+    let signal = getEMA([macd], 9);
+    return { macd, signal };
+}
+
