@@ -95,3 +95,12 @@ async function fetchAndPlotMACD(symbol, apiKey) {
     return { macd, signal };
 }
 
+async function alertOnPriceDrop(symbol, apiKey, thresholdPercent = 5) {
+    const series = await fetchDailyTimeSeries(symbol, apiKey);
+    const dates = Object.keys(series).sort().reverse();
+    const today = parseFloat(series[dates[0]]["4. close"]);
+    const yesterday = parseFloat(series[dates[1]]["4. close"]);
+    const drop = ((yesterday - today) / yesterday) * 100;
+    return drop >= thresholdPercent;
+}
+
