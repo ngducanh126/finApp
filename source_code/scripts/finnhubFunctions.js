@@ -55,3 +55,10 @@ async function getRecommendationTrends(symbol, apiKey) {
     return trends.map(t => ({ period: t.period, buy: t.buy, hold: t.hold, sell: t.sell }));
 }
 
+async function getInsiderTransactions(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/stock/insider-transactions?symbol=${symbol}&token=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.data.filter(tx => tx.transactionType === 'P' || tx.transactionType === 'S');
+}
+
