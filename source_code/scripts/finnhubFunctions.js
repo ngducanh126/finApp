@@ -62,3 +62,10 @@ async function getInsiderTransactions(symbol, apiKey) {
     return data.data.filter(tx => tx.transactionType === 'P' || tx.transactionType === 'S');
 }
 
+async function getDividends(symbol, from, to, apiKey) {
+    const url = `https://finnhub.io/api/v1/stock/dividend?symbol=${symbol}&from=${from}&to=${to}&token=${apiKey}`;
+    const res = await fetch(url);
+    const divs = await res.json();
+    return divs.map(d => ({ date: d.paymentDate, amount: d.amount }));
+}
+
