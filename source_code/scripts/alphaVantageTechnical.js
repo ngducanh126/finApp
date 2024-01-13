@@ -104,3 +104,15 @@ async function alertOnPriceDrop(symbol, apiKey, thresholdPercent = 5) {
     return drop >= thresholdPercent;
 }
 
+async function fetchSMAHistory(symbol, apiKey, period = 20) {
+    const series = await fetchDailyTimeSeries(symbol, apiKey);
+    const closes = Object.values(series).map(day => parseFloat(day["4. close"]));
+    let smaHistory = [];
+    for (let i = 0; i < closes.length - period + 1; i++) {
+        let sum = 0;
+        for (let j = 0; j < period; j++) sum += closes[i + j];
+        smaHistory.push(sum / period);
+    }
+    return smaHistory;
+}
+
