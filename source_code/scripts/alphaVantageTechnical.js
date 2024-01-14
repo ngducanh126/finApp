@@ -116,3 +116,16 @@ async function fetchSMAHistory(symbol, apiKey, period = 20) {
     return smaHistory;
 }
 
+async function fetchPriceGapDays(symbol, apiKey, gapPercent = 3) {
+    const series = await fetchDailyTimeSeries(symbol, apiKey);
+    const dates = Object.keys(series).sort().reverse();
+    let gaps = [];
+    for (let i = 1; i < dates.length; i++) {
+        let prevClose = parseFloat(series[dates[i-1]]["4. close"]);
+        let open = parseFloat(series[dates[i]]["1. open"]);
+        let gap = ((open - prevClose) / prevClose) * 100;
+        if (Math.abs(gap) >= gapPercent) gaps.push({ date: dates[i], gap });
+    }
+    return gaps;
+}
+
