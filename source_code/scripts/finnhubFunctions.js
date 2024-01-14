@@ -69,3 +69,9 @@ async function getDividends(symbol, from, to, apiKey) {
     return divs.map(d => ({ date: d.paymentDate, amount: d.amount }));
 }
 
+async function getSplits(symbol, from, to, apiKey) {
+    const url = `https://finnhub.io/api/v1/stock/split?symbol=${symbol}&from=${from}&to=${to}&token=${apiKey}`;
+    const res = await fetch(url);
+    return await res.json();
+}
+
