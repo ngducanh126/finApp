@@ -75,3 +75,10 @@ async function getSplits(symbol, from, to, apiKey) {
     return await res.json();
 }
 
+async function getFinancialsReport(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/stock/financials-reported?symbol=${symbol}&token=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.data ? data.data.slice(0, 3) : [];
+}
+
