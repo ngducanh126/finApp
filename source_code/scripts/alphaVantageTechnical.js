@@ -129,3 +129,17 @@ async function fetchPriceGapDays(symbol, apiKey, gapPercent = 3) {
     return gaps;
 }
 
+async function fetchHighestHigh(symbol, apiKey, days = 30) {
+    const series = await fetchDailyTimeSeries(symbol, apiKey);
+    const dates = Object.keys(series).sort().reverse().slice(0, days);
+    let maxHigh = 0, maxDate = null;
+    for (let date of dates) {
+        let high = parseFloat(series[date]["2. high"]);
+        if (high > maxHigh) {
+            maxHigh = high;
+            maxDate = date;
+        }
+    }
+    return { date: maxDate, high: maxHigh };
+}
+
