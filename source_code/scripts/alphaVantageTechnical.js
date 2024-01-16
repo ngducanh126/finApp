@@ -143,3 +143,17 @@ async function fetchHighestHigh(symbol, apiKey, days = 30) {
     return { date: maxDate, high: maxHigh };
 }
 
+async function fetchLowestLow(symbol, apiKey, days = 30) {
+    const series = await fetchDailyTimeSeries(symbol, apiKey);
+    const dates = Object.keys(series).sort().reverse().slice(0, days);
+    let minLow = Number.MAX_VALUE, minDate = null;
+    for (let date of dates) {
+        let low = parseFloat(series[date]["3. low"]);
+        if (low < minLow) {
+            minLow = low;
+            minDate = date;
+        }
+    }
+    return { date: minDate, low: minLow };
+}
+
