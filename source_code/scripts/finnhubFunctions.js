@@ -82,3 +82,9 @@ async function getFinancialsReport(symbol, apiKey) {
     return data.data ? data.data.slice(0, 3) : [];
 }
 
+async function getExchangeSymbols(exchange, apiKey) {
+    const url = `https://finnhub.io/api/v1/stock/symbol?exchange=${exchange}&token=${apiKey}`;
+    const res = await fetch(url);
+    return (await res.json()).slice(0, 10);
+}
+
