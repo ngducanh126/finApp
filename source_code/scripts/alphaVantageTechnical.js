@@ -157,3 +157,13 @@ async function fetchLowestLow(symbol, apiKey, days = 30) {
     return { date: minDate, low: minLow };
 }
 
+async function fetchAverageVolume(symbol, apiKey, days = 30) {
+    const series = await fetchDailyTimeSeries(symbol, apiKey);
+    const dates = Object.keys(series).sort().reverse().slice(0, days);
+    let total = 0;
+    for (let date of dates) {
+        total += parseInt(series[date]["5. volume"]);
+    }
+    return total / days;
+}
+
