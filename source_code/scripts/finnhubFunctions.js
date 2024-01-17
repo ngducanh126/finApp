@@ -88,3 +88,10 @@ async function getExchangeSymbols(exchange, apiKey) {
     return (await res.json()).slice(0, 10);
 }
 
+async function getEconomicCalendar(apiKey) {
+    const url = `https://finnhub.io/api/v1/calendar/economic?token=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.economicCalendar ? data.economicCalendar.slice(0, 5) : [];
+}
+
