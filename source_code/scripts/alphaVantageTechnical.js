@@ -167,3 +167,11 @@ async function fetchAverageVolume(symbol, apiKey, days = 30) {
     return total / days;
 }
 
+async function fetchPriceChangePercent(symbol, apiKey, days = 7) {
+    const series = await fetchDailyTimeSeries(symbol, apiKey);
+    const dates = Object.keys(series).sort().reverse();
+    let start = parseFloat(series[dates[days]]["4. close"]);
+    let end = parseFloat(series[dates[0]]["4. close"]);
+    return ((end - start) / start) * 100;
+}
+
