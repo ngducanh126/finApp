@@ -95,3 +95,10 @@ async function getEconomicCalendar(apiKey) {
     return data.economicCalendar ? data.economicCalendar.slice(0, 5) : [];
 }
 
+async function getIPOCalendar(apiKey) {
+    const url = `https://finnhub.io/api/v1/calendar/ipo?token=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.ipoCalendar ? data.ipoCalendar.slice(0, 5) : [];
+}
+
