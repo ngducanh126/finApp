@@ -102,3 +102,9 @@ async function getIPOCalendar(apiKey) {
     return data.ipoCalendar ? data.ipoCalendar.slice(0, 5) : [];
 }
 
+async function getUpgradeDowngrade(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/stock/upgrade-downgrade?symbol=${symbol}&token=${apiKey}`;
+    const res = await fetch(url);
+    return (await res.json()).slice(0, 5);
+}
+
