@@ -108,3 +108,10 @@ async function getUpgradeDowngrade(symbol, apiKey) {
     return (await res.json()).slice(0, 5);
 }
 
+async function getSocialSentiment(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/stock/social-sentiment?symbol=${symbol}&token=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    return { reddit: data.reddit.length, twitter: data.twitter.length };
+}
+
