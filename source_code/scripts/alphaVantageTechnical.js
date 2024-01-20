@@ -201,3 +201,19 @@ async function fetchConsecutiveLosses(symbol, apiKey) {
     return count;
 }
 
+async function fetchBiggestOneDayMove(symbol, apiKey) {
+    const series = await fetchDailyTimeSeries(symbol, apiKey);
+    const dates = Object.keys(series).sort().reverse();
+    let maxMove = 0, moveDate = null;
+    for (let i = 1; i < dates.length; i++) {
+        let prev = parseFloat(series[dates[i-1]]["4. close"]);
+        let curr = parseFloat(series[dates[i]]["4. close"]);
+        let move = Math.abs(curr - prev);
+        if (move > maxMove) {
+            maxMove = move;
+            moveDate = dates[i];
+        }
+    }
+    return { date: moveDate, move: maxMove };
+}
+
