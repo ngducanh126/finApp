@@ -115,3 +115,9 @@ async function getSocialSentiment(symbol, apiKey) {
     return { reddit: data.reddit.length, twitter: data.twitter.length };
 }
 
+async function getOwnership(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/stock/ownership?symbol=${symbol}&token=${apiKey}`;
+    const res = await fetch(url);
+    return (await res.json()).slice(0, 5);
+}
+
