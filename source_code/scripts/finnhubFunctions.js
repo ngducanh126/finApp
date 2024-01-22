@@ -121,3 +121,9 @@ async function getOwnership(symbol, apiKey) {
     return (await res.json()).slice(0, 5);
 }
 
+async function getShortInterest(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/stock/short-interest?symbol=${symbol}&token=${apiKey}`;
+    const res = await fetch(url);
+    return (await res.json()).slice(0, 5);
+}
+
