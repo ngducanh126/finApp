@@ -229,3 +229,15 @@ async function fetchPercentGreenDays(symbol, apiKey, days = 30) {
     return (green / (dates.length - 1)) * 100;
 }
 
+async function fetchPercentRedDays(symbol, apiKey, days = 30) {
+    const series = await fetchDailyTimeSeries(symbol, apiKey);
+    const dates = Object.keys(series).sort().reverse().slice(0, days);
+    let red = 0;
+    for (let i = 1; i < dates.length; i++) {
+        let prev = parseFloat(series[dates[i-1]]["4. close"]);
+        let curr = parseFloat(series[dates[i]]["4. close"]);
+        if (curr < prev) red++;
+    }
+    return (red / (dates.length - 1)) * 100;
+}
+
