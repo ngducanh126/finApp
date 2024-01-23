@@ -127,3 +127,9 @@ async function getShortInterest(symbol, apiKey) {
     return (await res.json()).slice(0, 5);
 }
 
+async function getSupplyChainRelationships(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/supply-chain?symbol=${symbol}&token=${apiKey}`;
+    const res = await fetch(url);
+    return (await res.json()).relationships;
+}
+
