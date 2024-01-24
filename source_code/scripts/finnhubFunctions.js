@@ -133,3 +133,9 @@ async function getSupplyChainRelationships(symbol, apiKey) {
     return (await res.json()).relationships;
 }
 
+async function getRevenueBreakdown(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/stock/revenue-breakdown?symbol=${symbol}&token=${apiKey}`;
+    const res = await fetch(url);
+    return (await res.json()).breakdown;
+}
+
