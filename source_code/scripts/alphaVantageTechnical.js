@@ -241,3 +241,16 @@ async function fetchPercentRedDays(symbol, apiKey, days = 30) {
     return (red / (dates.length - 1)) * 100;
 }
 
+async function fetchAverageTrueRange(symbol, apiKey, days = 14) {
+    const series = await fetchDailyTimeSeries(symbol, apiKey);
+    const dates = Object.keys(series).sort().reverse().slice(0, days + 1);
+    let trs = [];
+    for (let i = 1; i < dates.length; i++) {
+        let high = parseFloat(series[dates[i]]["2. high"]);
+        let low = parseFloat(series[dates[i]]["3. low"]);
+        let prevClose = parseFloat(series[dates[i-1]]["4. close"]);
+        trs.push(Math.max(high - low, Math.abs(high - prevClose), Math.abs(low - prevClose)));
+    }
+    return trs.reduce((a, b) => a + b, 0) / trs.length;
+}
+
