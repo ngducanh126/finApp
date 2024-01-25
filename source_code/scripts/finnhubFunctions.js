@@ -139,3 +139,9 @@ async function getRevenueBreakdown(symbol, apiKey) {
     return (await res.json()).breakdown;
 }
 
+async function getSupportResistance(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/scan/support-resistance?symbol=${symbol}&token=${apiKey}`;
+    const res = await fetch(url);
+    return await res.json();
+}
+
