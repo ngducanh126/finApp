@@ -254,3 +254,17 @@ async function fetchAverageTrueRange(symbol, apiKey, days = 14) {
     return trs.reduce((a, b) => a + b, 0) / trs.length;
 }
 
+async function fetchGapUpDownDays(symbol, apiKey, gapPercent = 2) {
+    const series = await fetchDailyTimeSeries(symbol, apiKey);
+    const dates = Object.keys(series).sort().reverse();
+    let gapUps = 0, gapDowns = 0;
+    for (let i = 1; i < dates.length; i++) {
+        let prevClose = parseFloat(series[dates[i-1]]["4. close"]);
+        let open = parseFloat(series[dates[i]]["1. open"]);
+        let gap = ((open - prevClose) / prevClose) * 100;
+        if (gap >= gapPercent) gapUps++;
+        if (gap <= -gapPercent) gapDowns++;
+    }
+    return { gapUps, gapDowns };
+}
+
