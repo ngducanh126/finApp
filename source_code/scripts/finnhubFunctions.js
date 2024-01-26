@@ -145,3 +145,9 @@ async function getSupportResistance(symbol, apiKey) {
     return await res.json();
 }
 
+async function getPatternRecognition(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/scan/pattern?symbol=${symbol}&token=${apiKey}`;
+    const res = await fetch(url);
+    return await res.json();
+}
+
