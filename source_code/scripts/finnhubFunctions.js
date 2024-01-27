@@ -151,3 +151,10 @@ async function getPatternRecognition(symbol, apiKey) {
     return await res.json();
 }
 
+async function getPriceTarget(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/stock/price-target?symbol=${symbol}&token=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    return { targetHigh: data.targetHigh, targetLow: data.targetLow, targetMean: data.targetMean };
+}
+
