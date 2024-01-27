@@ -282,3 +282,15 @@ async function fetchLongestFlatStreak(symbol, apiKey, tolerance = 0.1) {
     return maxStreak;
 }
 
+async function fetchAverageDailyRange(symbol, apiKey, days = 30) {
+    const series = await fetchDailyTimeSeries(symbol, apiKey);
+    const dates = Object.keys(series).sort().reverse().slice(0, days);
+    let total = 0;
+    for (let date of dates) {
+        let high = parseFloat(series[date]["2. high"]);
+        let low = parseFloat(series[date]["3. low"]);
+        total += (high - low);
+    }
+    return total / days;
+}
+
