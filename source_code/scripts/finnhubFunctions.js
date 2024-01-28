@@ -158,3 +158,9 @@ async function getPriceTarget(symbol, apiKey) {
     return { targetHigh: data.targetHigh, targetLow: data.targetLow, targetMean: data.targetMean };
 }
 
+async function getTechnicalIndicators(symbol, resolution, from, to, indicator, apiKey) {
+    const url = `https://finnhub.io/api/v1/indicator?symbol=${symbol}&resolution=${resolution}&from=${from}&to=${to}&indicator=${indicator}&token=${apiKey}`;
+    const res = await fetch(url);
+    return await res.json();
+}
+
