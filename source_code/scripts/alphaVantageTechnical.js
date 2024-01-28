@@ -294,3 +294,19 @@ async function fetchAverageDailyRange(symbol, apiKey, days = 30) {
     return total / days;
 }
 
+async function fetchBiggestVolumeSpike(symbol, apiKey, days = 30) {
+    const series = await fetchDailyTimeSeries(symbol, apiKey);
+    const dates = Object.keys(series).sort().reverse().slice(0, days);
+    let maxSpike = 0, spikeDate = null;
+    for (let i = 1; i < dates.length; i++) {
+        let prevVol = parseInt(series[dates[i-1]]["5. volume"]);
+        let currVol = parseInt(series[dates[i]]["5. volume"]);
+        let spike = currVol - prevVol;
+        if (spike > maxSpike) {
+            maxSpike = spike;
+            spikeDate = dates[i];
+        }
+    }
+    return { date: spikeDate, spike: maxSpike };
+}
+
