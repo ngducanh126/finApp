@@ -164,3 +164,9 @@ async function getTechnicalIndicators(symbol, resolution, from, to, indicator, a
     return await res.json();
 }
 
+async function getETFProfile(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/etf/profile?symbol=${symbol}&token=${apiKey}`;
+    const res = await fetch(url);
+    return await res.json();
+}
+
