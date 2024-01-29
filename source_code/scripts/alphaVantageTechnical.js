@@ -310,3 +310,15 @@ async function fetchBiggestVolumeSpike(symbol, apiKey, days = 30) {
     return { date: spikeDate, spike: maxSpike };
 }
 
+async function fetchAverageGap(symbol, apiKey, days = 30) {
+    const series = await fetchDailyTimeSeries(symbol, apiKey);
+    const dates = Object.keys(series).sort().reverse().slice(0, days);
+    let totalGap = 0;
+    for (let i = 1; i < dates.length; i++) {
+        let prevClose = parseFloat(series[dates[i-1]]["4. close"]);
+        let open = parseFloat(series[dates[i]]["1. open"]);
+        totalGap += Math.abs(open - prevClose);
+    }
+    return totalGap / (dates.length - 1);
+}
+
