@@ -176,3 +176,9 @@ async function getMutualFundProfile(symbol, apiKey) {
     return await res.json();
 }
 
+async function getBondProfile(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/bond/profile?symbol=${symbol}&token=${apiKey}`;
+    const res = await fetch(url);
+    return await res.json();
+}
+
