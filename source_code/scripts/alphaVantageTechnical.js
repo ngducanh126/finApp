@@ -322,3 +322,16 @@ async function fetchAverageGap(symbol, apiKey, days = 30) {
     return totalGap / (dates.length - 1);
 }
 
+async function fetchMaxDrawdown(symbol, apiKey, days = 90) {
+    const series = await fetchDailyTimeSeries(symbol, apiKey);
+    const dates = Object.keys(series).sort().reverse().slice(0, days);
+    let maxPeak = -Infinity, maxDrawdown = 0;
+    for (let date of dates) {
+        let close = parseFloat(series[date]["4. close"]);
+        if (close > maxPeak) maxPeak = close;
+        let drawdown = (maxPeak - close) / maxPeak;
+        if (drawdown > maxDrawdown) maxDrawdown = drawdown;
+    }
+    return maxDrawdown * 100;
+}
+
