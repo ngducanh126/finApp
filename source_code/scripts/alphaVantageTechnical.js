@@ -335,3 +335,12 @@ async function fetchMaxDrawdown(symbol, apiKey, days = 90) {
     return maxDrawdown * 100;
 }
 
+async function fetchVolatilityIndex(symbol, apiKey, days = 30) {
+    const series = await fetchDailyTimeSeries(symbol, apiKey);
+    const dates = Object.keys(series).sort().reverse().slice(0, days);
+    let closes = dates.map(date => parseFloat(series[date]["4. close"]));
+    let mean = closes.reduce((a, b) => a + b, 0) / closes.length;
+    let variance = closes.reduce((a, b) => a + (b - mean) ** 2, 0) / closes.length;
+    return Math.sqrt(variance);
+}
+
