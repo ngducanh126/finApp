@@ -344,3 +344,20 @@ async function fetchVolatilityIndex(symbol, apiKey, days = 30) {
     return Math.sqrt(variance);
 }
 
+async function fetchPercentChangeHistogram(symbol, apiKey, days = 30) {
+    const series = await fetchDailyTimeSeries(symbol, apiKey);
+    const dates = Object.keys(series).sort().reverse().slice(0, days);
+    let changes = [];
+    for (let i = 1; i < dates.length; i++) {
+        let prev = parseFloat(series[dates[i-1]]["4. close"]);
+        let curr = parseFloat(series[dates[i]]["4. close"]);
+        changes.push(((curr - prev) / prev) * 100);
+    }
+    let histogram = {};
+    for (let change of changes) {
+        let bucket = Math.round(change);
+        histogram[bucket] = (histogram[bucket] || 0) + 1;
+    }
+    return histogram;
+}
+
