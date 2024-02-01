@@ -182,3 +182,9 @@ async function getBondProfile(symbol, apiKey) {
     return await res.json();
 }
 
+async function getEconomicData(code, apiKey) {
+    const url = `https://finnhub.io/api/v1/economic?code=${code}&token=${apiKey}`;
+    const res = await fetch(url);
+    return await res.json();
+}
+
