@@ -188,3 +188,9 @@ async function getEconomicData(code, apiKey) {
     return await res.json();
 }
 
+async function getMarketNews(category, apiKey) {
+    const url = `https://finnhub.io/api/v1/news?category=${category}&token=${apiKey}`;
+    const res = await fetch(url);
+    return (await res.json()).slice(0, 10);
+}
+
