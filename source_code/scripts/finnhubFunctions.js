@@ -194,3 +194,9 @@ async function getMarketNews(category, apiKey) {
     return (await res.json()).slice(0, 10);
 }
 
+async function getCryptoCandles(symbol, resolution, from, to, apiKey) {
+    const url = `https://finnhub.io/api/v1/crypto/candle?symbol=${symbol}&resolution=${resolution}&from=${from}&to=${to}&token=${apiKey}`;
+    const res = await fetch(url);
+    return await res.json();
+}
+
