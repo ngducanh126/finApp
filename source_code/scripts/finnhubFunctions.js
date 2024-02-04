@@ -200,3 +200,9 @@ async function getCryptoCandles(symbol, resolution, from, to, apiKey) {
     return await res.json();
 }
 
+async function getForexCandles(symbol, resolution, from, to, apiKey) {
+    const url = `https://finnhub.io/api/v1/forex/candle?symbol=${symbol}&resolution=${resolution}&from=${from}&to=${to}&token=${apiKey}`;
+    const res = await fetch(url);
+    return await res.json();
+}
+
