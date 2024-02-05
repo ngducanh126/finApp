@@ -206,3 +206,9 @@ async function getForexCandles(symbol, resolution, from, to, apiKey) {
     return await res.json();
 }
 
+async function getStockTick(symbol, date, apiKey) {
+    const url = `https://finnhub.io/api/v1/stock/tick?symbol=${symbol}&date=${date}&token=${apiKey}`;
+    const res = await fetch(url);
+    return await res.json();
+}
+
