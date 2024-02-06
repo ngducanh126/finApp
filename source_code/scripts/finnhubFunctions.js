@@ -212,3 +212,8 @@ async function getStockTick(symbol, date, apiKey) {
     return await res.json();
 }
 
+async function getQuoteChangePercent(symbol, apiKey) {
+    const quote = await getStockQuote(symbol, apiKey);
+    return ((quote.c - quote.pc) / quote.pc) * 100;
+}
+
