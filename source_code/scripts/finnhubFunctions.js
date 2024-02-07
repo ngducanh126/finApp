@@ -217,3 +217,10 @@ async function getQuoteChangePercent(symbol, apiKey) {
     return ((quote.c - quote.pc) / quote.pc) * 100;
 }
 
+async function get52WeekHighLow(symbol, apiKey) {
+    const now = Math.floor(Date.now()/1000);
+    const yearAgo = now - 365*24*60*60;
+    const candles = await getCandles(symbol, 'D', yearAgo, now, apiKey);
+    return { high: Math.max(...candles.h), low: Math.min(...candles.l) };
+}
+
