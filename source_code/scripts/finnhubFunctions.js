@@ -234,3 +234,9 @@ async function getVolatilityIndex(symbol, apiKey) {
     return Math.sqrt(variance);
 }
 
+async function getSectorPerformance(apiKey) {
+    const url = `https://finnhub.io/api/v1/stock/sector-performance?token=${apiKey}`;
+    const res = await fetch(url);
+    return await res.json();
+}
+
