@@ -224,3 +224,13 @@ async function get52WeekHighLow(symbol, apiKey) {
     return { high: Math.max(...candles.h), low: Math.min(...candles.l) };
 }
 
+async function getVolatilityIndex(symbol, apiKey) {
+    const now = Math.floor(Date.now()/1000);
+    const monthAgo = now - 30*24*60*60;
+    const candles = await getCandles(symbol, 'D', monthAgo, now, apiKey);
+    const closes = candles.c;
+    const mean = closes.reduce((a, b) => a + b, 0) / closes.length;
+    const variance = closes.reduce((a, b) => a + (b - mean) ** 2, 0) / closes.length;
+    return Math.sqrt(variance);
+}
+
