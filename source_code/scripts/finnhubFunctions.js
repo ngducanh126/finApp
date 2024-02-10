@@ -240,3 +240,10 @@ async function getSectorPerformance(apiKey) {
     return await res.json();
 }
 
+async function getTrendingStocks(apiKey) {
+    const url = `https://finnhub.io/api/v1/news?category=general&token=${apiKey}`;
+    const res = await fetch(url);
+    const news = await res.json();
+    return news.map(n => n.related).flat();
+}
+
