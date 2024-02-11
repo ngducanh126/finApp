@@ -247,3 +247,10 @@ async function getTrendingStocks(apiKey) {
     return news.map(n => n.related).flat();
 }
 
+async function getHistoricalDividends(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/stock/dividend?symbol=${symbol}&from=2000-01-01&to=2025-01-01&token=${apiKey}`;
+    const res = await fetch(url);
+    const divs = await res.json();
+    return divs.map(d => ({ date: d.paymentDate, amount: d.amount }));
+}
+
