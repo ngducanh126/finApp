@@ -254,3 +254,26 @@ async function getHistoricalDividends(symbol, apiKey) {
     return divs.map(d => ({ date: d.paymentDate, amount: d.amount }));
 }
 
+async function getCorrelationMatrix(symbols, apiKey) {
+    const now = Math.floor(Date.now()/1000);
+    const monthAgo = now - 30*24*60*60;
+    let closes = [];
+    for (let symbol of symbols) {
+        const candles = await getCandles(symbol, 'D', monthAgo, now, apiKey);
+        closes.push(candles.c);
+    }
+    let matrix = [];
+    for (let i = 0; i < closes.length; i++) {
+        matrix[i] = [];
+        for (let j = 0; j < closes.length; j++) {
+            let meanI = closes[i].reduce((a, b) => a + b, 0) / closes[i].length;
+            let meanJ = closes[j].reduce((a, b) => a + b, 0) / closes[j].length;
+            let cov = closes[i].map((v, k) => (v - meanI) * (closes[j][k] - meanJ)).reduce((a, b) => a + b, 0) / closes[i].length;
+            let stdI = Math.sqrt(closes[i].map(v => (v - meanI) ** 2).reduce((a, b) => a + b, 0) / closes[i].length);
+            let stdJ = Math.sqrt(closes[j].map(v => (v - meanJ) ** 2).reduce((a, b) => a + b, 0) / closes[j].length);
+            matrix[i][j] = cov / (stdI * stdJ);
+        }
+    }
+    return matrix;
+}
+
