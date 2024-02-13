@@ -395,3 +395,10 @@ async function getTimeSeries(symbol, interval, apiKey) {
     return await res.json();
 }
 
+async function getQuoteWithChange(symbol, apiKey) {
+    const url = `https://api.twelvedata.com/quote?symbol=${symbol}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    return { price: data.close, change: data.percent_change };
+}
+
