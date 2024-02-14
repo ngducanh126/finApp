@@ -11,3 +11,11 @@ async function getQuoteWithChange(symbol, apiKey) {
     return { price: data.close, change: data.percent_change };
 }
 
+async function getSMAAnalysis(symbol, interval, period, apiKey) {
+    const url = `https://api.twelvedata.com/sma?symbol=${symbol}&interval=${interval}&period=${period}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    const trend = data.values[0].sma > data.values[1].sma ? 'up' : 'down';
+    return { latest: data.values[0].sma, trend };
+}
+
