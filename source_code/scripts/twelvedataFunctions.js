@@ -19,3 +19,14 @@ async function getSMAAnalysis(symbol, interval, period, apiKey) {
     return { latest: data.values[0].sma, trend };
 }
 
+async function getEMAandSignal(symbol, interval, short, long, apiKey) {
+    const url1 = `https://api.twelvedata.com/ema?symbol=${symbol}&interval=${interval}&period=${short}&apikey=${apiKey}`;
+    const url2 = `https://api.twelvedata.com/ema?symbol=${symbol}&interval=${interval}&period=${long}&apikey=${apiKey}`;
+    const res1 = await fetch(url1);
+    const res2 = await fetch(url2);
+    const emaShort = (await res1.json()).values[0].ema;
+    const emaLong = (await res2.json()).values[0].ema;
+    const signal = emaShort > emaLong ? 'bullish' : 'bearish';
+    return { emaShort, emaLong, signal };
+}
+
