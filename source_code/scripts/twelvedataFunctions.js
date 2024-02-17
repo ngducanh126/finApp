@@ -30,3 +30,11 @@ async function getEMAandSignal(symbol, interval, short, long, apiKey) {
     return { emaShort, emaLong, signal };
 }
 
+async function getRSIandOverbought(symbol, interval, period, apiKey) {
+    const url = `https://api.twelvedata.com/rsi?symbol=${symbol}&interval=${interval}&period=${period}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    const rsi = (await res.json()).values[0].rsi;
+    let status = rsi > 70 ? 'overbought' : rsi < 30 ? 'oversold' : 'neutral';
+    return { rsi, status };
+}
+
