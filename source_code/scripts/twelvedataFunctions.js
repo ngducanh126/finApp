@@ -429,3 +429,10 @@ async function getRSIandOverbought(symbol, interval, period, apiKey) {
     return { rsi, status };
 }
 
+async function getMACDHistogram(symbol, interval, apiKey) {
+    const url = `https://api.twelvedata.com/macd?symbol=${symbol}&interval=${interval}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    return { macd: data.values[0].macd, histogram: data.values[0].histogram };
+}
+
