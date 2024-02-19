@@ -45,3 +45,11 @@ async function getMACDHistogram(symbol, interval, apiKey) {
     return { macd: data.values[0].macd, histogram: data.values[0].histogram };
 }
 
+async function getBollingerBands(symbol, interval, period, apiKey) {
+    const url = `https://api.twelvedata.com/bbands?symbol=${symbol}&interval=${interval}&period=${period}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    const breakout = data.values[0].close > data.values[0].upper_band || data.values[0].close < data.values[0].lower_band;
+    return { upper: data.values[0].upper_band, lower: data.values[0].lower_band, breakout };
+}
+
