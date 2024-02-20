@@ -53,3 +53,10 @@ async function getBollingerBands(symbol, interval, period, apiKey) {
     return { upper: data.values[0].upper_band, lower: data.values[0].lower_band, breakout };
 }
 
+async function getADXStrength(symbol, interval, period, apiKey) {
+    const url = `https://api.twelvedata.com/adx?symbol=${symbol}&interval=${interval}&period=${period}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    const adx = (await res.json()).values[0].adx;
+    return { adx, strength: adx > 25 ? 'strong' : 'weak' };
+}
+
