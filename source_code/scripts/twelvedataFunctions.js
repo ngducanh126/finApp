@@ -451,3 +451,10 @@ async function getADXStrength(symbol, interval, period, apiKey) {
     return { adx, strength: adx > 25 ? 'strong' : 'weak' };
 }
 
+async function getATRVolatility(symbol, interval, period, apiKey) {
+    const url = `https://api.twelvedata.com/atr?symbol=${symbol}&interval=${interval}&period=${period}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    const atr = (await res.json()).values[0].atr;
+    return { atr };
+}
+
