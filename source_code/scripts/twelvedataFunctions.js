@@ -67,3 +67,11 @@ async function getATRVolatility(symbol, interval, period, apiKey) {
     return { atr };
 }
 
+async function getStochasticOscillator(symbol, interval, apiKey) {
+    const url = `https://api.twelvedata.com/stoch?symbol=${symbol}&interval=${interval}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    const cross = data.values[0].slow_k > data.values[0].slow_d ? 'bullish' : 'bearish';
+    return { slow_k: data.values[0].slow_k, slow_d: data.values[0].slow_d, cross };
+}
+
