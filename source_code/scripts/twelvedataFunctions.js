@@ -75,3 +75,9 @@ async function getStochasticOscillator(symbol, interval, apiKey) {
     return { slow_k: data.values[0].slow_k, slow_d: data.values[0].slow_d, cross };
 }
 
+async function getPivotPoints(symbol, interval, apiKey) {
+    const url = `https://api.twelvedata.com/pivot_points?symbol=${symbol}&interval=${interval}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    return (await res.json()).values[0];
+}
+
