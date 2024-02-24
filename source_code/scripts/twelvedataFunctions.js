@@ -472,3 +472,10 @@ async function getPivotPoints(symbol, interval, apiKey) {
     return (await res.json()).values[0];
 }
 
+async function getVWAPTrend(symbol, interval, apiKey) {
+    const url = `https://api.twelvedata.com/vwap?symbol=${symbol}&interval=${interval}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    const vwap = (await res.json()).values[0].vwap;
+    return { vwap };
+}
+
