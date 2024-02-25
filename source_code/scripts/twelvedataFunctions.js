@@ -88,3 +88,13 @@ async function getVWAPTrend(symbol, interval, apiKey) {
     return { vwap };
 }
 
+async function getPriceRangeSummary(symbol, interval, apiKey) {
+    const url = `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=${interval}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    let highs = data.values.map(v => parseFloat(v.high));
+    let lows = data.values.map(v => parseFloat(v.low));
+    let closes = data.values.map(v => parseFloat(v.close));
+    return { high: Math.max(...highs), low: Math.min(...lows), close: closes[0] };
+}
+
