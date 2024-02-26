@@ -489,3 +489,13 @@ async function getPriceRangeSummary(symbol, interval, apiKey) {
     return { high: Math.max(...highs), low: Math.min(...lows), close: closes[0] };
 }
 
+async function getVolumeSpikeDetector(symbol, interval, apiKey) {
+    const url = `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=${interval}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    let volumes = data.values.map(v => parseInt(v.volume));
+    let avg = volumes.reduce((a, b) => a + b, 0) / volumes.length;
+    let spike = volumes[0] > avg * 2;
+    return { volume: volumes[0], spike };
+}
+
