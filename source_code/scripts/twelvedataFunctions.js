@@ -108,3 +108,26 @@ async function getVolumeSpikeDetector(symbol, interval, apiKey) {
     return { volume: volumes[0], spike };
 }
 
+async function getMultiAssetCorrelation(symbols, interval, apiKey) {
+    let closes = [];
+    for (let symbol of symbols) {
+        const url = `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=${interval}&apikey=${apiKey}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        closes.push(data.values.map(v => parseFloat(v.close)));
+    }
+    let matrix = [];
+    for (let i = 0; i < closes.length; i++) {
+        matrix[i] = [];
+        for (let j = 0; j < closes.length; j++) {
+            let meanI = closes[i].reduce((a, b) => a + b, 0) / closes[i].length;
+            let meanJ = closes[j].reduce((a, b) => a + b, 0) / closes[j].length;
+            let cov = closes[i].map((v, k) => (v - meanI) * (closes[j][k] - meanJ)).reduce((a, b) => a + b, 0) / closes[i].length;
+            let stdI = Math.sqrt(closes[i].map(v => (v - meanI) ** 2).reduce((a, b) => a + b, 0) / closes[i].length);
+            let stdJ = Math.sqrt(closes[j].map(v => (v - meanJ) ** 2).reduce((a, b) => a + b, 0) / closes[j].length);
+            matrix[i][j] = cov / (stdI * stdJ);
+        }
+    }
+    return matrix;
+}
+
