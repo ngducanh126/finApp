@@ -131,3 +131,9 @@ async function getMultiAssetCorrelation(symbols, interval, apiKey) {
     return matrix;
 }
 
+async function getETFConstituents(symbol, apiKey) {
+    const url = `https://api.twelvedata.com/etf?symbol=${symbol}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    return (await res.json()).holdings;
+}
+
