@@ -137,3 +137,10 @@ async function getETFConstituents(symbol, apiKey) {
     return (await res.json()).holdings;
 }
 
+async function getCryptoMarketLeaders(apiKey) {
+    const url = `https://api.twelvedata.com/cryptocurrencies?apikey=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.data.sort((a, b) => parseFloat(b.percent_change_24h) - parseFloat(a.percent_change_24h)).slice(0, 5);
+}
+
