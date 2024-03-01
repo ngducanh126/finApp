@@ -151,3 +151,10 @@ async function getForexHeatmap(apiKey) {
     return data.data.map(pair => ({ symbol: pair.symbol, change: pair.percent_change }));
 }
 
+async function getIndexPerformance(apiKey) {
+    const url = `https://api.twelvedata.com/indices?apikey=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.data.map(idx => ({ symbol: idx.symbol, change: idx.percent_change }));
+}
+
