@@ -158,3 +158,9 @@ async function getIndexPerformance(apiKey) {
     return data.data.map(idx => ({ symbol: idx.symbol, change: idx.percent_change }));
 }
 
+async function getDividendHistory(symbol, apiKey) {
+    const url = `https://api.twelvedata.com/dividends?symbol=${symbol}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    return (await res.json()).values;
+}
+
