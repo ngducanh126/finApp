@@ -555,3 +555,9 @@ async function getDividendHistory(symbol, apiKey) {
     return (await res.json()).values;
 }
 
+async function getSplitHistory(symbol, apiKey) {
+    const url = `https://api.twelvedata.com/splits?symbol=${symbol}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    return (await res.json()).values;
+}
+
