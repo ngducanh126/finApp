@@ -561,3 +561,9 @@ async function getSplitHistory(symbol, apiKey) {
     return (await res.json()).values;
 }
 
+async function getEarningsCalendar(symbol, apiKey) {
+    const url = `https://api.twelvedata.com/earnings?symbol=${symbol}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    return (await res.json()).values;
+}
+
