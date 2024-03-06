@@ -567,3 +567,9 @@ async function getEarningsCalendar(symbol, apiKey) {
     return (await res.json()).values;
 }
 
+async function getEconomicEvents(apiKey) {
+    const url = `https://api.twelvedata.com/economic_events?apikey=${apiKey}`;
+    const res = await fetch(url);
+    return (await res.json()).values;
+}
+
