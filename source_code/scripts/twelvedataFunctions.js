@@ -182,3 +182,13 @@ async function getEconomicEvents(apiKey) {
     return (await res.json()).values;
 }
 
+async function getIntradayVolatility(symbol, interval, apiKey) {
+    const url = `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=${interval}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    let closes = data.values.map(v => parseFloat(v.close));
+    let mean = closes.reduce((a, b) => a + b, 0) / closes.length;
+    let variance = closes.reduce((a, b) => a + (b - mean) ** 2, 0) / closes.length;
+    return Math.sqrt(variance);
+}
+
