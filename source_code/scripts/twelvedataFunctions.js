@@ -215,3 +215,14 @@ async function get52WeekHighLow(symbol, apiKey) {
     return { high: Math.max(...highs), low: Math.min(...lows) };
 }
 
+async function getMovingAverageCrossover(symbol, interval, short, long, apiKey) {
+    const url1 = `https://api.twelvedata.com/sma?symbol=${symbol}&interval=${interval}&period=${short}&apikey=${apiKey}`;
+    const url2 = `https://api.twelvedata.com/sma?symbol=${symbol}&interval=${interval}&period=${long}&apikey=${apiKey}`;
+    const res1 = await fetch(url1);
+    const res2 = await fetch(url2);
+    const smaShort = (await res1.json()).values[0].sma;
+    const smaLong = (await res2.json()).values[0].sma;
+    const crossover = smaShort > smaLong ? 'golden' : 'death';
+    return { smaShort, smaLong, crossover };
+}
+
