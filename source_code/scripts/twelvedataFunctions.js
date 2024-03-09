@@ -206,3 +206,12 @@ async function getGapUpDownScanner(symbol, interval, apiKey) {
     return gaps;
 }
 
+async function get52WeekHighLow(symbol, apiKey) {
+    const url = `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=1day&outputsize=365&apikey=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    let highs = data.values.map(v => parseFloat(v.high));
+    let lows = data.values.map(v => parseFloat(v.low));
+    return { high: Math.max(...highs), low: Math.min(...lows) };
+}
+
