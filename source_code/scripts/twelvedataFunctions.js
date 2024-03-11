@@ -617,3 +617,9 @@ async function getMovingAverageCrossover(symbol, interval, short, long, apiKey) 
     return { smaShort, smaLong, crossover };
 }
 
+async function getPriceMomentum(symbol, interval, apiKey) {
+    const url = `https://api.twelvedata.com/momentum?symbol=${symbol}&interval=${interval}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    return (await res.json()).values[0];
+}
+
