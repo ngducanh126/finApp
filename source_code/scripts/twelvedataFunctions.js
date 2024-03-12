@@ -232,3 +232,12 @@ async function getPriceMomentum(symbol, interval, apiKey) {
     return (await res.json()).values[0];
 }
 
+async function getRelativeVolume(symbol, interval, apiKey) {
+    const url = `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=${interval}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    let volumes = data.values.map(v => parseInt(v.volume));
+    let avg = volumes.reduce((a, b) => a + b, 0) / volumes.length;
+    return { current: volumes[0], avg, relative: volumes[0] / avg };
+}
+
