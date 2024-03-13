@@ -241,3 +241,9 @@ async function getRelativeVolume(symbol, interval, apiKey) {
     return { current: volumes[0], avg, relative: volumes[0] / avg };
 }
 
+async function getSectorLeaders(apiKey) {
+    const url = `https://api.twelvedata.com/sectors?apikey=${apiKey}`;
+    const res = await fetch(url);
+    return (await res.json()).data;
+}
+
