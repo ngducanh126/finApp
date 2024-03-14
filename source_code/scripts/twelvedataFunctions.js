@@ -638,3 +638,9 @@ async function getSectorLeaders(apiKey) {
     return (await res.json()).data;
 }
 
+async function getETFPerformance(apiKey) {
+    const url = `https://api.twelvedata.com/etf?apikey=${apiKey}`;
+    const res = await fetch(url);
+    return (await res.json()).data;
+}
+
