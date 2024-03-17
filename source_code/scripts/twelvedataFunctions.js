@@ -286,3 +286,9 @@ async function getForexVolatility(symbol, interval, apiKey) {
     return Math.sqrt(variance);
 }
 
+async function getMarketBreadth(apiKey) {
+    const url = `https://api.twelvedata.com/market_breadth?apikey=${apiKey}`;
+    const res = await fetch(url);
+    return await res.json();
+}
+
