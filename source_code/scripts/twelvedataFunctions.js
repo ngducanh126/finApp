@@ -292,3 +292,12 @@ async function getMarketBreadth(apiKey) {
     return await res.json();
 }
 
+async function getPriceReversalDetector(symbol, interval, apiKey) {
+    const url = `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=${interval}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    let closes = data.values.map(v => parseFloat(v.close));
+    let reversal = closes[0] > closes[1] && closes[1] < closes[2];
+    return { reversal };
+}
+
