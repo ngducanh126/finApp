@@ -301,3 +301,16 @@ async function getPriceReversalDetector(symbol, interval, apiKey) {
     return { reversal };
 }
 
+async function getMultiTimeframeTrend(symbol, apiKey) {
+    const url1 = `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=1day&apikey=${apiKey}`;
+    const url2 = `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=1week&apikey=${apiKey}`;
+    const url3 = `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=1month&apikey=${apiKey}`;
+    const res1 = await fetch(url1);
+    const res2 = await fetch(url2);
+    const res3 = await fetch(url3);
+    const d = await res1.json();
+    const w = await res2.json();
+    const m = await res3.json();
+    return { daily: d.values[0].close, weekly: w.values[0].close, monthly: m.values[0].close };
+}
+
