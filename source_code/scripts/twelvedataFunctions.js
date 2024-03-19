@@ -314,3 +314,20 @@ async function getMultiTimeframeTrend(symbol, apiKey) {
     return { daily: d.values[0].close, weekly: w.values[0].close, monthly: m.values[0].close };
 }
 
+async function getAssetSeasonality(symbol, apiKey) {
+    const url = `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=1day&outputsize=365&apikey=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    let months = {};
+    for (let v of data.values) {
+        let month = v.datetime.split('-')[1];
+        months[month] = months[month] || [];
+        months[month].push(parseFloat(v.close));
+    }
+    let avg = {};
+    for (let m in months) {
+        avg[m] = months[m].reduce((a, b) => a + b, 0) / months[m].length;
+    }
+    return avg;
+}
+
