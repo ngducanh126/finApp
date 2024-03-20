@@ -331,3 +331,20 @@ async function getAssetSeasonality(symbol, apiKey) {
     return avg;
 }
 
+async function getIntradayPattern(symbol, apiKey) {
+    const url = `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=5min&apikey=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    let hours = {};
+    for (let v of data.values) {
+        let hour = v.datetime.split(' ')[1].split(':')[0];
+        hours[hour] = hours[hour] || [];
+        hours[hour].push(parseFloat(v.close));
+    }
+    let avg = {};
+    for (let h in hours) {
+        avg[h] = hours[h].reduce((a, b) => a + b, 0) / hours[h].length;
+    }
+    return avg;
+}
+
