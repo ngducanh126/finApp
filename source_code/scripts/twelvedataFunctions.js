@@ -348,3 +348,14 @@ async function getIntradayPattern(symbol, apiKey) {
     return avg;
 }
 
+async function getVolatilityBreakout(symbol, interval, apiKey) {
+    const url = `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=${interval}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    let closes = data.values.map(v => parseFloat(v.close));
+    let mean = closes.reduce((a, b) => a + b, 0) / closes.length;
+    let std = Math.sqrt(closes.reduce((a, b) => a + (b - mean) ** 2, 0) / closes.length);
+    let breakout = Math.abs(closes[0] - mean) > 2 * std;
+    return { breakout };
+}
+
