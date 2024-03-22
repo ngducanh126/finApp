@@ -750,3 +750,17 @@ async function getVolatilityBreakout(symbol, interval, apiKey) {
     return { breakout };
 }
 
+async function getPriceGapStats(symbol, interval, apiKey) {
+    const url = `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=${interval}&apikey=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    let gaps = [];
+    for (let i = 1; i < data.values.length; i++) {
+        let prevClose = parseFloat(data.values[i-1].close);
+        let open = parseFloat(data.values[i].open);
+        let gap = ((open - prevClose) / prevClose) * 100;
+        gaps.push(gap);
+    }
+    return { avg: gaps.reduce((a, b) => a + b, 0) / gaps.length, max: Math.max(...gaps), min: Math.min(...gaps) };
+}
+
