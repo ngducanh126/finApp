@@ -764,3 +764,19 @@ async function getPriceGapStats(symbol, interval, apiKey) {
     return { avg: gaps.reduce((a, b) => a + b, 0) / gaps.length, max: Math.max(...gaps), min: Math.min(...gaps) };
 }
 
+async function getRollingBeta(symbol, benchmark, interval, apiKey) {
+    const url1 = `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=${interval}&apikey=${apiKey}`;
+    const url2 = `https://api.twelvedata.com/time_series?symbol=${benchmark}&interval=${interval}&apikey=${apiKey}`;
+    const res1 = await fetch(url1);
+    const res2 = await fetch(url2);
+    const d1 = await res1.json();
+    const d2 = await res2.json();
+    let returns1 = d1.values.map((v, i, arr) => i === 0 ? 0 : (parseFloat(v.close) - parseFloat(arr[i-1].close)) / parseFloat(arr[i-1].close));
+    let returns2 = d2.values.map((v, i, arr) => i === 0 ? 0 : (parseFloat(v.close) - parseFloat(arr[i-1].close)) / parseFloat(arr[i-1].close));
+    let mean1 = returns1.reduce((a, b) => a + b, 0) / returns1.length;
+    let mean2 = returns2.reduce((a, b) => a + b, 0) / returns2.length;
+    let cov = returns1.map((v, i) => (v - mean1) * (returns2[i] - mean2)).reduce((a, b) => a + b, 0) / returns1.length;
+    let var2 = returns2.map(v => (v - mean2) ** 2).reduce((a, b) => a + b, 0) / returns2.length;
+    return cov / var2;
+}
+
