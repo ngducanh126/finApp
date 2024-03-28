@@ -277,3 +277,14 @@ async function getCorrelationMatrix(symbols, apiKey) {
     return matrix;
 }
 
+async function getIntradayTrendStrength(symbol, resolution, from, to, apiKey) {
+    const candles = await getCandles(symbol, resolution, from, to, apiKey);
+    let closes = candles.c;
+    let up = 0, down = 0;
+    for (let i = 1; i < closes.length; i++) {
+        if (closes[i] > closes[i-1]) up++;
+        else if (closes[i] < closes[i-1]) down++;
+    }
+    return { up, down, trendStrength: (up - down) / closes.length };
+}
+
