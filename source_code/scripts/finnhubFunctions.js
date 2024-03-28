@@ -288,3 +288,12 @@ async function getIntradayTrendStrength(symbol, resolution, from, to, apiKey) {
     return { up, down, trendStrength: (up - down) / closes.length };
 }
 
+async function getRollingSharpeRatio(symbol, resolution, from, to, apiKey) {
+    const candles = await getCandles(symbol, resolution, from, to, apiKey);
+    let closes = candles.c;
+    let returns = closes.map((v, i, arr) => i === 0 ? 0 : (v - arr[i-1]) / arr[i-1]);
+    let mean = returns.reduce((a, b) => a + b, 0) / returns.length;
+    let std = Math.sqrt(returns.reduce((a, b) => a + (b - mean) ** 2, 0) / returns.length);
+    return std === 0 ? 0 : mean / std * Math.sqrt(252);
+}
+
