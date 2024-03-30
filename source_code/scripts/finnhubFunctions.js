@@ -307,3 +307,20 @@ async function getMarketOpenGapStats(symbol, resolution, from, to, apiKey) {
     return { avg: gaps.reduce((a, b) => a + b, 0) / gaps.length, max: Math.max(...gaps), min: Math.min(...gaps) };
 }
 
+async function getETFVolatilityLeaders(apiKey) {
+    const url = `https://finnhub.io/api/v1/etf/profile?exchange=US&token=${apiKey}`;
+    const res = await fetch(url);
+    const etfs = await res.json();
+    let vols = [];
+    for (let e of etfs.slice(0, 10)) {
+        const now = Math.floor(Date.now()/1000);
+        const monthAgo = now - 30*24*60*60;
+        const candles = await getCandles(e.symbol, 'D', monthAgo, now, apiKey);
+        let closes = candles.c;
+        let mean = closes.reduce((a, b) => a + b, 0) / closes.length;
+        let variance = closes.reduce((a, b) => a + (b - mean) ** 2, 0) / closes.length;
+        vols.push({ symbol: e.symbol, vol: Math.sqrt(variance) });
+    }
+    return vols.sort((a, b) => b.vol - a.vol);
+}
+
