@@ -297,3 +297,13 @@ async function getRollingSharpeRatio(symbol, resolution, from, to, apiKey) {
     return std === 0 ? 0 : mean / std * Math.sqrt(252);
 }
 
+async function getMarketOpenGapStats(symbol, resolution, from, to, apiKey) {
+    const candles = await getCandles(symbol, resolution, from, to, apiKey);
+    let gaps = [];
+    for (let i = 1; i < candles.o.length; i++) {
+        let gap = (candles.o[i] - candles.c[i-1]) / candles.c[i-1] * 100;
+        gaps.push(gap);
+    }
+    return { avg: gaps.reduce((a, b) => a + b, 0) / gaps.length, max: Math.max(...gaps), min: Math.min(...gaps) };
+}
+
