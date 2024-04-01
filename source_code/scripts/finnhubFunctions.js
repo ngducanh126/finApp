@@ -324,3 +324,16 @@ async function getETFVolatilityLeaders(apiKey) {
     return vols.sort((a, b) => b.vol - a.vol);
 }
 
+async function getCryptoDrawdown(symbol, resolution, from, to, apiKey) {
+    const candles = await getCryptoCandles(symbol, resolution, from, to, apiKey);
+    let closes = candles.c;
+    let maxPeak = closes[0];
+    let maxDrawdown = 0;
+    for (let c of closes) {
+        if (c > maxPeak) maxPeak = c;
+        let dd = (maxPeak - c) / maxPeak;
+        if (dd > maxDrawdown) maxDrawdown = dd;
+    }
+    return maxDrawdown;
+}
+
