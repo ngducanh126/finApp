@@ -351,3 +351,12 @@ async function getForexSessionPerformance(symbol, apiKey) {
     return sessions;
 }
 
+async function getIndexConcentrationScore(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/index/constituents?symbol=${symbol}&token=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    let weights = data.constituents.map(c => c.weight);
+    let top5 = weights.sort((a, b) => b - a).slice(0, 5).reduce((a, b) => a + b, 0);
+    return top5;
+}
+
