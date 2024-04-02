@@ -337,3 +337,17 @@ async function getCryptoDrawdown(symbol, resolution, from, to, apiKey) {
     return maxDrawdown;
 }
 
+async function getForexSessionPerformance(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/forex/candle?symbol=${symbol}&resolution=60&count=48&token=${apiKey}`;
+    const res = await fetch(url);
+    const candles = await res.json();
+    let sessions = { Asia: 0, Europe: 0, US: 0 };
+    for (let i = 0; i < candles.c.length; i++) {
+        let hour = new Date(candles.t[i]*1000).getUTCHours();
+        if (hour >= 0 && hour < 8) sessions.Asia += candles.c[i] - candles.o[i];
+        else if (hour >= 8 && hour < 16) sessions.Europe += candles.c[i] - candles.o[i];
+        else sessions.US += candles.c[i] - candles.o[i];
+    }
+    return sessions;
+}
+
