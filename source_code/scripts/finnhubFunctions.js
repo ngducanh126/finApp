@@ -360,3 +360,10 @@ async function getIndexConcentrationScore(symbol, apiKey) {
     return top5;
 }
 
+async function getDividendPayoutRatioTrend(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/stock/financials-reported?symbol=${symbol}&token=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.data.map(r => ({ period: r.period, payout: r.report.dividends / r.report.netIncome }));
+}
+
