@@ -367,3 +367,15 @@ async function getDividendPayoutRatioTrend(symbol, apiKey) {
     return data.data.map(r => ({ period: r.period, payout: r.report.dividends / r.report.netIncome }));
 }
 
+async function getSplitEventImpact(symbol, apiKey) {
+    const splits = await getSplits(symbol, '2020-01-01', '2025-01-01', apiKey);
+    const now = Math.floor(Date.now()/1000);
+    const candles = await getCandles(symbol, 'D', now-60*24*60*60, now, apiKey);
+    let impact = splits.map(s => {
+        let idx = candles.t.findIndex(t => new Date(t*1000).toISOString().slice(0,10) === s.date);
+        if (idx > 0) return candles.c[idx+1] / candles.c[idx-1] - 1;
+        return null;
+    });
+    return impact;
+}
+
