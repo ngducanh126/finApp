@@ -379,3 +379,12 @@ async function getSplitEventImpact(symbol, apiKey) {
     return impact;
 }
 
+async function getEarningsBeatRate(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/calendar/earnings?symbol=${symbol}&token=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    let beats = data.earningsCalendar.filter(e => e.actual > e.estimate).length;
+    let total = data.earningsCalendar.length;
+    return total === 0 ? 0 : beats / total;
+}
+
