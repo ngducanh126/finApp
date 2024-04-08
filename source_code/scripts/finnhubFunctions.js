@@ -388,3 +388,11 @@ async function getEarningsBeatRate(symbol, apiKey) {
     return total === 0 ? 0 : beats / total;
 }
 
+async function getEconomicEventVolatility(event, apiKey) {
+    const url = `https://finnhub.io/api/v1/calendar/economic?token=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    let filtered = data.economicCalendar.filter(e => e.event === event);
+    return filtered.map(e => Math.abs(e.actual - e.estimate));
+}
+
