@@ -404,3 +404,11 @@ async function getIntradayRangeBreakout(symbol, resolution, from, to, apiKey) {
     return breakout;
 }
 
+async function get52WeekRelativeStrength(symbol, apiKey) {
+    const now = Math.floor(Date.now()/1000);
+    const yearAgo = now - 365*24*60*60;
+    const candles = await getCandles(symbol, 'D', yearAgo, now, apiKey);
+    let perf = (candles.c[0] - candles.c[candles.c.length-1]) / candles.c[candles.c.length-1] * 100;
+    return perf;
+}
+
