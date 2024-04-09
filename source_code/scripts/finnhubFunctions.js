@@ -396,3 +396,11 @@ async function getEconomicEventVolatility(event, apiKey) {
     return filtered.map(e => Math.abs(e.actual - e.estimate));
 }
 
+async function getIntradayRangeBreakout(symbol, resolution, from, to, apiKey) {
+    const candles = await getCandles(symbol, resolution, from, to, apiKey);
+    let highs = candles.h;
+    let lows = candles.l;
+    let breakout = highs[0] > Math.max(...highs.slice(1, 6)) || lows[0] < Math.min(...lows.slice(1, 6));
+    return breakout;
+}
+
