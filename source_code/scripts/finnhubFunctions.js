@@ -412,3 +412,10 @@ async function get52WeekRelativeStrength(symbol, apiKey) {
     return perf;
 }
 
+async function getMovingAverageEnvelope(symbol, resolution, from, to, period, percent, apiKey) {
+    const candles = await getCandles(symbol, resolution, from, to, apiKey);
+    let closes = candles.c;
+    let sma = closes.slice(0, period).reduce((a, b) => a + b, 0) / period;
+    return { upper: sma * (1 + percent/100), lower: sma * (1 - percent/100) };
+}
+
