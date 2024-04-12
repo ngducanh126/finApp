@@ -419,3 +419,15 @@ async function getMovingAverageEnvelope(symbol, resolution, from, to, period, pe
     return { upper: sma * (1 + percent/100), lower: sma * (1 - percent/100) };
 }
 
+async function getPriceVolatilityClustering(symbol, resolution, from, to, apiKey) {
+    const candles = await getCandles(symbol, resolution, from, to, apiKey);
+    let closes = candles.c;
+    let clusters = 0;
+    for (let i = 2; i < closes.length; i++) {
+        let v1 = Math.abs(closes[i] - closes[i-1]);
+        let v2 = Math.abs(closes[i-1] - closes[i-2]);
+        if ((v1 > 1 && v2 > 1) || (v1 < 0.5 && v2 < 0.5)) clusters++;
+    }
+    return clusters;
+}
+
