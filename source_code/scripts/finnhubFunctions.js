@@ -431,3 +431,12 @@ async function getPriceVolatilityClustering(symbol, resolution, from, to, apiKey
     return clusters;
 }
 
+async function getVolumeWeightedMomentum(symbol, resolution, from, to, apiKey) {
+    const candles = await getCandles(symbol, resolution, from, to, apiKey);
+    let closes = candles.c;
+    let volumes = candles.v;
+    let weighted = closes.map((c, i) => c * volumes[i]);
+    let momentum = weighted[0] - weighted[weighted.length-1];
+    return momentum;
+}
+
