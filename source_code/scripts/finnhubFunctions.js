@@ -440,3 +440,13 @@ async function getVolumeWeightedMomentum(symbol, resolution, from, to, apiKey) {
     return momentum;
 }
 
+async function getSectorDispersion(apiKey) {
+    const url = `https://finnhub.io/api/v1/stock/sector-performance?token=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    let changes = data.map(s => s.change);
+    let mean = changes.reduce((a, b) => a + b, 0) / changes.length;
+    let dispersion = Math.sqrt(changes.reduce((a, b) => a + (b - mean) ** 2, 0) / changes.length);
+    return dispersion;
+}
+
