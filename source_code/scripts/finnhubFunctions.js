@@ -450,3 +450,10 @@ async function getSectorDispersion(apiKey) {
     return dispersion;
 }
 
+async function getETFExpenseRatioRank(apiKey) {
+    const url = `https://finnhub.io/api/v1/etf/profile?exchange=US&token=${apiKey}`;
+    const res = await fetch(url);
+    const etfs = await res.json();
+    return etfs.sort((a, b) => a.expenseRatio - b.expenseRatio).slice(0, 10);
+}
+
