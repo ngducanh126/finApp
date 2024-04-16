@@ -457,3 +457,10 @@ async function getETFExpenseRatioRank(apiKey) {
     return etfs.sort((a, b) => a.expenseRatio - b.expenseRatio).slice(0, 10);
 }
 
+async function getCryptoLiquidityRank(apiKey) {
+    const url = `https://finnhub.io/api/v1/crypto/symbol?exchange=BINANCE&token=${apiKey}`;
+    const res = await fetch(url);
+    const symbols = await res.json();
+    return symbols.sort((a, b) => b.volume - a.volume).slice(0, 10);
+}
+
