@@ -464,3 +464,11 @@ async function getCryptoLiquidityRank(apiKey) {
     return symbols.sort((a, b) => b.volume - a.volume).slice(0, 10);
 }
 
+async function getForexSpreadStats(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/forex/tick?symbol=${symbol}&date=2024-03-27&token=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    let spreads = data.data.map(t => t.ask - t.bid);
+    return { avg: spreads.reduce((a, b) => a + b, 0) / spreads.length, max: Math.max(...spreads), min: Math.min(...spreads) };
+}
+
