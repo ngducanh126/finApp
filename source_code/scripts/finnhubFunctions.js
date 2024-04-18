@@ -472,3 +472,10 @@ async function getForexSpreadStats(symbol, apiKey) {
     return { avg: spreads.reduce((a, b) => a + b, 0) / spreads.length, max: Math.max(...spreads), min: Math.min(...spreads) };
 }
 
+async function getIndexTurnover(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/index/constituents?symbol=${symbol}&token=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.changes;
+}
+
