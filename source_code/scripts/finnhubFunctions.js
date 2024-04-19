@@ -479,3 +479,10 @@ async function getIndexTurnover(symbol, apiKey) {
     return data.changes;
 }
 
+async function getDividendExDateScanner(apiKey) {
+    const url = `https://finnhub.io/api/v1/stock/dividend?exchange=US&token=${apiKey}`;
+    const res = await fetch(url);
+    const divs = await res.json();
+    return divs.filter(d => new Date(d.exDate) > new Date()).slice(0, 10);
+}
+
