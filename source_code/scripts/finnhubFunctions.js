@@ -505,3 +505,15 @@ async function getEarningsRevisionTrend(symbol, apiKey) {
     return data.map(r => ({ date: r.gradeTime, action: r.action }));
 }
 
+async function getEconomicCalendarDensity(apiKey) {
+    const url = `https://finnhub.io/api/v1/calendar/economic?token=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    let days = {};
+    for (let e of data.economicCalendar) {
+        let d = e.date;
+        days[d] = (days[d] || 0) + 1;
+    }
+    return days;
+}
+
