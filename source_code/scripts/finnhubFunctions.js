@@ -517,3 +517,11 @@ async function getEconomicCalendarDensity(apiKey) {
     return days;
 }
 
+async function getIntradayMeanReversion(symbol, resolution, from, to, apiKey) {
+    const candles = await getCandles(symbol, resolution, from, to, apiKey);
+    let closes = candles.c;
+    let mean = closes.reduce((a, b) => a + b, 0) / closes.length;
+    let reverts = closes.filter(c => Math.abs(c - mean) < 0.5).length;
+    return reverts;
+}
+
