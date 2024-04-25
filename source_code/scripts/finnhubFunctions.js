@@ -525,3 +525,12 @@ async function getIntradayMeanReversion(symbol, resolution, from, to, apiKey) {
     return reverts;
 }
 
+async function get52WeekLowVolume(symbol, apiKey) {
+    const now = Math.floor(Date.now()/1000);
+    const yearAgo = now - 365*24*60*60;
+    const candles = await getCandles(symbol, 'D', yearAgo, now, apiKey);
+    let lows = Math.min(...candles.l);
+    let idx = candles.l.indexOf(lows);
+    return candles.v[idx];
+}
+
