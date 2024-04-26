@@ -541,3 +541,11 @@ async function getMovingAverageDeviation(symbol, resolution, from, to, period, a
     return closes[0] - sma;
 }
 
+async function getPriceActionPattern(symbol, resolution, from, to, apiKey) {
+    const candles = await getCandles(symbol, resolution, from, to, apiKey);
+    let opens = candles.o;
+    let closes = candles.c;
+    let engulfing = closes[0] > opens[0] and closes[1] < opens[1] and closes[0] > opens[1] and opens[0] < closes[1];
+    return engulfing;
+}
+
