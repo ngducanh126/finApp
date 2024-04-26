@@ -534,3 +534,10 @@ async function get52WeekLowVolume(symbol, apiKey) {
     return candles.v[idx];
 }
 
+async function getMovingAverageDeviation(symbol, resolution, from, to, period, apiKey) {
+    const candles = await getCandles(symbol, resolution, from, to, apiKey);
+    let closes = candles.c;
+    let sma = closes.slice(0, period).reduce((a, b) => a + b, 0) / period;
+    return closes[0] - sma;
+}
+
