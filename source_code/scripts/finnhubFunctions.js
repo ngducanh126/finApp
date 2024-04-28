@@ -557,3 +557,10 @@ async function getVolumeOscillator(symbol, resolution, from, to, short, long, ap
     return shortAvg - longAvg;
 }
 
+async function getSectorBeta(apiKey) {
+    const url = `https://finnhub.io/api/v1/stock/sector-performance?token=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.map(s => ({ sector: s.sector, beta: s.beta }));
+}
+
