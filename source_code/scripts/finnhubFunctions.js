@@ -549,3 +549,11 @@ async function getPriceActionPattern(symbol, resolution, from, to, apiKey) {
     return engulfing;
 }
 
+async function getVolumeOscillator(symbol, resolution, from, to, short, long, apiKey) {
+    const candles = await getCandles(symbol, resolution, from, to, apiKey);
+    let volumes = candles.v;
+    let shortAvg = volumes.slice(0, short).reduce((a, b) => a + b, 0) / short;
+    let longAvg = volumes.slice(0, long).reduce((a, b) => a + b, 0) / long;
+    return shortAvg - longAvg;
+}
+
