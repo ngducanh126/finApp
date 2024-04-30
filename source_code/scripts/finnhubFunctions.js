@@ -564,3 +564,10 @@ async function getSectorBeta(apiKey) {
     return data.map(s => ({ sector: s.sector, beta: s.beta }));
 }
 
+async function getETFDividendGrowth(apiKey) {
+    const url = `https://finnhub.io/api/v1/etf/profile?exchange=US&token=${apiKey}`;
+    const res = await fetch(url);
+    const etfs = await res.json();
+    return etfs.map(e => ({ symbol: e.symbol, growth: e.dividendGrowth }));
+}
+
