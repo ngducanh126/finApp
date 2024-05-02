@@ -571,3 +571,18 @@ async function getETFDividendGrowth(apiKey) {
     return etfs.map(e => ({ symbol: e.symbol, growth: e.dividendGrowth }));
 }
 
+async function getCryptoVolatilitySurface(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/crypto/candle?symbol=${symbol}&resolution=5&count=100&token=${apiKey}`;
+    const res = await fetch(url);
+    const candles = await res.json();
+    let closes = candles.c;
+    let surfaces = [];
+    for (let i = 10; i < closes.length; i += 10) {
+        let slice = closes.slice(i-10, i);
+        let mean = slice.reduce((a, b) => a + b, 0) / slice.length;
+        let std = Math.sqrt(slice.reduce((a, b) => a + (b - mean) ** 2, 0) / slice.length);
+        surfaces.push(std);
+    }
+    return surfaces;
+}
+
