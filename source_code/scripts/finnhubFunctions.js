@@ -586,3 +586,23 @@ async function getCryptoVolatilitySurface(symbol, apiKey) {
     return surfaces;
 }
 
+async function getForexCorrelationStability(symbols, resolution, from, to, apiKey) {
+    let closes = [];
+    for (let symbol of symbols) {
+        const candles = await getForexCandles(symbol, resolution, from, to, apiKey);
+        closes.push(candles.c);
+    }
+    let stabilities = [];
+    for (let i = 0; i < closes.length; i++) {
+        for (let j = i+1; j < closes.length; j++) {
+            let meanI = closes[i].reduce((a, b) => a + b, 0) / closes[i].length;
+            let meanJ = closes[j].reduce((a, b) => a + b, 0) / closes[j].length;
+            let cov = closes[i].map((v, k) => (v - meanI) * (closes[j][k] - meanJ)).reduce((a, b) => a + b, 0) / closes[i].length;
+            let stdI = Math.sqrt(closes[i].map(v => (v - meanI) ** 2).reduce((a, b) => a + b, 0) / closes[i].length);
+            let stdJ = Math.sqrt(closes[j].map(v => (v - meanJ) ** 2).reduce((a, b) => a + b, 0) / closes[j].length);
+            stabilities.push(cov / (stdI * stdJ));
+        }
+    }
+    return stabilities;
+}
+
