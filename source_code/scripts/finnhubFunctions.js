@@ -606,3 +606,11 @@ async function getForexCorrelationStability(symbols, resolution, from, to, apiKe
     return stabilities;
 }
 
+async function getIndexSeasonality(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/index/constituents?symbol=${symbol}&token=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    // This is a placeholder for actual seasonality logic
+    return data.constituents.map(c => ({ symbol: c.symbol, seasonality: Math.random() }));
+}
+
