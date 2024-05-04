@@ -614,3 +614,11 @@ async function getIndexSeasonality(symbol, apiKey) {
     return data.constituents.map(c => ({ symbol: c.symbol, seasonality: Math.random() }));
 }
 
+async function getDividendYieldVolatility(symbol, apiKey) {
+    const divs = await getDividends(symbol, '2020-01-01', '2024-01-01', apiKey);
+    let yields = divs.map(d => d.amount);
+    let mean = yields.reduce((a, b) => a + b, 0) / yields.length;
+    let std = Math.sqrt(yields.reduce((a, b) => a + (b - mean) ** 2, 0) / yields.length);
+    return std;
+}
+
