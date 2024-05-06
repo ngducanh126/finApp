@@ -630,3 +630,10 @@ async function getSplitRatioDistribution(symbol, apiKey) {
     return counts;
 }
 
+async function getEarningsVolatilitySurface(symbol, apiKey) {
+    const url = `https://finnhub.io/api/v1/calendar/earnings?symbol=${symbol}&token=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.earningsCalendar.map(e => Math.abs(e.actual - e.estimate));
+}
+
