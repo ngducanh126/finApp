@@ -622,3 +622,11 @@ async function getDividendYieldVolatility(symbol, apiKey) {
     return std;
 }
 
+async function getSplitRatioDistribution(symbol, apiKey) {
+    const splits = await getSplits(symbol, '2000-01-01', '2024-01-01', apiKey);
+    let ratios = splits.map(s => s.ratio);
+    let counts = {};
+    for (let r of ratios) counts[r] = (counts[r] || 0) + 1;
+    return counts;
+}
+
