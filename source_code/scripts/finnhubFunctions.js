@@ -637,3 +637,13 @@ async function getEarningsVolatilitySurface(symbol, apiKey) {
     return data.earningsCalendar.map(e => Math.abs(e.actual - e.estimate));
 }
 
+async function getEconomicSurpriseDispersion(apiKey) {
+    const url = `https://finnhub.io/api/v1/calendar/economic?token=${apiKey}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    let surprises = data.economicCalendar.map(e => e.actual - e.estimate);
+    let mean = surprises.reduce((a, b) => a + b, 0) / surprises.length;
+    let dispersion = Math.sqrt(surprises.reduce((a, b) => a + (b - mean) ** 2, 0) / surprises.length);
+    return dispersion;
+}
+
