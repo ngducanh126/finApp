@@ -647,3 +647,14 @@ async function getEconomicSurpriseDispersion(apiKey) {
     return dispersion;
 }
 
+async function getIntradayLiquidityHeatmap(symbol, resolution, from, to, apiKey) {
+    const candles = await getCandles(symbol, resolution, from, to, apiKey);
+    let volumes = candles.v;
+    let hours = {};
+    for (let i = 0; i < candles.t.length; i++) {
+        let hour = new Date(candles.t[i]*1000).getUTCHours();
+        hours[hour] = (hours[hour] || 0) + volumes[i];
+    }
+    return hours;
+}
+
