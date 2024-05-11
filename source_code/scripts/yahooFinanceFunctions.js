@@ -1,0 +1,6 @@
+async function getQuoteSummary(symbol, apiKey) {
+    const url = `https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-summary?symbol=${symbol}`;
+    const res = await fetch(url, { headers: { 'x-rapidapi-key': apiKey } });
+    return await res.json();
+}
+
