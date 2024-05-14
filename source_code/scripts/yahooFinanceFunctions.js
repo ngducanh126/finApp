@@ -22,3 +22,9 @@ async function getCompanyInsights(symbol, apiKey) {
     return await res.json();
 }
 
+async function getFinancials(symbol, apiKey) {
+    const url = `https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-financials?symbol=${symbol}`;
+    const res = await fetch(url, { headers: { 'x-rapidapi-key': apiKey } });
+    return await res.json();
+}
+
