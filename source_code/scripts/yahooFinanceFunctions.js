@@ -40,3 +40,9 @@ async function getOptionsChain(symbol, apiKey) {
     return await res.json();
 }
 
+async function getAnalystRecommendations(symbol, apiKey) {
+    const url = `https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-analysis?symbol=${symbol}`;
+    const res = await fetch(url, { headers: { 'x-rapidapi-key': apiKey } });
+    return await res.json();
+}
+
