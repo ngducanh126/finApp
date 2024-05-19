@@ -46,3 +46,9 @@ async function getAnalystRecommendations(symbol, apiKey) {
     return await res.json();
 }
 
+async function getInstitutionalHolders(symbol, apiKey) {
+    const url = `https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-institutional-holders?symbol=${symbol}`;
+    const res = await fetch(url, { headers: { 'x-rapidapi-key': apiKey } });
+    return await res.json();
+}
+
