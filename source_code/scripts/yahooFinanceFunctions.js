@@ -65,3 +65,10 @@ async function getDividendHistory(symbol, apiKey) {
     return data.dividends;
 }
 
+async function getSplitHistory(symbol, apiKey) {
+    const url = `https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v3/get-historical-data?symbol=${symbol}`;
+    const res = await fetch(url, { headers: { 'x-rapidapi-key': apiKey } });
+    const data = await res.json();
+    return data.splits;
+}
+
