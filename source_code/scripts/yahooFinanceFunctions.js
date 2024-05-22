@@ -72,3 +72,9 @@ async function getSplitHistory(symbol, apiKey) {
     return data.splits;
 }
 
+async function getSectorPerformance(apiKey) {
+    const url = `https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/v2/get-sector-performance?region=US`;
+    const res = await fetch(url, { headers: { 'x-rapidapi-key': apiKey } });
+    return await res.json();
+}
+
