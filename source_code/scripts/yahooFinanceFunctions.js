@@ -78,3 +78,9 @@ async function getSectorPerformance(apiKey) {
     return await res.json();
 }
 
+async function getIndexConstituents(symbol, apiKey) {
+    const url = `https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/get-index-constituents?symbol=${symbol}`;
+    const res = await fetch(url, { headers: { 'x-rapidapi-key': apiKey } });
+    return await res.json();
+}
+
