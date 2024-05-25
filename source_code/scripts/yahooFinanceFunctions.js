@@ -84,3 +84,9 @@ async function getIndexConstituents(symbol, apiKey) {
     return await res.json();
 }
 
+async function getETFHoldings(symbol, apiKey) {
+    const url = `https://apidojo-yahoo-finance-v1.p.rapidapi.com/etf/v2/get-holdings?symbol=${symbol}`;
+    const res = await fetch(url, { headers: { 'x-rapidapi-key': apiKey } });
+    return await res.json();
+}
+
