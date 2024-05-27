@@ -96,3 +96,9 @@ async function getCryptoMarketData(symbol, apiKey) {
     return await res.json();
 }
 
+async function getForexRates(pair, apiKey) {
+    const url = `https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/v2/get-quotes?symbols=${pair}`;
+    const res = await fetch(url, { headers: { 'x-rapidapi-key': apiKey } });
+    return await res.json();
+}
+
