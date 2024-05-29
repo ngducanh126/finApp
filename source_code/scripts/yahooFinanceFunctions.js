@@ -108,3 +108,9 @@ async function getMutualFundProfile(symbol, apiKey) {
     return await res.json();
 }
 
+async function getBondProfile(symbol, apiKey) {
+    const url = `https://apidojo-yahoo-finance-v1.p.rapidapi.com/bond/v2/get-profile?symbol=${symbol}`;
+    const res = await fetch(url, { headers: { 'x-rapidapi-key': apiKey } });
+    return await res.json();
+}
+
