@@ -127,3 +127,9 @@ async function getPriceTargetConsensus(symbol, apiKey) {
     return data.priceTarget;
 }
 
+async function getTechnicalIndicators(symbol, interval, range, apiKey) {
+    const url = `https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v3/get-chart?symbol=${symbol}&interval=${interval}&range=${range}`;
+    const res = await fetch(url, { headers: { 'x-rapidapi-key': apiKey } });
+    return await res.json();
+}
+
