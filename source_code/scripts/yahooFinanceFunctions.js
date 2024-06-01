@@ -133,3 +133,8 @@ async function getTechnicalIndicators(symbol, interval, range, apiKey) {
     return await res.json();
 }
 
+async function getPatternRecognition(symbol, apiKey) {
+    // Placeholder for pattern recognition logic
+    return { pattern: 'engulfing', detected: Math.random() > 0.5 };
+}
+
