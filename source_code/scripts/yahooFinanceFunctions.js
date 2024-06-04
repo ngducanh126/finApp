@@ -143,3 +143,10 @@ async function getSupportResistance(symbol, apiKey) {
     return { support: Math.random() * 100, resistance: Math.random() * 120 };
 }
 
+async function get52WeekHighLow(symbol, apiKey) {
+    const url = `https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-summary?symbol=${symbol}`;
+    const res = await fetch(url, { headers: { 'x-rapidapi-key': apiKey } });
+    const data = await res.json();
+    return { high: data.fiftyTwoWeekHigh, low: data.fiftyTwoWeekLow };
+}
+
