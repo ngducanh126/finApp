@@ -155,3 +155,8 @@ async function getVolatilityIndex(symbol, apiKey) {
     return { vix: Math.random() * 40 };
 }
 
+async function getShortInterest(symbol, apiKey) {
+    // Placeholder for short interest logic
+    return { shortPercent: Math.random() * 10 };
+}
+
