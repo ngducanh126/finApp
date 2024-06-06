@@ -160,3 +160,8 @@ async function getShortInterest(symbol, apiKey) {
     return { shortPercent: Math.random() * 10 };
 }
 
+async function getOwnershipBreakdown(symbol, apiKey) {
+    // Placeholder for ownership breakdown
+    return { institutional: Math.random() * 80, insider: Math.random() * 10 };
+}
+
