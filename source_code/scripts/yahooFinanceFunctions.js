@@ -165,3 +165,8 @@ async function getOwnershipBreakdown(symbol, apiKey) {
     return { institutional: Math.random() * 80, insider: Math.random() * 10 };
 }
 
+async function getSocialSentiment(symbol, apiKey) {
+    // Placeholder for social sentiment
+    return { reddit: Math.floor(Math.random() * 100), twitter: Math.floor(Math.random() * 100) };
+}
+
