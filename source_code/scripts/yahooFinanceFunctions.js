@@ -170,3 +170,8 @@ async function getSocialSentiment(symbol, apiKey) {
     return { reddit: Math.floor(Math.random() * 100), twitter: Math.floor(Math.random() * 100) };
 }
 
+async function getUpgradeDowngrade(symbol, apiKey) {
+    // Placeholder for upgrade/downgrade
+    return { upgrades: Math.floor(Math.random() * 5), downgrades: Math.floor(Math.random() * 5) };
+}
+
