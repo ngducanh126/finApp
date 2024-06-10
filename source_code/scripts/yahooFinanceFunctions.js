@@ -175,3 +175,9 @@ async function getUpgradeDowngrade(symbol, apiKey) {
     return { upgrades: Math.floor(Math.random() * 5), downgrades: Math.floor(Math.random() * 5) };
 }
 
+async function getIPOCalendar(apiKey) {
+    const url = `https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/v2/get-ipo-calendar?region=US`;
+    const res = await fetch(url, { headers: { 'x-rapidapi-key': apiKey } });
+    return await res.json();
+}
+
