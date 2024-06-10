@@ -181,3 +181,9 @@ async function getIPOCalendar(apiKey) {
     return await res.json();
 }
 
+async function getEconomicCalendar(apiKey) {
+    const url = `https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/v2/get-economic-calendar?region=US`;
+    const res = await fetch(url, { headers: { 'x-rapidapi-key': apiKey } });
+    return await res.json();
+}
+
