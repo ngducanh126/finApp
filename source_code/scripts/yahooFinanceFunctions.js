@@ -192,3 +192,9 @@ async function getRevenueBreakdown(symbol, apiKey) {
     return { segments: [ { name: 'Product', value: Math.random() * 1000 }, { name: 'Service', value: Math.random() * 500 } ] };
 }
 
+async function getPeersComparison(symbol, apiKey) {
+    const url = `https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-peers?symbol=${symbol}`;
+    const res = await fetch(url, { headers: { 'x-rapidapi-key': apiKey } });
+    return await res.json();
+}
+
