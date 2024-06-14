@@ -198,3 +198,8 @@ async function getPeersComparison(symbol, apiKey) {
     return await res.json();
 }
 
+async function getPriceMomentum(symbol, apiKey) {
+    // Placeholder for price momentum
+    return { momentum: Math.random() * 2 - 1 };
+}
+
