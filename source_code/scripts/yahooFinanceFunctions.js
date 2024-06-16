@@ -203,3 +203,8 @@ async function getPriceMomentum(symbol, apiKey) {
     return { momentum: Math.random() * 2 - 1 };
 }
 
+async function getRelativeVolume(symbol, apiKey) {
+    // Placeholder for relative volume
+    return { relVol: Math.random() * 3 };
+}
+
