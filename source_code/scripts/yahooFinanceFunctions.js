@@ -213,3 +213,8 @@ async function getMarketBreadth(apiKey) {
     return { advancers: Math.floor(Math.random() * 3000), decliners: Math.floor(Math.random() * 3000) };
 }
 
+async function getETFPerformance(symbol, apiKey) {
+    // Placeholder for ETF performance
+    return { perf1m: Math.random() * 10 - 5, perf1y: Math.random() * 30 - 10 };
+}
+
