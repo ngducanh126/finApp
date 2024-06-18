@@ -218,3 +218,8 @@ async function getETFPerformance(symbol, apiKey) {
     return { perf1m: Math.random() * 10 - 5, perf1y: Math.random() * 30 - 10 };
 }
 
+async function getCryptoCorrelationMatrix(symbols, apiKey) {
+    // Placeholder for crypto correlation
+    return symbols.map(s => symbols.map(_ => Math.random() * 2 - 1));
+}
+
