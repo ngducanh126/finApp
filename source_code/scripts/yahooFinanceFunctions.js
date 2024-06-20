@@ -223,3 +223,8 @@ async function getCryptoCorrelationMatrix(symbols, apiKey) {
     return symbols.map(s => symbols.map(_ => Math.random() * 2 - 1));
 }
 
+async function getForexVolatility(pair, apiKey) {
+    // Placeholder for forex volatility
+    return { vol: Math.random() * 2 };
+}
+
